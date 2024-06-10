@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PCM.SIP.ICP.Aplicacion.Interface\PCM.SIP.ICP.Aplicacion.Interface.csproj" />
+    <ProjectReference Include="..\PCM.SIP.ICP.Transversal.Common\PCM.SIP.ICP.Transversal.Common.csproj" />
+  </ItemGroup>
+
 </Project>
