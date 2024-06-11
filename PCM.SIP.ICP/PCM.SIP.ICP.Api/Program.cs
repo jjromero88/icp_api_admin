@@ -26,6 +26,7 @@ builder.Services.AddValidator();
 builder.Services.AddSwagger();
 
 // Se registra los ActionFilterAttribute en el Contenedor de Dependencias
+builder.Services.AddScoped<ValidateTokenRequestAttribute>();
 builder.Services.AddScoped<UpdateUserDataAttribute>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
