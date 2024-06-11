@@ -1,12 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using PCM.SIP.ICP.Aplicacion.Interface;
+using PCM.SIP.ICP.Aplicacion.Interface.Persistence;
 
 namespace PCM.SIP.ICP.Persistence.Repository.Base
 {
-    internal class UnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
+        public IEntidadGrupoRepository EntidadGrupo { get; }
+
+        public UnitOfWork(
+            IEntidadGrupoRepository entidadGrupo)
+        {
+            EntidadGrupo = entidadGrupo;
+        }
+
+        public void Dispose()
+        {
+            GC.SuppressFinalize(this);
+        }
     }
 }
