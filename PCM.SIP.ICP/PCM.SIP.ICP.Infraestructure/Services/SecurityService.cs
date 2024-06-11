@@ -1,6 +1,7 @@
 ﻿using PCM.SIP.ICP.Aplicacion.Interface.Infraestructure;
-using PCM.SIP.ICP.Transversal.Common.Generics;
-using System.Net.Http.Json;
+using PCM.SIP.ICP.Domain.Entities;
+using PCM.SIP.ICP.Domain.Entities.Security;
+using System.Text.Json;
 
 namespace PCM.SIP.ICP.Infraestructure.Services
 {
@@ -12,23 +13,29 @@ namespace PCM.SIP.ICP.Infraestructure.Services
         {
             _httpClient = httpClient;
         }
-
-        public async Task<PcmResponse> GetSessionDataAsync(string token)
+       
+        public async Task<UsuarioCache> GetSessionDataAsync(string token)
         {
             try
             {
                 _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
 
-                var response = await _httpClient.GetAsync("api/security/GetSessionData");
+                var httpResponse = await _httpClient.GetAsync("api/security/GetSessionData");
 
-                if (response.IsSuccessStatusCode)
-                {
-                    var sessionData = await response.Content.ReadFromJsonAsync<PcmResponse>();
-                    return sessionData;
+                if (httpResponse.IsSuccessStatusCode)
+                {    
+                    var responseContent = await httpResponse.Content.ReadAsStringAsync();
+
+                    var result = JsonSerializer.Deserialize<ResponseSecurityService>(responseContent);
+
+                    if (result == null || result.Payload == null)
+                        throw new HttpRequestException($"Error al obtener los datos de sesión:");
+
+                    return result.Payload;
                 }
                 else
                 {
-                    throw new HttpRequestException($"Error al obtener los datos de sesión: {response.ReasonPhrase}");
+                    throw new HttpRequestException($"Error al obtener los datos de sesión:");
                 }
             }
             catch (Exception ex)

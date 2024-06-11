@@ -8,8 +8,6 @@ namespace PCM.SIP.ICP.Infraestructure
     {
         public static IServiceCollection AddInfraestructureServices(this IServiceCollection services)
         {
-            //services.AddScoped<ISecurityService, SecurityService>();
-
             services.AddHttpClient<ISecurityService, SecurityService>(client =>
             {
                 client.BaseAddress = new Uri("http://localhost:5208/");

@@ -1,12 +1,38 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using PCM.SIP.ICP.Aplicacion.Features;
+using PCM.SIP.ICP.Transversal.Common.Generics;
+using PCM.SIP.ICP.Transversal.Common;
+using System.Net;
+using PCM.SIP.ICP.Aplicacion.Dto;
 
 namespace PCM.SIP.ICP.Api.Controllers
 {
+    [Authorize]
+    [Route("api/[controller]")]
+    [ApiController]
     public class EntidadGrupoController : Controller
     {
-        public IActionResult Index()
+        private readonly IEntidadGrupoApplication _EntidadGrupoApplication;
+        private readonly IMapper _mapper;
+
+        public EntidadGrupoController(IEntidadGrupoApplication entidadGrupoApplication, IMapper mapper)
         {
-            return View();
+            _EntidadGrupoApplication = entidadGrupoApplication;
+            _mapper = mapper;
         }
+
+        [HttpGet("GetList")]
+        //[ServiceFilter(typeof(AuthorizationRequestAttribute))]
+        [ProducesResponseType((int)HttpStatusCode.OK, Type = typeof(PcmResponse))]
+        public async Task<ActionResult<PcmResponse>> GetList([FromQuery] EntidadGrupoFilterRequest request)
+        {
+            if (request == null)
+                return BadRequest();
+
+            return await _EntidadGrupoApplication.GetList(new Request<EntidadGrupoDto>() { entidad = _mapper.Map<EntidadGrupoDto>(request) });
+        }
+
     }
 }

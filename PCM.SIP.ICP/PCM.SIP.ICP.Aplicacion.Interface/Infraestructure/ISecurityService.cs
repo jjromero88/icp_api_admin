@@ -1,9 +1,10 @@
-﻿using PCM.SIP.ICP.Transversal.Common.Generics;
+﻿using PCM.SIP.ICP.Domain.Entities;
+using PCM.SIP.ICP.Transversal.Common.Generics;
 
 namespace PCM.SIP.ICP.Aplicacion.Interface.Infraestructure
 {
     public interface ISecurityService
     {
-        Task<PcmResponse> GetSessionDataAsync(string token);
+        Task<UsuarioCache> GetSessionDataAsync(string token);
     }
 }
