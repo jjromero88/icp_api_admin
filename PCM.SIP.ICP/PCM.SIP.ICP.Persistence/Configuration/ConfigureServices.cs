@@ -5,7 +5,7 @@ using PCM.SIP.ICP.Persistence.Context;
 using PCM.SIP.ICP.Persistence.Repository;
 using PCM.SIP.ICP.Persistence.Repository.Base;
 
-namespace PCM.SIP.ICP.Persistence.Configuration
+namespace PCM.SIP.ICP.Persistence
 {
     public static class ConfigureServices
     {
