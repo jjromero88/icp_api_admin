@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using PCM.SIP.ICP.Aplicacion.Dto;
 using PCM.SIP.ICP.Aplicacion.Interface;
+using PCM.SIP.ICP.Aplicacion.Interface.Features;
 using PCM.SIP.ICP.Aplicacion.Interface.Infraestructure;
 using PCM.SIP.ICP.Aplicacion.Validator;
 using PCM.SIP.ICP.Transversal.Common;
@@ -30,6 +31,16 @@ namespace PCM.SIP.ICP.Aplicacion.Features
             _userService = userService;
         }
 
+        public Task<PcmResponse> Insert(Request<EntidadGrupoDto> request)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<PcmResponse> Update(Request<EntidadGrupoDto> request)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<PcmResponse> Delete(Request<EntidadGrupoDto> request)
         {
             throw new NotImplementedException();
@@ -44,16 +55,6 @@ namespace PCM.SIP.ICP.Aplicacion.Features
         {
             var user = _userService.GetUser();
             throw new NotImplementedException();
-        }
-
-        public Task<PcmResponse> Insert(Request<EntidadGrupoDto> request)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<PcmResponse> Update(Request<EntidadGrupoDto> request)
-        {
-            throw new NotImplementedException();
-        }
+        }        
     }
 }

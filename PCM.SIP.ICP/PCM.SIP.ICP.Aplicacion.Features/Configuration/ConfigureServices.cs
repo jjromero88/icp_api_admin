@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using PCM.SIP.ICP.Aplicacion.Interface.Features;
 
 namespace PCM.SIP.ICP.Aplicacion.Features
 {

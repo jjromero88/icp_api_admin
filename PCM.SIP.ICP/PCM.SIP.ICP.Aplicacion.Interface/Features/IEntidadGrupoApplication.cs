@@ -6,10 +6,10 @@ namespace PCM.SIP.ICP.Aplicacion.Interface.Features
 {
     public interface IEntidadGrupoApplication
     {
-        PcmResponse Insert(Request<EntidadGrupoDto> request);
-        PcmResponse Update(Request<EntidadGrupoDto> request);
-        PcmResponse Delete(Request<EntidadGrupoDto> request);
-        PcmResponse GetById(Request<EntidadGrupoDto> request);
-        PcmResponse GetList(Request<EntidadGrupoDto> request);
+        Task<PcmResponse> Delete(Request<EntidadGrupoDto> request);
+        Task<PcmResponse> GetById(Request<EntidadGrupoDto> request);
+        Task<PcmResponse> GetList(Request<EntidadGrupoDto> request);
+        Task<PcmResponse> Insert(Request<EntidadGrupoDto> request);
+        Task<PcmResponse> Update(Request<EntidadGrupoDto> request);
     }
 }
