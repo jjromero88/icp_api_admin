@@ -14,20 +14,20 @@ namespace PCM.SIP.ICP.Aplicacion.Features
         private readonly IMapper _mapper;
         private readonly IAppLogger<EntidadGrupoApplication> _logger;
         private readonly EntidadGrupoValidationManager _perfilValidationManager;
-        private readonly ISecurityService _securityService;
+        private readonly IUserService _userService;
 
         public EntidadGrupoApplication(
             IUnitOfWork unitOfWork, 
             IMapper mapper, 
             IAppLogger<EntidadGrupoApplication> logger, 
             EntidadGrupoValidationManager perfilValidationManager,
-            ISecurityService securityService)
+            IUserService userService)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _logger = logger;
             _perfilValidationManager = perfilValidationManager;
-            _securityService = securityService;
+            _userService = userService;
         }
 
         public Task<PcmResponse> Delete(Request<EntidadGrupoDto> request)
@@ -42,7 +42,7 @@ namespace PCM.SIP.ICP.Aplicacion.Features
 
         public Task<PcmResponse> GetList(Request<EntidadGrupoDto> request)
         {
-            var cache = _securityService.GetSessionDataAsync("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6Impqcm9tZXJvODgiLCJpZHNlc3Npb24iOiIzNGM2MzU1MS1iMjU4LTQ3MDItYTRlOS02MWNjNWMxZjQ0NTciLCJuYmYiOjE3MTgxMzE4MDgsImV4cCI6MTcxODE2MDYwOCwiaWF0IjoxNzE4MTMxODA4LCJpc3MiOiJnb2IucGUiLCJhdWQiOiJnb2IucGUifQ.FHQhZuuiqC4Jud0nQkqZJVinkKKuRKWYIYlVrj0ltD4");
+            var user = _userService.GetUser();
             throw new NotImplementedException();
         }
 

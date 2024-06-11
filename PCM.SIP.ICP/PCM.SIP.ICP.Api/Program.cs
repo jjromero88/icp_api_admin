@@ -7,6 +7,7 @@ using PCM.SIP.ICP.Api.Modules.Validator;
 using PCM.SIP.ICP.Persistence;
 using PCM.SIP.ICP.Infraestructure;
 using PCM.SIP.ICP.Aplicacion.Features;
+using PCM.SIP.ICP.Api.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
@@ -23,6 +24,9 @@ builder.Services.AddInjection(configuration);
 builder.Services.AddAuthentication(configuration);
 builder.Services.AddValidator();
 builder.Services.AddSwagger();
+
+// Se registra los ActionFilterAttribute en el Contenedor de Dependencias
+builder.Services.AddScoped<UpdateUserDataAttribute>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

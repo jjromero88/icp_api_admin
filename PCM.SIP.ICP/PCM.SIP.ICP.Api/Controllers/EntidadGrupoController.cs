@@ -6,6 +6,7 @@ using PCM.SIP.ICP.Transversal.Common.Generics;
 using PCM.SIP.ICP.Transversal.Common;
 using System.Net;
 using PCM.SIP.ICP.Aplicacion.Dto;
+using PCM.SIP.ICP.Api.Filters;
 
 namespace PCM.SIP.ICP.Api.Controllers
 {
@@ -24,7 +25,8 @@ namespace PCM.SIP.ICP.Api.Controllers
         }
 
         [HttpGet("GetList")]
-        //[ServiceFilter(typeof(AuthorizationRequestAttribute))]
+        //[ServiceFilter(typeof(ValidateTokenRequestAttribute))]
+        [ServiceFilter(typeof(UpdateUserDataAttribute))]
         [ProducesResponseType((int)HttpStatusCode.OK, Type = typeof(PcmResponse))]
         public async Task<ActionResult<PcmResponse>> GetList([FromQuery] EntidadGrupoFilterRequest request)
         {
