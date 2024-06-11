@@ -9,10 +9,7 @@ namespace PCM.SIP.ICP.Infraestructure
         public static IServiceCollection AddInfraestructureServices(this IServiceCollection services)
         {
             services.AddSingleton<IUserService, UserService>();
-            services.AddHttpClient<ISecurityService, SecurityService>(client =>
-            {
-                client.BaseAddress = new Uri("http://localhost:5208/");
-            });
+            services.AddScoped<ISecurityService, SecurityService>();
 
             return services;
         }

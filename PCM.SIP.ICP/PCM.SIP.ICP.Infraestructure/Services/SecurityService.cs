@@ -17,29 +17,47 @@ namespace PCM.SIP.ICP.Infraestructure.Services
             _httpClient = httpClient;
             _configuration = configuration;
         }
-       
+
         public async Task<UsuarioCache> GetSessionDataAsync(string token)
         {
             try
             {
-                _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-
-                var httpResponse = await _httpClient.GetAsync("api/security/GetSessionData");
-
-                if (httpResponse.IsSuccessStatusCode)
-                {    
-                    var responseContent = await httpResponse.Content.ReadAsStringAsync();
-
-                    var result = JsonSerializer.Deserialize<ResponseSecurityService>(responseContent);
-
-                    if (result == null || result.Payload == null)
-                        throw new HttpRequestException($"Error al obtener los datos de sesión:");
-
-                    return result.Payload;
-                }
-                else
+                if (string.IsNullOrEmpty(token.Trim()))
                 {
-                    throw new HttpRequestException($"Error al obtener los datos de sesión:");
+                    throw new ArgumentException("El token no puede estar vacío", nameof(token));
+                }
+
+                string url = String.Format("{0}{1}",
+                _configuration["Microservices:IcpSeg:UrlBase"],
+              _configuration["Microservices:IcpSeg:Endpoints:GetSessionData"]);
+
+                // formamos los parametros para la peticion
+                var queryParams = String.Format("{0}", new Uri(url));
+
+                using (var httpClient = new HttpClient())
+                {
+                    httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                    if (!string.IsNullOrEmpty(token))
+                        httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+                    var httpResponse = await httpClient.GetAsync(String.Format(queryParams));
+
+                    if (httpResponse.IsSuccessStatusCode)
+                    {
+                        var responseContent = await httpResponse.Content.ReadAsStringAsync();
+
+                        var result = JsonSerializer.Deserialize<ResponseSecurityService>(responseContent);
+
+                        if (result == null || result.Payload == null)
+                            throw new HttpRequestException($"Error al obtener los datos de sesión");
+
+                        return result.Payload;
+                    }
+                    else
+                    {
+                        throw new HttpRequestException($"Error al obtener los datos de sesión");
+                    }
                 }
             }
             catch (Exception ex)
