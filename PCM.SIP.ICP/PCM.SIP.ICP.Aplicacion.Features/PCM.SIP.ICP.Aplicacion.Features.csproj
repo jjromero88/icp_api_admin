@@ -21,4 +21,8 @@
     <ProjectReference Include="..\PCM.SIP.ICP.Transversal.Util\PCM.SIP.ICP.Transversal.Util.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Base\" />
+  </ItemGroup>
+
 </Project>
