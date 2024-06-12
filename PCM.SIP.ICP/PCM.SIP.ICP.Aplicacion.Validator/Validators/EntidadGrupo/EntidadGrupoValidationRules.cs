@@ -16,10 +16,6 @@ namespace PCM.SIP.ICP.Aplicacion.Validator
     {
         public EntidadGrupoInsertRequestValidator()
         {
-            RuleFor(u => u.codigo)
-                .IsNullOrWhiteSpace()
-                .WithMessage("Debe ingresar un codigo");
-
             RuleFor(u => u.abreviatura)
                 .IsNullOrWhiteSpace()
                 .WithMessage("Debe ingresar una abreviatura");
@@ -27,10 +23,6 @@ namespace PCM.SIP.ICP.Aplicacion.Validator
             RuleFor(u => u.descripcion)
                 .IsNullOrWhiteSpace()
                 .WithMessage("Debe ingresar una descripcion");
-
-            RuleFor(x => x.codigo)
-                .MaximumLength(10)
-                .WithMessage("El codigo debe tener máximo 10 caracteres");
 
             RuleFor(x => x.abreviatura)
                .MaximumLength(20)
@@ -49,10 +41,6 @@ namespace PCM.SIP.ICP.Aplicacion.Validator
                 .IsNullOrWhiteSpace()
                   .WithMessage("Debe ingresar el Id del Tipo de documento");
 
-            RuleFor(u => u.codigo)
-                .IsNullOrWhiteSpace()
-                .WithMessage("Debe ingresar un codigo");
-
             RuleFor(u => u.abreviatura)
                 .IsNullOrWhiteSpace()
                 .WithMessage("Debe ingresar una abreviatura");
@@ -60,10 +48,6 @@ namespace PCM.SIP.ICP.Aplicacion.Validator
             RuleFor(u => u.descripcion)
                 .IsNullOrWhiteSpace()
                 .WithMessage("Debe ingresar una descripcion");
-
-            RuleFor(x => x.codigo)
-                .MaximumLength(10)
-                .WithMessage("El codigo debe tener máximo 10 caracteres");
 
             RuleFor(x => x.abreviatura)
                .MaximumLength(20)

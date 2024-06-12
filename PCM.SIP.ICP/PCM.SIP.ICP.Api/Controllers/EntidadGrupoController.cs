@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Authorization;
+using System.Net;
 using Microsoft.AspNetCore.Mvc;
-using PCM.SIP.ICP.Aplicacion.Features;
+using Microsoft.AspNetCore.Authorization;
 using PCM.SIP.ICP.Transversal.Common.Generics;
 using PCM.SIP.ICP.Transversal.Common;
-using System.Net;
 using PCM.SIP.ICP.Aplicacion.Dto;
 using PCM.SIP.ICP.Api.Filters;
+using PCM.SIP.ICP.Aplicacion.Interface.Features;
 
 namespace PCM.SIP.ICP.Api.Controllers
 {
@@ -15,13 +15,25 @@ namespace PCM.SIP.ICP.Api.Controllers
     [ApiController]
     public class EntidadGrupoController : Controller
     {
-        private readonly IEntidadGrupoApplication _EntidadGrupoApplication;
+        private readonly IEntidadGrupoApplication _entidadGrupoApplication;
         private readonly IMapper _mapper;
 
         public EntidadGrupoController(IEntidadGrupoApplication entidadGrupoApplication, IMapper mapper)
         {
-            _EntidadGrupoApplication = entidadGrupoApplication;
+            _entidadGrupoApplication = entidadGrupoApplication;
             _mapper = mapper;
+        }
+
+        [HttpGet("GetById")]
+        [ServiceFilter(typeof(ValidateTokenRequestAttribute))]
+        [ServiceFilter(typeof(UpdateUserDataAttribute))]
+        [ProducesResponseType((int)HttpStatusCode.OK, Type = typeof(PcmResponse))]
+        public async Task<ActionResult<PcmResponse>> GetById([FromQuery] EntidadGrupoIdRequest request)
+        {
+            if (request == null)
+                return BadRequest();
+
+            return await _entidadGrupoApplication.GetById(new Request<EntidadGrupoDto>() { entidad = _mapper.Map<EntidadGrupoDto>(request) });
         }
 
         [HttpGet("GetList")]
@@ -33,7 +45,43 @@ namespace PCM.SIP.ICP.Api.Controllers
             if (request == null)
                 return BadRequest();
 
-            return await _EntidadGrupoApplication.GetList(new Request<EntidadGrupoDto>() { entidad = _mapper.Map<EntidadGrupoDto>(request) });
+            return await _entidadGrupoApplication.GetList(new Request<EntidadGrupoDto>() { entidad = _mapper.Map<EntidadGrupoDto>(request) });
+        }
+
+        [HttpPost("Insert")]
+        [ServiceFilter(typeof(ValidateTokenRequestAttribute))]
+        [ServiceFilter(typeof(UpdateUserDataAttribute))]
+        [ProducesResponseType((int)HttpStatusCode.OK, Type = typeof(PcmResponse))]
+        public async Task<ActionResult<PcmResponse>> Insert([FromBody] EntidadGrupoInsertRequest request)
+        {
+            if (request == null)
+                return BadRequest();
+
+            return await _entidadGrupoApplication.Insert(new Request<EntidadGrupoDto>() { entidad = _mapper.Map<EntidadGrupoDto>(request) });
+        }
+
+        [HttpPut("Update")]
+        [ServiceFilter(typeof(ValidateTokenRequestAttribute))]
+        [ServiceFilter(typeof(UpdateUserDataAttribute))]
+        [ProducesResponseType((int)HttpStatusCode.OK, Type = typeof(PcmResponse))]
+        public async Task<ActionResult<PcmResponse>> Update([FromBody] EntidadGrupoUpdateRequest request)
+        {
+            if (request == null)
+                return BadRequest();
+
+            return await _entidadGrupoApplication.Update(new Request<EntidadGrupoDto>() { entidad = _mapper.Map<EntidadGrupoDto>(request) });
+        }
+
+        [HttpDelete("Delete")]
+        [ServiceFilter(typeof(ValidateTokenRequestAttribute))]
+        [ServiceFilter(typeof(UpdateUserDataAttribute))]
+        [ProducesResponseType((int)HttpStatusCode.OK, Type = typeof(PcmResponse))]
+        public async Task<ActionResult<PcmResponse>> DeleteObject([FromBody] EntidadGrupoIdRequest request)
+        {
+            if (request == null)
+                return BadRequest();
+
+            return await _entidadGrupoApplication.Delete(new Request<EntidadGrupoDto>() { entidad = _mapper.Map<EntidadGrupoDto>(request) });
         }
 
     }
