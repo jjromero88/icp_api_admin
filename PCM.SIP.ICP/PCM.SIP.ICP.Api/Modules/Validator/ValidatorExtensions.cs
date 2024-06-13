@@ -13,6 +13,11 @@ namespace PCM.SIP.ICP.Api.Modules.Validator
             services.AddTransient<IValidator<EntidadGrupoUpdateRequest>, EntidadGrupoUpdateRequestValidator>();
             services.AddTransient<EntidadGrupoValidationManager>();
 
+            services.AddTransient<IValidator<PersonaIdRequest>, PersonaIdRequestValidator>();
+            services.AddTransient<IValidator<PersonaInsertRequest>, PersonaInsertRequestValidator>();
+            services.AddTransient<IValidator<PersonaUpdateRequest>, PersonaUpdateRequestValidator>();
+            services.AddTransient<PersonaValidationManager>();
+
             return services;
         }
     }
