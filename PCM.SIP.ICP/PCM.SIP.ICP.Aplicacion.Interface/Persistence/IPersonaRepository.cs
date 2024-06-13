@@ -5,7 +5,7 @@ namespace PCM.SIP.ICP.Aplicacion.Interface.Persistence
 {
     public interface IPersonaRepository
     {
-        Response Insert(Persona entidad, out string id);
+        Response Insert(Persona entidad, out int id);
         Response Update(Persona entidad);
         Response Delete(Persona entidad);
         Response<dynamic> GetById(Persona entidad);

@@ -16,10 +16,10 @@ namespace PCM.SIP.ICP.Persistence.Repository
             _context = context;
         }
 
-        public Response Insert(Persona entidad, out string id)
+        public Response Insert(Persona entidad, out int id)
         {
             Response retorno = new Response();
-            id = string.Empty;
+            id = 0;
 
             try
             {
@@ -36,6 +36,7 @@ namespace PCM.SIP.ICP.Persistence.Repository
                     parameters.Add("email", entidad.email);
                     parameters.Add("telefono_movil", entidad.telefono_movil);
                     parameters.Add("usuario_reg", entidad.usuario_reg);
+                    parameters.Add("persona_id", dbType: DbType.Int32, direction: ParameterDirection.Output);
                     parameters.Add("error", dbType: DbType.Boolean, direction: ParameterDirection.Output);
                     parameters.Add("message", dbType: DbType.String, direction: ParameterDirection.Output, size: 500);
 
@@ -43,7 +44,7 @@ namespace PCM.SIP.ICP.Persistence.Repository
 
                     retorno.Error = parameters.Get<bool?>("error") ?? false;
                     retorno.Message = parameters.Get<string>("message") ?? string.Empty;
-                    id = parameters.Get<string>("persona_id") ?? string.Empty;
+                    id = parameters.Get<int?>("persona_id") ?? 0;
                 }
             }
             catch (Exception ex)

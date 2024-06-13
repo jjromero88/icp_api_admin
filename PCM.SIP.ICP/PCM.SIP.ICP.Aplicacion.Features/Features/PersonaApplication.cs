@@ -48,7 +48,7 @@ namespace PCM.SIP.ICP.Aplicacion.Features
                 var entidad = _mapper.Map<Persona>(request.entidad);
                 entidad.usuario_reg = _userService.GetUser().username;
 
-                var result = _unitOfWork.Persona.Insert(entidad, out string id);
+                var result = _unitOfWork.Persona.Insert(entidad, out int id);
 
                 var idpersona = id;
 
