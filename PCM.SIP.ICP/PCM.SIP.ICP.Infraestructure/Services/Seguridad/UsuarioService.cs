@@ -5,8 +5,6 @@ using Microsoft.Extensions.Configuration;
 using System.Net.Http.Headers;
 using System.Text.Json;
 using System.Text;
-using PCM.SIP.ICP.Domain.Entities.Security;
-using PCM.SIP.ICP.Domain.Entities;
 using System.Text.Json.Serialization;
 
 namespace PCM.SIP.ICP.Infraestructure.Services
@@ -129,12 +127,55 @@ namespace PCM.SIP.ICP.Infraestructure.Services
 
                         if (result == null || result.Payload == null)
                             throw new HttpRequestException($"Error al obtener la lista de usuarios");
-                      
+
                         return result.Payload;
                     }
                     else
                     {
                         throw new HttpRequestException($"Error al obtener la lista de usuarios");
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new HttpRequestException($"HttpRequestException: {ex.Message}", ex);
+            }
+        }
+
+        public async Task<SeguridadResponse> DeleteUsuario(DeleteUsuarioRequest request, string? token)
+        {
+            try
+            {
+                string url = String.Format("{0}{1}",
+                _configuration["Microservices:IcpSeg:UrlBase"],
+              _configuration["Microservices:IcpSeg:Endpoints:Usuario:DeleteUsuario"]);
+
+                string jsonRequest = JsonSerializer.Serialize(request);
+
+                using (var httpClient = new HttpClient())
+                {
+                    if (!string.IsNullOrEmpty(token))
+                        httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+                    using (var httpRequestMsg = new HttpRequestMessage(HttpMethod.Delete, url))
+                    {
+                        httpRequestMsg.Content = new StringContent(jsonRequest, Encoding.UTF8, "application/json");
+
+                        var httpResponse = await httpClient.SendAsync(httpRequestMsg);
+
+                        if (httpResponse.IsSuccessStatusCode)
+                        {
+                            string responseContent = await httpResponse.Content.ReadAsStringAsync();
+
+                            var result = JsonSerializer.Deserialize<SeguridadResponse>(responseContent);
+
+                            return result;
+                        }
+                        else
+                        {
+                            throw new HttpRequestException($"Error al actualizar el usuario");
+                        }
                     }
                 }
 

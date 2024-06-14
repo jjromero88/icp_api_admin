@@ -8,6 +8,7 @@ namespace PCM.SIP.ICP.Aplicacion.Interface.Infraestructure
     {
         Task<SeguridadResponse> InsertUsuario(InsertUsuarioRequest request, string? token);
         Task<SeguridadResponse> UpdateUsuario(UpdateUsuarioRequest request, string? token);
+        Task<SeguridadResponse> DeleteUsuario(DeleteUsuarioRequest request, string? token);
         Task<List<UsuarioResponse>> ListUsuario(UsuarioFilterRequest request, string? token);
     }
 }

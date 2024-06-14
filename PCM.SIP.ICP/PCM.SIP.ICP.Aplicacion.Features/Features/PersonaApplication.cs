@@ -75,6 +75,13 @@ namespace PCM.SIP.ICP.Aplicacion.Features
                 // consumimos el servicio de usuario para insertar un nuevo usuario a la persona
                 var resultUsuario = await _uarioService.InsertUsuario(usuarioRequest, _userService.GetToken());
 
+                // verifiamos si hubo un error al insertar al usuario
+                if (resultUsuario.error)
+                {
+                    _logger.LogError(resultUsuario.message);
+                    return ResponseUtil.BadRequest(message: resultUsuario.message, error: resultUsuario.payload);
+                }
+
                 // retornamos la respuesta
                 _logger.LogInformation(result.Message ?? TransactionMessage.SaveSuccess);
                 return ResponseUtil.Created(message: TransactionMessage.SaveSuccess);
@@ -174,6 +181,22 @@ namespace PCM.SIP.ICP.Aplicacion.Features
                 {
                     _logger.LogError(result.Message);
                     return ResponseUtil.InternalError(message: result.Message);
+                }
+
+                // listamos al usuario mediante la personakey
+                List<UsuarioResponse> usuarioList = await _uarioService.ListUsuario(new UsuarioFilterRequest { personakey = entidad.SerialKey }, _userService.GetToken());
+
+                // obtenemos el pk del usuario
+                var usuarioKey = usuarioList.FirstOrDefault()?.serialKey;
+
+                // eliminamos al usuario
+                var deleteResponse = await _uarioService.DeleteUsuario(new DeleteUsuarioRequest { SerialKey = usuarioKey }, _userService.GetToken());
+
+                // verifiamos si hubo un error al eliminar al usuario
+                if (deleteResponse.error)
+                {
+                    _logger.LogError(deleteResponse.message);
+                    return ResponseUtil.BadRequest(message: deleteResponse.message, error: deleteResponse.payload);
                 }
 
                 _logger.LogInformation(TransactionMessage.DeleteSuccess);
