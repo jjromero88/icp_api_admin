@@ -209,6 +209,15 @@ namespace PCM.SIP.ICP.Aplicacion.Features
                     return ResponseUtil.InternalError(message: result.Message);
                 }
 
+                // obtenemos los datos del usuario de la persona
+                List<UsuarioResponse> usuarioList = await _uarioService.ListUsuario(new UsuarioFilterRequest { personakey = entidad.SerialKey }, _userService.GetToken());
+
+                // obtenemos un unico resultado
+                var usuarioResponse = usuarioList.FirstOrDefault();
+
+                // mapeamos los datos del usuario
+                var usuario = _mapper.Map<Usuario>(usuarioResponse);
+
                 if (result.Data != null)
                 {
                     entidad = new Persona
@@ -224,7 +233,8 @@ namespace PCM.SIP.ICP.Aplicacion.Features
                         usuario_reg = result.Data.usuario_reg,
                         fecha_reg = result.Data.fecha_reg,
                         usuario_act = result.Data.usuario_act,
-                        fecha_act = result.Data.fecha_act
+                        fecha_act = result.Data.fecha_act,
+                        usuario = usuario ?? new Usuario()
                     };
                 }
 
@@ -256,16 +266,28 @@ namespace PCM.SIP.ICP.Aplicacion.Features
                     return ResponseUtil.InternalError(message: result.Message);
                 }
 
+                // obtenemos la lista de usuarios
+                List<UsuarioResponse> usuarioList = await _uarioService.ListUsuario(new UsuarioFilterRequest { }, _userService.GetToken());
+
+                // definimos la lista de personas
                 List<Persona> Lista = new List<Persona>();
 
+                // verificamos que no esten vacios los resultados
                 if (result.Data != null)
                 {
-
+                    // poblamos la lista de personas
                     foreach (var item in result.Data)
                     {
+                        // encriptamos el key de la persona
+                        string personakey = string.IsNullOrEmpty(item.persona_id.ToString()) ? null : CShrapEncryption.EncryptString(item.persona_id.ToString(), _userService.GetUser().authkey);
+
+                        // filtramos el usuario de la persona
+                        var usuario = usuarioList.FirstOrDefault(u => u.personakey == personakey);
+
+                        // agregamos el elemento a la lista de personas
                         Lista.Add(new Persona()
                         {
-                            SerialKey = string.IsNullOrEmpty(item.persona_id.ToString()) ? null : CShrapEncryption.EncryptString(item.persona_id.ToString(), _userService.GetUser().authkey),
+                            SerialKey = personakey,
                             nombres = item.nombres,
                             apellido_paterno = item.apellido_paterno,
                             apellido_materno = item.apellido_materno,
@@ -273,11 +295,13 @@ namespace PCM.SIP.ICP.Aplicacion.Features
                             email = item.email,
                             telefono_movil = item.telefono_movil,
                             usuario_reg = item.usuario_reg,
-                            fecha_reg = item.fecha_reg
+                            fecha_reg = item.fecha_reg,
+                            usuario = _mapper.Map<Usuario>(usuario)
                         });
                     }
                 }
 
+                // retornamos la informacion
                 _logger.LogInformation(TransactionMessage.QuerySuccess);
                 return result != null ? ResponseUtil.Ok(
                     _mapper.Map<List<PersonaResponse>>(_mapper.Map<List<PersonaDto>>(Lista)),

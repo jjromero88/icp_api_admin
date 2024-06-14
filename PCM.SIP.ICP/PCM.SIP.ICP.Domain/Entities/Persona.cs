@@ -19,5 +19,6 @@ namespace PCM.SIP.ICP.Domain.Entities
         public string? password { get; set; }
         public bool? interno { get; set; }
         public string? perfileskey { get; set; }
+        public Usuario? usuario { get; set; }
     }
 }

@@ -18,6 +18,7 @@ namespace PCM.SIP.ICP.Aplicacion.Dto
         public string? password { get; set; }
         public bool? interno { get; set; }
         public string? perfileskey { get; set; }
+        public UsuarioDto? usuario { get; set; }
     }
     public class PersonaIdRequest
     {
@@ -63,5 +64,6 @@ namespace PCM.SIP.ICP.Aplicacion.Dto
         public string? numdocumento { get; set; }
         public string? email { get; set; }
         public string? telefono_movil { get; set; }
+        public UsuarioDto? usuario { get; set; }
     }
 }
