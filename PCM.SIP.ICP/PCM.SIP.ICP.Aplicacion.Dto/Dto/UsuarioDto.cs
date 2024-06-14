@@ -11,6 +11,7 @@ namespace PCM.SIP.ICP.Aplicacion.Dto
         public string? username { get; set; }
         public string? password { get; set; }
         public bool? interno { get; set; }
+        public bool? habilitado { get; set; }
         public List<PerfilDto>? lista_perfiles { get; set; }
     }
 }

@@ -55,6 +55,7 @@ namespace PCM.SIP.ICP.Transversal.Mapper
             .ForMember(destination => destination.username, source => source.MapFrom(src => src.username))
             .ForMember(destination => destination.password, source => source.MapFrom(src => src.password))
             .ForMember(destination => destination.interno, source => source.MapFrom(src => src.interno))
+            .ForMember(destination => destination.habilitado, source => source.MapFrom(src => src.habilitado))
             .ForMember(destination => destination.perfileskey, source => source.MapFrom(src => src.perfileskey))
             .ForMember(destination => destination.usuario, source => source.MapFrom(src => src.usuario));
 
@@ -69,6 +70,7 @@ namespace PCM.SIP.ICP.Transversal.Mapper
             .ForMember(destination => destination.email, source => source.MapFrom(src => src.email))
             .ForMember(destination => destination.telefono_movil, source => source.MapFrom(src => src.telefono_movil))
             .ForMember(destination => destination.interno, source => source.MapFrom(src => src.interno))
+            .ForMember(destination => destination.habilitado, source => source.MapFrom(src => src.habilitado))
             .ForMember(destination => destination.perfileskey, source => source.MapFrom(src => src.perfileskey));
 
             CreateMap<PersonaDto, PersonaUpdateRequest>().ReverseMap()
@@ -78,7 +80,12 @@ namespace PCM.SIP.ICP.Transversal.Mapper
             .ForMember(destination => destination.apellido_materno, source => source.MapFrom(src => src.apellido_materno))
             .ForMember(destination => destination.numdocumento, source => source.MapFrom(src => src.numdocumento))
             .ForMember(destination => destination.email, source => source.MapFrom(src => src.email))
-            .ForMember(destination => destination.telefono_movil, source => source.MapFrom(src => src.telefono_movil));
+            .ForMember(destination => destination.telefono_movil, source => source.MapFrom(src => src.telefono_movil))
+            .ForMember(destination => destination.perfileskey, source => source.MapFrom(src => src.perfileskey))
+            .ForMember(destination => destination.username, source => source.MapFrom(src => src.username))
+            .ForMember(destination => destination.password, source => source.MapFrom(src => src.password))
+            .ForMember(destination => destination.interno, source => source.MapFrom(src => src.interno))
+            .ForMember(destination => destination.habilitado, source => source.MapFrom(src => src.habilitado));
 
             CreateMap<PersonaDto, PersonaFilterRequest>().ReverseMap()
             .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey))
@@ -94,14 +101,14 @@ namespace PCM.SIP.ICP.Transversal.Mapper
             .ForMember(destination => destination.telefono_movil, source => source.MapFrom(src => src.telefono_movil))
             .ForMember(destination => destination.usuario, source => source.MapFrom(src => src.usuario));
 
-
             #endregion
 
             #region Usuario
 
             CreateMap<PersonaDto, InsertUsuarioRequest>()
-            .ForMember(dest => dest.nombre_completo, opt => opt.MapFrom(src => $"{src.nombres} {src.apellido_paterno} {src.apellido_materno}"))
+            .ForMember(destination => destination.personakey, source => source.MapFrom(src => src.SerialKey))
             .ForMember(destination => destination.perfileskey, source => source.MapFrom(src => src.perfileskey))
+            .ForMember(dest => dest.nombre_completo, opt => opt.MapFrom(src => $"{src.nombres} {src.apellido_paterno} {src.apellido_materno}"))
             .ForMember(destination => destination.username, source => source.MapFrom(src => src.numdocumento))
             .ForMember(destination => destination.password, source => source.MapFrom(src => src.numdocumento))
             .ForMember(destination => destination.interno, source => source.MapFrom(src => src.interno))
@@ -109,11 +116,12 @@ namespace PCM.SIP.ICP.Transversal.Mapper
             .ReverseMap();
 
             CreateMap<PersonaDto, InsertUsuarioRequest>()
-           .ForMember(dest => dest.nombre_completo, opt => opt.MapFrom(src => $"{src.nombres} {src.apellido_paterno} {src.apellido_materno}"))
            .ForMember(destination => destination.perfileskey, source => source.MapFrom(src => src.perfileskey))
+           .ForMember(dest => dest.nombre_completo, opt => opt.MapFrom(src => $"{src.nombres} {src.apellido_paterno} {src.apellido_materno}"))           
            .ForMember(destination => destination.username, source => source.MapFrom(src => src.numdocumento))
            .ForMember(destination => destination.password, source => source.MapFrom(src => src.numdocumento))
            .ForMember(destination => destination.interno, source => source.MapFrom(src => src.interno))
+           .ForMember(destination => destination.habilitado, source => source.MapFrom(src => src.habilitado))
            .ForMember(destination => destination.numdocumento, source => source.MapFrom(src => src.numdocumento))
            .ReverseMap();
 
@@ -123,19 +131,22 @@ namespace PCM.SIP.ICP.Transversal.Mapper
             .ForMember(destination => destination.username, source => source.MapFrom(src => src.username))
             .ForMember(destination => destination.password, source => source.MapFrom(src => src.password))
             .ForMember(destination => destination.interno, source => source.MapFrom(src => src.interno))
+            .ForMember(destination => destination.habilitado, source => source.MapFrom(src => src.habilitado))
             .ForMember(destination => destination.numdocumento, source => source.MapFrom(src => src.numdocumento))
             .ReverseMap();
 
             CreateMap<Usuario, UsuarioResponse>().ReverseMap()
             .ForMember(destination => destination.username, source => source.MapFrom(src => src.username))
-            .ForMember(destination => destination.interno, source => source.MapFrom(src => src.interno))
             .ForMember(destination => destination.password, source => source.MapFrom(src => src.password))
+            .ForMember(destination => destination.interno, source => source.MapFrom(src => src.interno))
+            .ForMember(destination => destination.habilitado, source => source.MapFrom(src => src.habilitado))            
             .ForMember(destination => destination.lista_perfiles, source => source.MapFrom(src => src.lista_perfiles));
 
             CreateMap<Usuario, UsuarioDto>().ReverseMap()
            .ForMember(destination => destination.username, source => source.MapFrom(src => src.username))
-           .ForMember(destination => destination.interno, source => source.MapFrom(src => src.interno))
            .ForMember(destination => destination.password, source => source.MapFrom(src => src.password))
+           .ForMember(destination => destination.interno, source => source.MapFrom(src => src.interno))
+           .ForMember(destination => destination.habilitado, source => source.MapFrom(src => src.habilitado))
            .ForMember(destination => destination.lista_perfiles, source => source.MapFrom(src => src.lista_perfiles));
 
             #endregion

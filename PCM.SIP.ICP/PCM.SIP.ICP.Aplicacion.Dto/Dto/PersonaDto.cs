@@ -17,6 +17,7 @@ namespace PCM.SIP.ICP.Aplicacion.Dto
         public string? username { get; set; }
         public string? password { get; set; }
         public bool? interno { get; set; }
+        public bool? habilitado { get; set; }
         public string? perfileskey { get; set; }
         public UsuarioDto? usuario { get; set; }
     }
@@ -33,6 +34,7 @@ namespace PCM.SIP.ICP.Aplicacion.Dto
         public string? email { get; set; }
         public string? telefono_movil { get; set; }
         public bool? interno { get; set; }
+        public bool? habilitado { get; set; }
         public string? perfileskey { get; set; }
 
     }
@@ -45,10 +47,11 @@ namespace PCM.SIP.ICP.Aplicacion.Dto
         public string? numdocumento { get; set; }
         public string? email { get; set; }
         public string? telefono_movil { get; set; }
+        public string? perfileskey { get; set; }
         public string? username { get; set; }
         public string? password { get; set; }
         public bool? interno { get; set; }
-        public string? perfileskey { get; set; }
+        public bool? habilitado { get; set; }
     }
     public class PersonaFilterRequest
     {
