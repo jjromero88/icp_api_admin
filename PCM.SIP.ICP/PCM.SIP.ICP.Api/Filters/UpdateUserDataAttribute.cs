@@ -48,6 +48,8 @@ namespace PCM.SIP.ICP.Api.Filters
             // actualizamos al usuario de sesion
             userService.SetUser(jsonStringUsuario);
 
+            // actualizamos el token
+            userService.SetToken(token);
 
             await next();
         }

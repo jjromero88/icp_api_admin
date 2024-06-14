@@ -29,7 +29,7 @@ namespace PCM.SIP.ICP.Infraestructure.Services
 
                 string url = String.Format("{0}{1}",
                 _configuration["Microservices:IcpSeg:UrlBase"],
-              _configuration["Microservices:IcpSeg:Endpoints:GetSessionData"]);
+              _configuration["Microservices:IcpSeg:Endpoints:Security:GetSessionData"]);
 
                 // formamos los parametros para la peticion
                 var queryParams = String.Format("{0}", new Uri(url));
@@ -77,7 +77,7 @@ namespace PCM.SIP.ICP.Infraestructure.Services
 
                 string url = String.Format("{0}{1}",
                 _configuration["Microservices:IcpSeg:UrlBase"],
-              _configuration["Microservices:IcpSeg:Endpoints:ValidateToken"]);
+              _configuration["Microservices:IcpSeg:Endpoints:Security:ValidateToken"]);
 
                 // formamos los parametros para la peticion
                 var queryParams = String.Format("{0}", new Uri(url));

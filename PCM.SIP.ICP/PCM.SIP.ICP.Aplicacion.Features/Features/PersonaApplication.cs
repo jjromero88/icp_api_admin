@@ -8,6 +8,8 @@ using PCM.SIP.ICP.Domain.Entities;
 using PCM.SIP.ICP.Transversal.Common;
 using PCM.SIP.ICP.Transversal.Common.Constants;
 using PCM.SIP.ICP.Transversal.Common.Generics;
+using PCM.SIP.ICP.Transversal.Contracts.Seguridad.Request;
+using PCM.SIP.ICP.Transversal.Contracts.Seguridad.Response;
 using PCM.SIP.ICP.Transversal.Util.Encryptions;
 
 namespace PCM.SIP.ICP.Aplicacion.Features
@@ -19,45 +21,61 @@ namespace PCM.SIP.ICP.Aplicacion.Features
         private readonly IAppLogger<PersonaApplication> _logger;
         private readonly PersonaValidationManager _personaValidationManager;
         private readonly IUserService _userService;
+        private readonly IUsuarioService _uarioService;
 
         public PersonaApplication(
-            IUnitOfWork unitOfWork, 
-            IMapper mapper, 
-            IAppLogger<PersonaApplication> logger, 
-            PersonaValidationManager personaValidationManager, 
-            IUserService userService)
+            IUnitOfWork unitOfWork,
+            IMapper mapper,
+            IAppLogger<PersonaApplication> logger,
+            PersonaValidationManager personaValidationManager,
+            IUserService userService,
+            IUsuarioService usuarioService)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _logger = logger;
             _personaValidationManager = personaValidationManager;
             _userService = userService;
+            _uarioService = usuarioService;
         }
         public async Task<PcmResponse> Insert(Request<PersonaDto> request)
         {
             try
             {
+                // ejecutamos las validaciones
                 var validation = _personaValidationManager.Validate(_mapper.Map<PersonaInsertRequest>(request.entidad));
 
+                // si es invalido retornamos el error
                 if (!validation.IsValid)
                 {
                     _logger.LogError(Validation.InvalidMessage);
                     return ResponseUtil.BadRequest(validation.Errors != null ? validation.Errors : null, Validation.InvalidMessage);
                 }
 
+                // mapeamos la entidad y seteamos sus valores internos
                 var entidad = _mapper.Map<Persona>(request.entidad);
                 entidad.usuario_reg = _userService.GetUser().username;
 
+                // se inserta la persona en bd
                 var result = _unitOfWork.Persona.Insert(entidad, out int id);
 
-                var idpersona = id;
-
+                // si ocurrio un error retorna el mensaje
                 if (result.Error)
                 {
                     _logger.LogError(result.Message);
                     return ResponseUtil.InternalError(message: result.Message);
                 }
 
+                // mapeamos los valores de la personaDto a usuarioRequest
+                var usuarioRequest = _mapper.Map<InsertUsuarioRequest>(_mapper.Map<PersonaDto>(entidad));
+
+                // actualizamos las propiedades de usuariorequest
+                usuarioRequest.personakey = string.IsNullOrEmpty(id.ToString()) ? null : CShrapEncryption.EncryptString(id.ToString(), _userService.GetUser().authkey);
+
+                // consumimos el servicio de usuario para insertar un nuevo usuario a la persona
+                var resultUsuario = await _uarioService.InsertUsuario(usuarioRequest, _userService.GetToken());
+
+                // retornamos la respuesta
                 _logger.LogInformation(result.Message ?? TransactionMessage.SaveSuccess);
                 return ResponseUtil.Created(message: TransactionMessage.SaveSuccess);
             }
@@ -70,8 +88,10 @@ namespace PCM.SIP.ICP.Aplicacion.Features
 
         public async Task<PcmResponse> Update(Request<PersonaDto> request)
         {
+            // ejecutamos las validaciones
             var validation = _personaValidationManager.Validate(_mapper.Map<PersonaUpdateRequest>(request.entidad));
 
+            // verificamos si es invalido
             if (!validation.IsValid)
             {
                 _logger.LogError(Validation.InvalidMessage);
@@ -80,19 +100,47 @@ namespace PCM.SIP.ICP.Aplicacion.Features
 
             try
             {
+                // mapeamos la entidad
                 var entidad = _mapper.Map<Persona>(request.entidad);
 
+                // seteamos las propiedades de la entidad
                 entidad.persona_id = string.IsNullOrEmpty(request.entidad.SerialKey) ? 0 : Convert.ToInt32(CShrapEncryption.DecryptString(request.entidad.SerialKey, _userService.GetUser().authkey));
                 entidad.usuario_act = _userService.GetUser().username;
 
+                // actualizamos en bd
                 var result = _unitOfWork.Persona.Update(entidad);
 
+                // verificamos si ocurrio un error
                 if (result.Error)
                 {
                     _logger.LogError(result.Message);
                     return ResponseUtil.InternalError(message: result.Message);
                 }
 
+                // listamos al usuario mediante la personakey
+                List<UsuarioResponse> usuarioList = await _uarioService.ListUsuario(new UsuarioFilterRequest { personakey = entidad.SerialKey }, _userService.GetToken());
+
+                // obtenemos el pk del usuario
+                var usuarioKey = usuarioList.FirstOrDefault()?.serialKey;
+
+                // mapeamos los valores de la personaDto a usuarioRequest
+                var usuarioRequest = _mapper.Map<UpdateUsuarioRequest>(_mapper.Map<PersonaDto>(entidad));
+
+                // actualizamos las propiedades de usuariorequest
+                usuarioRequest.SerialKey = usuarioKey;
+                usuarioRequest.personakey = entidad.SerialKey;
+
+                // consumimos el servicio de usuario para actualizarlo
+                var resultUsuario = await _uarioService.UpdateUsuario(usuarioRequest, _userService.GetToken());
+
+                // verifiamos si hubo un error al actualizar usuario
+                if (resultUsuario.error)
+                {
+                    _logger.LogError(resultUsuario.message);
+                    return ResponseUtil.BadRequest(message: resultUsuario.message, error: resultUsuario.payload);
+                }
+
+                // retornamos el response de insertar
                 _logger.LogInformation(result.Message ?? TransactionMessage.UpdateSuccess);
                 return ResponseUtil.Created(message: TransactionMessage.UpdateSuccess);
             }

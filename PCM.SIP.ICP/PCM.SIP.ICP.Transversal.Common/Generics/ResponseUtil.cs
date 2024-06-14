@@ -14,6 +14,10 @@ namespace PCM.SIP.ICP.Transversal.Common.Generics
         {
             return new PcmResponse { Code = (int)HttpStatusCodeEnum.BadRequest, Message = message ?? MessageConstant.BadRequest, Payload = errors, error = true };
         }
+        public static PcmResponse BadRequest(object? error = null, string? message = null)
+        {
+            return new PcmResponse { Code = (int)HttpStatusCodeEnum.BadRequest, Message = message ?? MessageConstant.BadRequest, Payload = error, error = true };
+        }
         public static PcmResponse InternalError(string? message = null)
         {
             return new PcmResponse { Code = (int)HttpStatusCodeEnum.InternalServerError, Message = string.IsNullOrEmpty(message) ? MessageConstant.InternalError : MessageConstant.InternalError + " " + message, error = true };

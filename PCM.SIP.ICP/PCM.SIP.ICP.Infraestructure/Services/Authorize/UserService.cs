@@ -7,10 +7,21 @@ namespace PCM.SIP.ICP.Infraestructure.Services
     public class UserService : IUserService
     {
         private UsuarioCache _usuarioCache;
+        private string _token;
+
+        public string GetToken()
+        {
+            return _token;
+        }
 
         public UsuarioCache GetUser()
         {
             return _usuarioCache;
+        }
+
+        public void SetToken(string token)
+        {
+            _token = token;
         }
 
         public void SetUser(string entidad)
