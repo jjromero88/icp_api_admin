@@ -129,11 +129,13 @@ namespace PCM.SIP.ICP.Transversal.Mapper
             CreateMap<Usuario, UsuarioResponse>().ReverseMap()
             .ForMember(destination => destination.username, source => source.MapFrom(src => src.username))
             .ForMember(destination => destination.interno, source => source.MapFrom(src => src.interno))
+            .ForMember(destination => destination.password, source => source.MapFrom(src => src.password))
             .ForMember(destination => destination.lista_perfiles, source => source.MapFrom(src => src.lista_perfiles));
 
             CreateMap<Usuario, UsuarioDto>().ReverseMap()
            .ForMember(destination => destination.username, source => source.MapFrom(src => src.username))
            .ForMember(destination => destination.interno, source => source.MapFrom(src => src.interno))
+           .ForMember(destination => destination.password, source => source.MapFrom(src => src.password))
            .ForMember(destination => destination.lista_perfiles, source => source.MapFrom(src => src.lista_perfiles));
 
             #endregion
