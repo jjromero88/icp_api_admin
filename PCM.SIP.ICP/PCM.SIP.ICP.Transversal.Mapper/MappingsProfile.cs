@@ -154,11 +154,13 @@ namespace PCM.SIP.ICP.Transversal.Mapper
             #region Perfil
 
             CreateMap<Perfil, PerfilUsuarioResponse>().ReverseMap()
+            .ForMember(destination => destination.serialKey, source => source.MapFrom(src => src.serialKey))
             .ForMember(destination => destination.codigo, source => source.MapFrom(src => src.codigo))
             .ForMember(destination => destination.descripcion, source => source.MapFrom(src => src.descripcion))
             .ForMember(destination => destination.abreviatura, source => source.MapFrom(src => src.abreviatura));
 
             CreateMap<Perfil, PerfilDto>().ReverseMap()
+            .ForMember(destination => destination.serialKey, source => source.MapFrom(src => src.serialKey))
             .ForMember(destination => destination.codigo, source => source.MapFrom(src => src.codigo))
             .ForMember(destination => destination.descripcion, source => source.MapFrom(src => src.descripcion))
             .ForMember(destination => destination.abreviatura, source => source.MapFrom(src => src.abreviatura));

@@ -8,6 +8,7 @@ namespace PCM.SIP.ICP.Domain.Entities
 {
     public class Perfil
     {
+        public string? serialKey { get; set; }
         public string? codigo { get; set; }
         public string? abreviatura { get; set; }
         public string? descripcion { get; set; }
