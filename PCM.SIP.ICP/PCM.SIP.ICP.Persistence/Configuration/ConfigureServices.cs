@@ -15,6 +15,7 @@ namespace PCM.SIP.ICP.Persistence
             services.AddScoped<IEntidadGrupoRepository, EntidadGrupoRepository>();
             services.AddScoped<IEntidadSectorRepository, EntidadSectorRepository>();
             services.AddScoped<IModalidadIntegridadRepository, ModalidadIntegridadRepository>();
+            services.AddScoped<IUbigeoRepository, UbigeoRepository>();
             services.AddScoped<IPersonaRepository, PersonaRepository>();
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();

@@ -9,17 +9,20 @@ namespace PCM.SIP.ICP.Persistence.Repository.Base
         public IPersonaRepository Persona { get; }
         public IEntidadSectorRepository EntidadSector { get; }
         public IModalidadIntegridadRepository ModalidadIntegridad {  get; }
+        public IUbigeoRepository Ubigeo { get; }
 
         public UnitOfWork(
             IEntidadGrupoRepository entidadGrupo, 
             IPersonaRepository persona,
             IEntidadSectorRepository entidadSector,
-            IModalidadIntegridadRepository modalidadIntegridad)
+            IModalidadIntegridadRepository modalidadIntegridad,
+            IUbigeoRepository ubigeo)
         {
             EntidadGrupo = entidadGrupo;
             Persona = persona;
             EntidadSector = entidadSector;
             ModalidadIntegridad = modalidadIntegridad;
+            Ubigeo = ubigeo;
         }
 
         public void Dispose()

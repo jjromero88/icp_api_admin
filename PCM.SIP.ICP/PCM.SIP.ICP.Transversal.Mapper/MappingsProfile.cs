@@ -226,6 +226,37 @@ namespace PCM.SIP.ICP.Transversal.Mapper
 
             #endregion
 
+            #region Ubigeo
+
+            CreateMap<Ubigeo, UbigeoDto> ().ReverseMap()
+            .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey))
+            .ForMember(destination => destination.departamento_inei, source => source.MapFrom(src => src.departamento_inei))
+            .ForMember(destination => destination.provincia_inei, source => source.MapFrom(src => src.provincia_inei))
+            .ForMember(destination => destination.departamento, source => source.MapFrom(src => src.departamento))
+            .ForMember(destination => destination.provincia, source => source.MapFrom(src => src.provincia))
+            .ForMember(destination => destination.distrito, source => source.MapFrom(src => src.distrito));
+
+            CreateMap<UbigeoDto, ProvinciaFilterRequest>().ReverseMap()
+            .ForMember(destination => destination.departamento_inei, source => source.MapFrom(src => src.departamento_inei));
+
+            CreateMap<UbigeoDto, DistritoFilterRequest>().ReverseMap()
+            .ForMember(destination => destination.provincia_inei, source => source.MapFrom(src => src.provincia_inei));
+
+            CreateMap<UbigeoDto, DepartamentoResponse>().ReverseMap()
+            .ForMember(destination => destination.departamento_inei, source => source.MapFrom(src => src.departamento_inei))
+            .ForMember(destination => destination.departamento, source => source.MapFrom(src => src.departamento));
+
+            CreateMap<UbigeoDto, ProvinciaResponse>().ReverseMap()
+            .ForMember(destination => destination.departamento_inei, source => source.MapFrom(src => src.departamento_inei))
+            .ForMember(destination => destination.provincia_inei, source => source.MapFrom(src => src.provincia_inei))
+            .ForMember(destination => destination.provincia, source => source.MapFrom(src => src.provincia));
+
+            CreateMap<UbigeoDto, DistritoResponse>().ReverseMap()
+            .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey))
+            .ForMember(destination => destination.distrito, source => source.MapFrom(src => src.distrito));
+
+            #endregion
+
         }
     }
 }
