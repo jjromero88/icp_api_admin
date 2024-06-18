@@ -117,7 +117,7 @@ namespace PCM.SIP.ICP.Transversal.Mapper
 
             CreateMap<PersonaDto, InsertUsuarioRequest>()
            .ForMember(destination => destination.perfileskey, source => source.MapFrom(src => src.perfileskey))
-           .ForMember(dest => dest.nombre_completo, opt => opt.MapFrom(src => $"{src.nombres} {src.apellido_paterno} {src.apellido_materno}"))           
+           .ForMember(dest => dest.nombre_completo, opt => opt.MapFrom(src => $"{src.nombres} {src.apellido_paterno} {src.apellido_materno}"))
            .ForMember(destination => destination.username, source => source.MapFrom(src => src.numdocumento))
            .ForMember(destination => destination.password, source => source.MapFrom(src => src.numdocumento))
            .ForMember(destination => destination.interno, source => source.MapFrom(src => src.interno))
@@ -139,7 +139,7 @@ namespace PCM.SIP.ICP.Transversal.Mapper
             .ForMember(destination => destination.username, source => source.MapFrom(src => src.username))
             .ForMember(destination => destination.password, source => source.MapFrom(src => src.password))
             .ForMember(destination => destination.interno, source => source.MapFrom(src => src.interno))
-            .ForMember(destination => destination.habilitado, source => source.MapFrom(src => src.habilitado))            
+            .ForMember(destination => destination.habilitado, source => source.MapFrom(src => src.habilitado))
             .ForMember(destination => destination.lista_perfiles, source => source.MapFrom(src => src.lista_perfiles));
 
             CreateMap<Usuario, UsuarioDto>().ReverseMap()
@@ -228,7 +228,7 @@ namespace PCM.SIP.ICP.Transversal.Mapper
 
             #region Ubigeo
 
-            CreateMap<Ubigeo, UbigeoDto> ().ReverseMap()
+            CreateMap<Ubigeo, UbigeoDto>().ReverseMap()
             .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey))
             .ForMember(destination => destination.departamento_inei, source => source.MapFrom(src => src.departamento_inei))
             .ForMember(destination => destination.provincia_inei, source => source.MapFrom(src => src.provincia_inei))
@@ -254,6 +254,72 @@ namespace PCM.SIP.ICP.Transversal.Mapper
             CreateMap<UbigeoDto, DistritoResponse>().ReverseMap()
             .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey))
             .ForMember(destination => destination.distrito, source => source.MapFrom(src => src.distrito));
+
+            #endregion
+
+            #region Entidad
+
+            CreateMap<Entidad, EntidadDto>().ReverseMap()
+            .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey))
+            .ForMember(destination => destination.entidadgrupokey, source => source.MapFrom(src => src.entidadgrupokey))
+            .ForMember(destination => destination.entidadsectorkey, source => source.MapFrom(src => src.entidadsectorkey))
+            .ForMember(destination => destination.modalidadintegridadkey, source => source.MapFrom(src => src.modalidadintegridadkey))
+            .ForMember(destination => destination.ubigeokey, source => source.MapFrom(src => src.ubigeokey))
+            .ForMember(destination => destination.numero_ruc, source => source.MapFrom(src => src.numero_ruc))
+            .ForMember(destination => destination.codigo, source => source.MapFrom(src => src.codigo))
+            .ForMember(destination => destination.acronimo, source => source.MapFrom(src => src.acronimo))
+            .ForMember(destination => destination.nombre, source => source.MapFrom(src => src.nombre))
+            .ForMember(destination => destination.ubigeo, source => source.MapFrom(src => src.ubigeo))
+            .ForMember(destination => destination.modalidadintegridad, source => source.MapFrom(src => src.modalidadintegridad))
+            .ForMember(destination => destination.entidadsector, source => source.MapFrom(src => src.entidadsector))
+            .ForMember(destination => destination.entidadgrupo, source => source.MapFrom(src => src.entidadgrupo));
+
+            CreateMap<EntidadDto, EntidadIdRequest>().ReverseMap()
+            .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey));
+
+            CreateMap<EntidadDto, EntidadInsertRequest>().ReverseMap()
+            .ForMember(destination => destination.entidadgrupokey, source => source.MapFrom(src => src.entidadgrupokey))
+            .ForMember(destination => destination.entidadsectorkey, source => source.MapFrom(src => src.entidadsectorkey))
+            .ForMember(destination => destination.modalidadintegridadkey, source => source.MapFrom(src => src.modalidadintegridadkey))
+            .ForMember(destination => destination.ubigeokey, source => source.MapFrom(src => src.ubigeokey))
+            .ForMember(destination => destination.numero_ruc, source => source.MapFrom(src => src.numero_ruc))
+            .ForMember(destination => destination.codigo, source => source.MapFrom(src => src.codigo))
+            .ForMember(destination => destination.acronimo, source => source.MapFrom(src => src.acronimo))
+            .ForMember(destination => destination.nombre, source => source.MapFrom(src => src.nombre));
+
+            CreateMap<EntidadDto, EntidadUpdateRequest>().ReverseMap()
+            .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey))
+            .ForMember(destination => destination.entidadgrupokey, source => source.MapFrom(src => src.entidadgrupokey))
+            .ForMember(destination => destination.entidadsectorkey, source => source.MapFrom(src => src.entidadsectorkey))
+            .ForMember(destination => destination.modalidadintegridadkey, source => source.MapFrom(src => src.modalidadintegridadkey))
+            .ForMember(destination => destination.ubigeokey, source => source.MapFrom(src => src.ubigeokey))
+            .ForMember(destination => destination.numero_ruc, source => source.MapFrom(src => src.numero_ruc))
+            .ForMember(destination => destination.codigo, source => source.MapFrom(src => src.codigo))
+            .ForMember(destination => destination.acronimo, source => source.MapFrom(src => src.acronimo))
+            .ForMember(destination => destination.nombre, source => source.MapFrom(src => src.nombre));
+
+            CreateMap<EntidadDto, EntidadFilterRequest>().ReverseMap()
+            .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey))
+            .ForMember(destination => destination.entidadgrupokey, source => source.MapFrom(src => src.entidadgrupokey))
+            .ForMember(destination => destination.entidadsectorkey, source => source.MapFrom(src => src.entidadsectorkey))
+            .ForMember(destination => destination.modalidadintegridadkey, source => source.MapFrom(src => src.modalidadintegridadkey))
+            .ForMember(destination => destination.ubigeokey, source => source.MapFrom(src => src.ubigeokey))
+            .ForMember(destination => destination.filtro, source => source.MapFrom(src => src.filtro));
+
+            CreateMap<EntidadDto, EntidadResponse>().ReverseMap()
+            .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey))
+            .ForMember(destination => destination.entidadgrupokey, source => source.MapFrom(src => src.entidadgrupokey))
+            .ForMember(destination => destination.entidadsectorkey, source => source.MapFrom(src => src.entidadsectorkey))
+            .ForMember(destination => destination.modalidadintegridadkey, source => source.MapFrom(src => src.modalidadintegridadkey))
+            .ForMember(destination => destination.ubigeokey, source => source.MapFrom(src => src.ubigeokey))
+            .ForMember(destination => destination.numero_ruc, source => source.MapFrom(src => src.numero_ruc))
+            .ForMember(destination => destination.codigo, source => source.MapFrom(src => src.codigo))
+            .ForMember(destination => destination.acronimo, source => source.MapFrom(src => src.acronimo))
+            .ForMember(destination => destination.nombre, source => source.MapFrom(src => src.nombre))
+            .ForMember(destination => destination.ubigeo, source => source.MapFrom(src => src.ubigeo))
+            .ForMember(destination => destination.modalidadintegridad, source => source.MapFrom(src => src.modalidadintegridad))
+            .ForMember(destination => destination.entidadsector, source => source.MapFrom(src => src.entidadsector))
+            .ForMember(destination => destination.entidadgrupo, source => source.MapFrom(src => src.entidadgrupo));
 
             #endregion
 

@@ -9,5 +9,6 @@ namespace PCM.SIP.ICP.Aplicacion.Interface
         IPersonaRepository Persona { get; }
         IModalidadIntegridadRepository ModalidadIntegridad { get; }
         IUbigeoRepository Ubigeo { get; }
+        IEntidadRepository Entidad { get; }
     }
 }

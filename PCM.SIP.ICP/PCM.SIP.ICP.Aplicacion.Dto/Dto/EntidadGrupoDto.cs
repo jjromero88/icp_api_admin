@@ -34,8 +34,4 @@ namespace PCM.SIP.ICP.Aplicacion.Dto
         public string? abreviatura { get; set; }
         public string? descripcion { get; set; }
     }
-    public class EntidadGrupoListResponse
-    {
-        public List<EntidadGrupoResponse>? Lista { get; set; }
-    }
 }
