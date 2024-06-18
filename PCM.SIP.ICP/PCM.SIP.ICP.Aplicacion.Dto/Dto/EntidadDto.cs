@@ -11,10 +11,10 @@ namespace PCM.SIP.ICP.Aplicacion.Dto
         public string? codigo { get; set; }
         public string? acronimo { get; set; }
         public string? nombre { get; set; }
-        public UbigeoDto? ubigeo { get; set; }
-        public ModalidadIntegridadDto? modalidadintegridad { get; set; }
-        public EntidadSectorDto? entidadsector { get; set; }
-        public EntidadGrupoDto? entidadgrupo { get; set; }
+        public UbigeoEntidadResponse? ubigeo { get; set; }
+        public ModalidadIntegridadEntidadResponse? modalidadintegridad { get; set; }
+        public EntidadSectorEntidadResponse? entidadsector { get; set; }
+        public EntidadGrupoEntidadResponse? entidadgrupo { get; set; }
     }
     public class EntidadIdRequest
     {
@@ -63,9 +63,9 @@ namespace PCM.SIP.ICP.Aplicacion.Dto
         public string? codigo { get; set; }
         public string? acronimo { get; set; }
         public string? nombre { get; set; }
-        public UbigeoDto? ubigeo { get; set; }
-        public ModalidadIntegridadDto? modalidadintegridad { get; set; }
-        public EntidadSectorDto? entidadsector { get; set; }
-        public EntidadGrupoDto? entidadgrupo { get; set; }
+        public UbigeoEntidadResponse? ubigeo { get; set; }
+        public ModalidadIntegridadEntidadResponse? modalidadintegridad { get; set; }
+        public EntidadSectorEntidadResponse? entidadsector { get; set; }
+        public EntidadGrupoEntidadResponse? entidadgrupo { get; set; }
     }
 }

@@ -28,4 +28,10 @@ namespace PCM.SIP.ICP.Aplicacion.Dto
         public string? descripcion { get; set; }
         public TipoSectorResponse? tiposector { get; set; }
     }
+    public class EntidadSectorEntidadResponse
+    {
+        public string? codigo { get; set; }
+        public string? abreviatura { get; set; }
+        public string? descripcion { get; set; }
+    }
 }

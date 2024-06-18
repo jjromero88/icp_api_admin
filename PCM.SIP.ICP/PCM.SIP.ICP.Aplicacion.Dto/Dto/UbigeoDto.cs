@@ -34,4 +34,12 @@ namespace PCM.SIP.ICP.Aplicacion.Dto
         public string? SerialKey { get; set; }
         public string? distrito { get; set; }
     }
+    public class UbigeoEntidadResponse
+    {
+        public string? departamento_inei { get; set; }
+        public string? provincia_inei { get; set; }
+        public string? departamento { get; set; }
+        public string? provincia { get; set; }
+        public string? distrito { get; set; }
+    }
 }

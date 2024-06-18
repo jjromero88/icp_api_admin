@@ -18,6 +18,11 @@ namespace PCM.SIP.ICP.Transversal.Mapper
                 .ForMember(destination => destination.abreviatura, source => source.MapFrom(src => src.abreviatura))
                 .ForMember(destination => destination.descripcion, source => source.MapFrom(src => src.descripcion));
 
+            CreateMap<EntidadGrupo, EntidadGrupoEntidadResponse>().ReverseMap()
+                .ForMember(destination => destination.codigo, source => source.MapFrom(src => src.codigo))
+                .ForMember(destination => destination.abreviatura, source => source.MapFrom(src => src.abreviatura))
+                .ForMember(destination => destination.descripcion, source => source.MapFrom(src => src.descripcion));
+
             CreateMap<EntidadGrupoDto, EntidadGrupoIdRequest>().ReverseMap()
                 .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey));
 
@@ -192,6 +197,11 @@ namespace PCM.SIP.ICP.Transversal.Mapper
             .ForMember(destination => destination.descripcion, source => source.MapFrom(src => src.descripcion))
             .ForMember(destination => destination.tiposector, source => source.MapFrom(src => src.tiposector));
 
+            CreateMap<EntidadSector, EntidadSectorEntidadResponse>().ReverseMap()
+            .ForMember(destination => destination.codigo, source => source.MapFrom(src => src.codigo))
+            .ForMember(destination => destination.abreviatura, source => source.MapFrom(src => src.abreviatura))
+            .ForMember(destination => destination.descripcion, source => source.MapFrom(src => src.descripcion));
+
             CreateMap<EntidadSectorDto, EntidadSectorResponse>().ReverseMap()
             .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey))
             .ForMember(destination => destination.tiposectorkey, source => source.MapFrom(src => src.tiposectorkey))
@@ -207,6 +217,17 @@ namespace PCM.SIP.ICP.Transversal.Mapper
             #endregion
 
             #region ModalidadIntegridad
+
+            CreateMap<ModalidadIntegridad, ModalidadIntegridadDto>().ReverseMap()
+            .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey))
+            .ForMember(destination => destination.codigo, source => source.MapFrom(src => src.codigo))
+            .ForMember(destination => destination.abreviatura, source => source.MapFrom(src => src.abreviatura))
+            .ForMember(destination => destination.descripcion, source => source.MapFrom(src => src.descripcion));
+
+            CreateMap<ModalidadIntegridad, ModalidadIntegridadEntidadResponse>().ReverseMap()
+            .ForMember(destination => destination.codigo, source => source.MapFrom(src => src.codigo))
+            .ForMember(destination => destination.abreviatura, source => source.MapFrom(src => src.abreviatura))
+            .ForMember(destination => destination.descripcion, source => source.MapFrom(src => src.descripcion));
 
             CreateMap<ModalidadIntegridad, ModalidadIntegridadDto>().ReverseMap()
             .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey))
@@ -230,6 +251,13 @@ namespace PCM.SIP.ICP.Transversal.Mapper
 
             CreateMap<Ubigeo, UbigeoDto>().ReverseMap()
             .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey))
+            .ForMember(destination => destination.departamento_inei, source => source.MapFrom(src => src.departamento_inei))
+            .ForMember(destination => destination.provincia_inei, source => source.MapFrom(src => src.provincia_inei))
+            .ForMember(destination => destination.departamento, source => source.MapFrom(src => src.departamento))
+            .ForMember(destination => destination.provincia, source => source.MapFrom(src => src.provincia))
+            .ForMember(destination => destination.distrito, source => source.MapFrom(src => src.distrito));
+
+            CreateMap<Ubigeo, UbigeoEntidadResponse>().ReverseMap()
             .ForMember(destination => destination.departamento_inei, source => source.MapFrom(src => src.departamento_inei))
             .ForMember(destination => destination.provincia_inei, source => source.MapFrom(src => src.provincia_inei))
             .ForMember(destination => destination.departamento, source => source.MapFrom(src => src.departamento))
