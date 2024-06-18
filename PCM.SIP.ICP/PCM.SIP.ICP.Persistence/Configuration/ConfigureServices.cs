@@ -13,6 +13,7 @@ namespace PCM.SIP.ICP.Persistence
         {
             services.AddSingleton<DapperContext>();
             services.AddScoped<IEntidadGrupoRepository, EntidadGrupoRepository>();
+            services.AddScoped<IEntidadSectorRepository, EntidadSectorRepository>();
             services.AddScoped<IPersonaRepository, PersonaRepository>();
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();

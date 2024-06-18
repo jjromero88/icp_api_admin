@@ -8,6 +8,7 @@ namespace PCM.SIP.ICP.Aplicacion.Features
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
             services.AddScoped<IEntidadGrupoApplication, EntidadGrupoApplication>();
+            services.AddScoped<IEntidadSectorApplication, EntidadSectorApplication>();
             services.AddScoped<IPersonaApplication, PersonaApplication>();
 
             return services;

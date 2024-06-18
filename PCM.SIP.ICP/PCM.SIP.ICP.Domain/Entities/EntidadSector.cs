@@ -14,6 +14,6 @@ namespace PCM.SIP.ICP.Domain.Entities
         public string? codigo { get; set; }
         public string? abreviatura { get; set; }
         public string? descripcion { get; set; }
-        public TipoSector? tipo_sector { get; set; }
+        public TipoSector? tiposector { get; set; }
     }
 }
