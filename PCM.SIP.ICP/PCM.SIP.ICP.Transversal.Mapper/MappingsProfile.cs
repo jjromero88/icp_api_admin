@@ -201,8 +201,28 @@ namespace PCM.SIP.ICP.Transversal.Mapper
             .ForMember(destination => destination.tiposector, source => source.MapFrom(src => src.tiposector));
 
             CreateMap<EntidadSectorDto, EntidadSectorFilterRequest>().ReverseMap()
-               .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey))
-               .ForMember(destination => destination.filtro, source => source.MapFrom(src => src.filtro));
+            .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey))
+            .ForMember(destination => destination.filtro, source => source.MapFrom(src => src.filtro));
+
+            #endregion
+
+            #region ModalidadIntegridad
+
+            CreateMap<ModalidadIntegridad, ModalidadIntegridadDto>().ReverseMap()
+            .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey))
+            .ForMember(destination => destination.codigo, source => source.MapFrom(src => src.codigo))
+            .ForMember(destination => destination.abreviatura, source => source.MapFrom(src => src.abreviatura))
+            .ForMember(destination => destination.descripcion, source => source.MapFrom(src => src.descripcion));
+
+            CreateMap<ModalidadIntegridadDto, ModalidadIntegridadResponse>().ReverseMap()
+            .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey))
+            .ForMember(destination => destination.codigo, source => source.MapFrom(src => src.codigo))
+            .ForMember(destination => destination.abreviatura, source => source.MapFrom(src => src.abreviatura))
+            .ForMember(destination => destination.descripcion, source => source.MapFrom(src => src.descripcion));
+
+            CreateMap<ModalidadIntegridadDto, ModalidadIntegridadFilterRequest>().ReverseMap()
+            .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey))
+            .ForMember(destination => destination.filtro, source => source.MapFrom(src => src.filtro));
 
             #endregion
 

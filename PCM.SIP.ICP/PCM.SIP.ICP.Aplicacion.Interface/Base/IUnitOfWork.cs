@@ -7,5 +7,6 @@ namespace PCM.SIP.ICP.Aplicacion.Interface
         IEntidadGrupoRepository EntidadGrupo { get; }
         IEntidadSectorRepository EntidadSector { get; }
         IPersonaRepository Persona { get; }
+        IModalidadIntegridadRepository ModalidadIntegridad { get; }
     }
 }
