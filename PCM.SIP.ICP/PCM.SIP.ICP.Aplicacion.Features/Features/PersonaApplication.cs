@@ -114,7 +114,8 @@ namespace PCM.SIP.ICP.Aplicacion.Features
 
                 // seteamos las propiedades de la entidad
                 entidad.persona_id = string.IsNullOrEmpty(request.entidad.SerialKey) ? 0 : Convert.ToInt32(CShrapEncryption.DecryptString(request.entidad.SerialKey, _userService.GetUser().authkey));
-                entidad.entidad_id = string.IsNullOrEmpty(request.entidad.entidadkey) ? null : Convert.ToInt32(CShrapEncryption.DecryptString(request.entidad.entidadkey, _userService.GetUser().authkey));                entidad.usuario_act = _userService.GetUser().username;
+                entidad.entidad_id = string.IsNullOrEmpty(request.entidad.entidadkey) ? null : Convert.ToInt32(CShrapEncryption.DecryptString(request.entidad.entidadkey, _userService.GetUser().authkey));               
+                entidad.usuario_act = _userService.GetUser().username;
 
                 // actualizamos en bd
                 var result = _unitOfWork.Persona.Update(entidad);

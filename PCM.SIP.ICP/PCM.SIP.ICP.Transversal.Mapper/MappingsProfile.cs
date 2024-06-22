@@ -51,6 +51,7 @@ namespace PCM.SIP.ICP.Transversal.Mapper
 
             CreateMap<Persona, PersonaDto>().ReverseMap()
             .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey))
+            .ForMember(destination => destination.entidadkey, source => source.MapFrom(src => src.entidadkey))
             .ForMember(destination => destination.nombres, source => source.MapFrom(src => src.nombres))
             .ForMember(destination => destination.apellido_paterno, source => source.MapFrom(src => src.apellido_paterno))
             .ForMember(destination => destination.apellido_materno, source => source.MapFrom(src => src.apellido_materno))
@@ -69,6 +70,7 @@ namespace PCM.SIP.ICP.Transversal.Mapper
             .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey));
 
             CreateMap<PersonaDto, PersonaInsertRequest>().ReverseMap()
+            .ForMember(destination => destination.entidadkey, source => source.MapFrom(src => src.entidadkey))
             .ForMember(destination => destination.nombres, source => source.MapFrom(src => src.nombres))
             .ForMember(destination => destination.apellido_paterno, source => source.MapFrom(src => src.apellido_paterno))
             .ForMember(destination => destination.apellido_materno, source => source.MapFrom(src => src.apellido_materno))
@@ -81,6 +83,7 @@ namespace PCM.SIP.ICP.Transversal.Mapper
 
             CreateMap<PersonaDto, PersonaUpdateRequest>().ReverseMap()
             .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey))
+            .ForMember(destination => destination.entidadkey, source => source.MapFrom(src => src.entidadkey))
             .ForMember(destination => destination.nombres, source => source.MapFrom(src => src.nombres))
             .ForMember(destination => destination.apellido_paterno, source => source.MapFrom(src => src.apellido_paterno))
             .ForMember(destination => destination.apellido_materno, source => source.MapFrom(src => src.apellido_materno))
@@ -99,6 +102,7 @@ namespace PCM.SIP.ICP.Transversal.Mapper
 
             CreateMap<PersonaDto, PersonaResponse>().ReverseMap()
             .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey))
+            .ForMember(destination => destination.entidadkey, source => source.MapFrom(src => src.entidadkey))
             .ForMember(destination => destination.nombres, source => source.MapFrom(src => src.nombres))
             .ForMember(destination => destination.apellido_paterno, source => source.MapFrom(src => src.apellido_paterno))
             .ForMember(destination => destination.apellido_materno, source => source.MapFrom(src => src.apellido_materno))
