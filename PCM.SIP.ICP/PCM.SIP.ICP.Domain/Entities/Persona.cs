@@ -9,6 +9,8 @@ namespace PCM.SIP.ICP.Domain.Entities
     public class Persona: EntidadBase
     {
         public int persona_id { get; set; }
+        public int? entidad_id { get; set; }
+        public string? entidadkey { get; set; }
         public string? nombres { get; set; }
         public string? apellido_paterno { get; set; }
         public string? apellido_materno { get; set; }
@@ -20,6 +22,7 @@ namespace PCM.SIP.ICP.Domain.Entities
         public bool? interno { get; set; }
         public bool? habilitado { get; set; }
         public string? perfileskey { get; set; }
+        public Entidad? entidad { get; set; }
         public Usuario? usuario { get; set; }
     }
 }

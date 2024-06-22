@@ -62,6 +62,7 @@ namespace PCM.SIP.ICP.Transversal.Mapper
             .ForMember(destination => destination.interno, source => source.MapFrom(src => src.interno))
             .ForMember(destination => destination.habilitado, source => source.MapFrom(src => src.habilitado))
             .ForMember(destination => destination.perfileskey, source => source.MapFrom(src => src.perfileskey))
+            .ForMember(destination => destination.entidad, source => source.MapFrom(src => src.entidad))
             .ForMember(destination => destination.usuario, source => source.MapFrom(src => src.usuario));
 
             CreateMap<PersonaDto, PersonaIdRequest>().ReverseMap()
@@ -104,6 +105,7 @@ namespace PCM.SIP.ICP.Transversal.Mapper
             .ForMember(destination => destination.numdocumento, source => source.MapFrom(src => src.numdocumento))
             .ForMember(destination => destination.email, source => source.MapFrom(src => src.email))
             .ForMember(destination => destination.telefono_movil, source => source.MapFrom(src => src.telefono_movil))
+            .ForMember(destination => destination.entidad, source => source.MapFrom(src => src.entidad))
             .ForMember(destination => destination.usuario, source => source.MapFrom(src => src.usuario));
 
             #endregion
@@ -348,6 +350,12 @@ namespace PCM.SIP.ICP.Transversal.Mapper
             .ForMember(destination => destination.modalidadintegridad, source => source.MapFrom(src => src.modalidadintegridad))
             .ForMember(destination => destination.entidadsector, source => source.MapFrom(src => src.entidadsector))
             .ForMember(destination => destination.entidadgrupo, source => source.MapFrom(src => src.entidadgrupo));
+
+            CreateMap<EntidadDto, EntidadPersonaResponse>().ReverseMap()
+            .ForMember(destination => destination.numero_ruc, source => source.MapFrom(src => src.numero_ruc))
+            .ForMember(destination => destination.codigo, source => source.MapFrom(src => src.codigo))
+            .ForMember(destination => destination.acronimo, source => source.MapFrom(src => src.acronimo))
+            .ForMember(destination => destination.nombre, source => source.MapFrom(src => src.nombre));
 
             #endregion
 

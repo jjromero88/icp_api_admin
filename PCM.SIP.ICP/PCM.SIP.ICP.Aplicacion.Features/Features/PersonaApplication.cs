@@ -54,6 +54,8 @@ namespace PCM.SIP.ICP.Aplicacion.Features
 
                 // mapeamos la entidad y seteamos sus valores internos
                 var entidad = _mapper.Map<Persona>(request.entidad);
+                entidad.entidad_id = string.IsNullOrEmpty(request.entidad.entidadkey) ? null : Convert.ToInt32(CShrapEncryption.DecryptString(request.entidad.entidadkey, _userService.GetUser().authkey));
+
                 entidad.usuario_reg = _userService.GetUser().username;
 
                 // se inserta la persona en bd
@@ -112,7 +114,7 @@ namespace PCM.SIP.ICP.Aplicacion.Features
 
                 // seteamos las propiedades de la entidad
                 entidad.persona_id = string.IsNullOrEmpty(request.entidad.SerialKey) ? 0 : Convert.ToInt32(CShrapEncryption.DecryptString(request.entidad.SerialKey, _userService.GetUser().authkey));
-                entidad.usuario_act = _userService.GetUser().username;
+                entidad.entidad_id = string.IsNullOrEmpty(request.entidad.entidadkey) ? null : Convert.ToInt32(CShrapEncryption.DecryptString(request.entidad.entidadkey, _userService.GetUser().authkey));                entidad.usuario_act = _userService.GetUser().username;
 
                 // actualizamos en bd
                 var result = _unitOfWork.Persona.Update(entidad);
@@ -223,7 +225,8 @@ namespace PCM.SIP.ICP.Aplicacion.Features
 
                 var entidad = _mapper.Map<Persona>(request.entidad);
                 entidad.persona_id = string.IsNullOrEmpty(request.entidad.SerialKey) ? 0 : Convert.ToInt32(CShrapEncryption.DecryptString(request.entidad.SerialKey, _userService.GetUser().authkey));
-
+                entidad.entidad_id = string.IsNullOrEmpty(request.entidad.entidadkey) ? null : Convert.ToInt32(CShrapEncryption.DecryptString(request.entidad.entidadkey, _userService.GetUser().authkey));
+                
                 var result = _unitOfWork.Persona.GetById(entidad);
 
                 if (result.Error)
@@ -246,6 +249,7 @@ namespace PCM.SIP.ICP.Aplicacion.Features
                     entidad = new Persona
                     {
                         SerialKey = string.IsNullOrEmpty(result.Data.persona_id.ToString()) ? null : CShrapEncryption.EncryptString(result.Data.persona_id.ToString(), _userService.GetUser().authkey),
+                        entidadkey = string.IsNullOrEmpty(result.Data.entidad_id == null ? null : result.Data.entidad_id.ToString()) ? null : CShrapEncryption.EncryptString(result.Data.entidad_id.ToString(), _userService.GetUser().authkey),
                         nombres = result.Data.nombres,
                         apellido_paterno = result.Data.apellido_paterno,
                         apellido_materno = result.Data.apellido_materno,
@@ -280,7 +284,8 @@ namespace PCM.SIP.ICP.Aplicacion.Features
                 var entidad = _mapper.Map<Persona>(request.entidad);
 
                 entidad.persona_id = string.IsNullOrEmpty(request.entidad.SerialKey) ? 0 : Convert.ToInt32(CShrapEncryption.DecryptString(request.entidad.SerialKey, _userService.GetUser().authkey));
-
+                entidad.entidad_id = string.IsNullOrEmpty(request.entidad.entidadkey) ? null : Convert.ToInt32(CShrapEncryption.DecryptString(request.entidad.entidadkey, _userService.GetUser().authkey));
+                
                 var result = _unitOfWork.Persona.GetList(entidad);
 
                 if (result.Error)
@@ -311,6 +316,7 @@ namespace PCM.SIP.ICP.Aplicacion.Features
                         Lista.Add(new Persona()
                         {
                             SerialKey = personakey,
+                            entidadkey = string.IsNullOrEmpty(item.entidad_id == null ? null : item.entidad_id.ToString()) ? null : CShrapEncryption.EncryptString(item.entidad_id.ToString(), _userService.GetUser().authkey),
                             nombres = item.nombres,
                             apellido_paterno = item.apellido_paterno,
                             apellido_materno = item.apellido_materno,
@@ -319,7 +325,14 @@ namespace PCM.SIP.ICP.Aplicacion.Features
                             telefono_movil = item.telefono_movil,
                             usuario_reg = item.usuario_reg,
                             fecha_reg = item.fecha_reg,
-                            usuario = _mapper.Map<Usuario>(usuario)
+                            usuario = _mapper.Map<Usuario>(usuario),
+                            entidad = new Entidad
+                            {
+                                codigo = item.entidad_codigo,
+                                numero_ruc = item.entidad_ruc,
+                                acronimo = item.entidad_acronimo,
+                                nombre = item.entidad_nombre
+                            }
                         });
                     }
                 }

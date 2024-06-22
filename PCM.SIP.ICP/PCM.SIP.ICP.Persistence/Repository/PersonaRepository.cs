@@ -29,6 +29,7 @@ namespace PCM.SIP.ICP.Persistence.Repository
 
                     var parameters = new DynamicParameters();
 
+                    parameters.Add("entidad_id", entidad.entidad_id);
                     parameters.Add("nombres", entidad.nombres);
                     parameters.Add("apellido_paterno", entidad.apellido_paterno);
                     parameters.Add("apellido_materno", entidad.apellido_materno);
@@ -69,6 +70,7 @@ namespace PCM.SIP.ICP.Persistence.Repository
                     var parameters = new DynamicParameters();
 
                     parameters.Add("persona_id", entidad.persona_id);
+                    parameters.Add("entidad_id", entidad.entidad_id);
                     parameters.Add("nombres", entidad.nombres);
                     parameters.Add("apellido_paterno", entidad.apellido_paterno);
                     parameters.Add("apellido_materno", entidad.apellido_materno);

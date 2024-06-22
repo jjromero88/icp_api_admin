@@ -8,6 +8,7 @@ namespace PCM.SIP.ICP.Aplicacion.Dto
 {
     public class PersonaDto : EntidadBase
     {
+        public string? entidadkey { get; set; }
         public string? nombres { get; set; }
         public string? apellido_paterno { get; set; }
         public string? apellido_materno { get; set; }
@@ -19,6 +20,7 @@ namespace PCM.SIP.ICP.Aplicacion.Dto
         public bool? interno { get; set; }
         public bool? habilitado { get; set; }
         public string? perfileskey { get; set; }
+        public EntidadPersonaResponse? entidad { get; set; }
         public UsuarioDto? usuario { get; set; }
     }
     public class PersonaIdRequest
@@ -27,6 +29,7 @@ namespace PCM.SIP.ICP.Aplicacion.Dto
     }
     public class PersonaInsertRequest
     {
+        public string? entidadkey { get; set; }
         public string? nombres { get; set; }
         public string? apellido_paterno { get; set; }
         public string? apellido_materno { get; set; }
@@ -41,6 +44,7 @@ namespace PCM.SIP.ICP.Aplicacion.Dto
     public class PersonaUpdateRequest
     {
         public string? SerialKey { get; set; }
+        public string? entidadkey { get; set; }
         public string? nombres { get; set; }
         public string? apellido_paterno { get; set; }
         public string? apellido_materno { get; set; }
@@ -61,12 +65,14 @@ namespace PCM.SIP.ICP.Aplicacion.Dto
     public class PersonaResponse
     {
         public string? SerialKey { get; set; }
+        public string? entidadkey { get; set; }
         public string? nombres { get; set; }
         public string? apellido_paterno { get; set; }
         public string? apellido_materno { get; set; }
         public string? numdocumento { get; set; }
         public string? email { get; set; }
         public string? telefono_movil { get; set; }
+        public EntidadPersonaResponse? entidad { get; set; }
         public UsuarioDto? usuario { get; set; }
     }
 }

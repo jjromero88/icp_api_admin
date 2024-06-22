@@ -39,7 +39,7 @@ namespace PCM.SIP.ICP.Api.Modules.Swagger
                     { securityScheme, new List<string>() { } }
                 });
 
-                //c.AddServer(new OpenApiServer { Url = "http://localhost:5126" });
+                c.AddServer(new OpenApiServer { Url = "http://localhost:5126" });
 
             });
 
