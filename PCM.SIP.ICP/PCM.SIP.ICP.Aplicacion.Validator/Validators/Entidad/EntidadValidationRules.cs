@@ -24,14 +24,6 @@ namespace PCM.SIP.ICP.Aplicacion.Validator
             .IsNullOrWhiteSpace()
             .WithMessage("Debe seleccionar uns Sector");
 
-            RuleFor(u => u.modalidadintegridadkey)
-            .IsNullOrWhiteSpace()
-            .WithMessage("Debe seleccionar el Tipo de Modalidad con la que incorporan la funcion de integridad");
-
-            RuleFor(u => u.ubigeokey)
-            .IsNullOrWhiteSpace()
-            .WithMessage("Debe seleccionar el Distrito");
-
             RuleFor(x => x.numero_ruc)
             .MaximumLength(11)
             .WithMessage("El RUC debe tener máximo 11 caracteres");
@@ -39,10 +31,6 @@ namespace PCM.SIP.ICP.Aplicacion.Validator
             RuleFor(u => u.nombre)
             .IsNullOrWhiteSpace()
             .WithMessage("Debe ingresar el Nombre de la entidad");         
-
-            RuleFor(x => x.codigo)
-            .MaximumLength(30)
-            .WithMessage("El Codigo debe tener máximo 30 caracteres");
 
             RuleFor(x => x.acronimo)
             .MaximumLength(20)
@@ -72,14 +60,6 @@ namespace PCM.SIP.ICP.Aplicacion.Validator
             RuleFor(u => u.entidadsectorkey)
             .IsNullOrWhiteSpace()
             .WithMessage("Debe seleccionar uns Sector");
-
-            RuleFor(u => u.modalidadintegridadkey)
-            .IsNullOrWhiteSpace()
-            .WithMessage("Debe seleccionar el Tipo de Modalidad con la que incorporan la funcion de integridad");
-
-            RuleFor(u => u.ubigeokey)
-            .IsNullOrWhiteSpace()
-            .WithMessage("Debe seleccionar el Distrito");
 
             RuleFor(x => x.numero_ruc)
             .MaximumLength(11)

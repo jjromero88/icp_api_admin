@@ -297,14 +297,10 @@ namespace PCM.SIP.ICP.Transversal.Mapper
             .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey))
             .ForMember(destination => destination.entidadgrupokey, source => source.MapFrom(src => src.entidadgrupokey))
             .ForMember(destination => destination.entidadsectorkey, source => source.MapFrom(src => src.entidadsectorkey))
-            .ForMember(destination => destination.modalidadintegridadkey, source => source.MapFrom(src => src.modalidadintegridadkey))
-            .ForMember(destination => destination.ubigeokey, source => source.MapFrom(src => src.ubigeokey))
             .ForMember(destination => destination.numero_ruc, source => source.MapFrom(src => src.numero_ruc))
             .ForMember(destination => destination.codigo, source => source.MapFrom(src => src.codigo))
             .ForMember(destination => destination.acronimo, source => source.MapFrom(src => src.acronimo))
             .ForMember(destination => destination.nombre, source => source.MapFrom(src => src.nombre))
-            .ForMember(destination => destination.ubigeo, source => source.MapFrom(src => src.ubigeo))
-            .ForMember(destination => destination.modalidadintegridad, source => source.MapFrom(src => src.modalidadintegridad))
             .ForMember(destination => destination.entidadsector, source => source.MapFrom(src => src.entidadsector))
             .ForMember(destination => destination.entidadgrupo, source => source.MapFrom(src => src.entidadgrupo));
 
@@ -314,10 +310,7 @@ namespace PCM.SIP.ICP.Transversal.Mapper
             CreateMap<EntidadDto, EntidadInsertRequest>().ReverseMap()
             .ForMember(destination => destination.entidadgrupokey, source => source.MapFrom(src => src.entidadgrupokey))
             .ForMember(destination => destination.entidadsectorkey, source => source.MapFrom(src => src.entidadsectorkey))
-            .ForMember(destination => destination.modalidadintegridadkey, source => source.MapFrom(src => src.modalidadintegridadkey))
-            .ForMember(destination => destination.ubigeokey, source => source.MapFrom(src => src.ubigeokey))
             .ForMember(destination => destination.numero_ruc, source => source.MapFrom(src => src.numero_ruc))
-            .ForMember(destination => destination.codigo, source => source.MapFrom(src => src.codigo))
             .ForMember(destination => destination.acronimo, source => source.MapFrom(src => src.acronimo))
             .ForMember(destination => destination.nombre, source => source.MapFrom(src => src.nombre));
 
@@ -325,8 +318,6 @@ namespace PCM.SIP.ICP.Transversal.Mapper
             .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey))
             .ForMember(destination => destination.entidadgrupokey, source => source.MapFrom(src => src.entidadgrupokey))
             .ForMember(destination => destination.entidadsectorkey, source => source.MapFrom(src => src.entidadsectorkey))
-            .ForMember(destination => destination.modalidadintegridadkey, source => source.MapFrom(src => src.modalidadintegridadkey))
-            .ForMember(destination => destination.ubigeokey, source => source.MapFrom(src => src.ubigeokey))
             .ForMember(destination => destination.numero_ruc, source => source.MapFrom(src => src.numero_ruc))
             .ForMember(destination => destination.codigo, source => source.MapFrom(src => src.codigo))
             .ForMember(destination => destination.acronimo, source => source.MapFrom(src => src.acronimo))
@@ -336,22 +327,16 @@ namespace PCM.SIP.ICP.Transversal.Mapper
             .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey))
             .ForMember(destination => destination.entidadgrupokey, source => source.MapFrom(src => src.entidadgrupokey))
             .ForMember(destination => destination.entidadsectorkey, source => source.MapFrom(src => src.entidadsectorkey))
-            .ForMember(destination => destination.modalidadintegridadkey, source => source.MapFrom(src => src.modalidadintegridadkey))
-            .ForMember(destination => destination.ubigeokey, source => source.MapFrom(src => src.ubigeokey))
             .ForMember(destination => destination.filtro, source => source.MapFrom(src => src.filtro));
 
             CreateMap<EntidadDto, EntidadResponse>().ReverseMap()
             .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey))
             .ForMember(destination => destination.entidadgrupokey, source => source.MapFrom(src => src.entidadgrupokey))
             .ForMember(destination => destination.entidadsectorkey, source => source.MapFrom(src => src.entidadsectorkey))
-            .ForMember(destination => destination.modalidadintegridadkey, source => source.MapFrom(src => src.modalidadintegridadkey))
-            .ForMember(destination => destination.ubigeokey, source => source.MapFrom(src => src.ubigeokey))
             .ForMember(destination => destination.numero_ruc, source => source.MapFrom(src => src.numero_ruc))
             .ForMember(destination => destination.codigo, source => source.MapFrom(src => src.codigo))
             .ForMember(destination => destination.acronimo, source => source.MapFrom(src => src.acronimo))
             .ForMember(destination => destination.nombre, source => source.MapFrom(src => src.nombre))
-            .ForMember(destination => destination.ubigeo, source => source.MapFrom(src => src.ubigeo))
-            .ForMember(destination => destination.modalidadintegridad, source => source.MapFrom(src => src.modalidadintegridad))
             .ForMember(destination => destination.entidadsector, source => source.MapFrom(src => src.entidadsector))
             .ForMember(destination => destination.entidadgrupo, source => source.MapFrom(src => src.entidadgrupo));
 

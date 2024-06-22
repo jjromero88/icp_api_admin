@@ -30,10 +30,7 @@ namespace PCM.SIP.ICP.Persistence.Repository
 
                     parameters.Add("entidadgrupo_id", entidad.entidadgrupo_id);
                     parameters.Add("entidadsector_id", entidad.entidadsector_id);
-                    parameters.Add("modalidadintegridad_id", entidad.modalidadintegridad_id);
-                    parameters.Add("ubigeo_id", entidad.ubigeo_id);
                     parameters.Add("numero_ruc", entidad.numero_ruc);
-                    parameters.Add("codigo", entidad.codigo);
                     parameters.Add("acronimo", entidad.acronimo);
                     parameters.Add("nombre", entidad.nombre);
                     parameters.Add("usuario_reg", entidad.usuario_reg);
@@ -70,10 +67,7 @@ namespace PCM.SIP.ICP.Persistence.Repository
                     parameters.Add("entidad_id", entidad.entidad_id);
                     parameters.Add("entidadgrupo_id", entidad.entidadgrupo_id);
                     parameters.Add("entidadsector_id", entidad.entidadsector_id);
-                    parameters.Add("modalidadintegridad_id", entidad.modalidadintegridad_id);
-                    parameters.Add("ubigeo_id", entidad.ubigeo_id);
                     parameters.Add("numero_ruc", entidad.numero_ruc);
-                    parameters.Add("codigo", entidad.codigo);
                     parameters.Add("acronimo", entidad.acronimo);
                     parameters.Add("nombre", entidad.nombre);
                     parameters.Add("usuario_act", entidad.usuario_act);
@@ -174,8 +168,6 @@ namespace PCM.SIP.ICP.Persistence.Repository
                     parameters.Add("entidad_id", entidad.entidad_id.Equals(0) ? (int?)null : entidad.entidad_id);
                     parameters.Add("entidadgrupo_id", entidad.entidadgrupo_id);
                     parameters.Add("entidadsector_id", entidad.entidadsector_id);
-                    parameters.Add("modalidadintegridad_id", entidad.modalidadintegridad_id);
-                    parameters.Add("ubigeo_id", entidad.ubigeo_id);
                     parameters.Add("filtro", entidad.filtro);
                     parameters.Add("error", dbType: DbType.Boolean, direction: ParameterDirection.Output);
                     parameters.Add("message", dbType: DbType.String, direction: ParameterDirection.Output, size: 500);

@@ -50,8 +50,6 @@ namespace PCM.SIP.ICP.Aplicacion.Features
 
                 entidad.entidadgrupo_id = string.IsNullOrEmpty(request.entidad.entidadgrupokey) ? 0 : Convert.ToInt32(CShrapEncryption.DecryptString(request.entidad.entidadgrupokey, _userService.GetUser().authkey));
                 entidad.entidadsector_id = string.IsNullOrEmpty(request.entidad.entidadsectorkey) ? 0 : Convert.ToInt32(CShrapEncryption.DecryptString(request.entidad.entidadsectorkey, _userService.GetUser().authkey));
-                entidad.modalidadintegridad_id = string.IsNullOrEmpty(request.entidad.modalidadintegridadkey) ? 0 : Convert.ToInt32(CShrapEncryption.DecryptString(request.entidad.modalidadintegridadkey, _userService.GetUser().authkey));
-                entidad.ubigeo_id = string.IsNullOrEmpty(request.entidad.ubigeokey) ? 0 : Convert.ToInt32(CShrapEncryption.DecryptString(request.entidad.ubigeokey, _userService.GetUser().authkey));
                 entidad.usuario_reg = _userService.GetUser().username;
 
                 var result = _unitOfWork.Entidad.Insert(entidad);
@@ -89,9 +87,6 @@ namespace PCM.SIP.ICP.Aplicacion.Features
                 entidad.entidad_id = string.IsNullOrEmpty(request.entidad.SerialKey) ? 0 : Convert.ToInt32(CShrapEncryption.DecryptString(request.entidad.SerialKey, _userService.GetUser().authkey));
                 entidad.entidadgrupo_id = string.IsNullOrEmpty(request.entidad.entidadgrupokey) ? 0 : Convert.ToInt32(CShrapEncryption.DecryptString(request.entidad.entidadgrupokey, _userService.GetUser().authkey));
                 entidad.entidadsector_id = string.IsNullOrEmpty(request.entidad.entidadsectorkey) ? 0 : Convert.ToInt32(CShrapEncryption.DecryptString(request.entidad.entidadsectorkey, _userService.GetUser().authkey));
-                entidad.modalidadintegridad_id = string.IsNullOrEmpty(request.entidad.modalidadintegridadkey) ? 0 : Convert.ToInt32(CShrapEncryption.DecryptString(request.entidad.modalidadintegridadkey, _userService.GetUser().authkey));
-                entidad.ubigeo_id = string.IsNullOrEmpty(request.entidad.ubigeokey) ? 0 : Convert.ToInt32(CShrapEncryption.DecryptString(request.entidad.ubigeokey, _userService.GetUser().authkey));
-
                 entidad.usuario_act = _userService.GetUser().username;
 
                 var result = _unitOfWork.Entidad.Update(entidad);
@@ -164,8 +159,6 @@ namespace PCM.SIP.ICP.Aplicacion.Features
                 entidad.entidad_id = string.IsNullOrEmpty(request.entidad.SerialKey) ? 0 : Convert.ToInt32(CShrapEncryption.DecryptString(request.entidad.SerialKey, _userService.GetUser().authkey));
                 entidad.entidadgrupo_id = string.IsNullOrEmpty(request.entidad.entidadgrupokey) ? null : Convert.ToInt32(CShrapEncryption.DecryptString(request.entidad.entidadgrupokey, _userService.GetUser().authkey));
                 entidad.entidadsector_id = string.IsNullOrEmpty(request.entidad.entidadsectorkey) ? null : Convert.ToInt32(CShrapEncryption.DecryptString(request.entidad.entidadsectorkey, _userService.GetUser().authkey));
-                entidad.modalidadintegridad_id = string.IsNullOrEmpty(request.entidad.modalidadintegridadkey) ? null : Convert.ToInt32(CShrapEncryption.DecryptString(request.entidad.modalidadintegridadkey, _userService.GetUser().authkey));
-                entidad.ubigeo_id = string.IsNullOrEmpty(request.entidad.ubigeokey) ? null : Convert.ToInt32(CShrapEncryption.DecryptString(request.entidad.ubigeokey, _userService.GetUser().authkey));
 
                 var result = _unitOfWork.Entidad.GetById(entidad);
 
@@ -182,8 +175,6 @@ namespace PCM.SIP.ICP.Aplicacion.Features
                         SerialKey = string.IsNullOrEmpty(result.Data.entidad_id.ToString()) ? null : CShrapEncryption.EncryptString(result.Data.entidad_id.ToString(), _userService.GetUser().authkey),
                         entidadgrupokey = string.IsNullOrEmpty(result.Data.entidadgrupo_id == null ? null : result.Data.entidadgrupo_id.ToString()) ? null : CShrapEncryption.EncryptString(result.Data.entidadgrupo_id.ToString(), _userService.GetUser().authkey),
                         entidadsectorkey = string.IsNullOrEmpty(result.Data.entidadsector_id == null ? null : result.Data.entidadsector_id.ToString()) ? null : CShrapEncryption.EncryptString(result.Data.entidadsector_id.ToString(), _userService.GetUser().authkey),
-                        modalidadintegridadkey = string.IsNullOrEmpty(result.Data.modalidadintegridad_id == null ? null : result.Data.modalidadintegridad_id.ToString()) ? null : CShrapEncryption.EncryptString(result.Data.modalidadintegridad_id.ToString(), _userService.GetUser().authkey),
-                        ubigeokey = string.IsNullOrEmpty(result.Data.ubigeo_id == null ? null : result.Data.ubigeo_id.ToString()) ? null : CShrapEncryption.EncryptString(result.Data.ubigeo_id.ToString(), _userService.GetUser().authkey),
                         numero_ruc = result.Data.numero_ruc,
                         codigo = result.Data.codigo,
                         acronimo = result.Data.acronimo,
@@ -199,20 +190,6 @@ namespace PCM.SIP.ICP.Aplicacion.Features
                             codigo = result.Data.entidadsector_codigo,
                             descripcion = result.Data.entidadsector_descripcion,
                             abreviatura = result.Data.entidadsector_abreviatura
-                        },
-                        modalidadintegridad = new ModalidadIntegridad
-                        {
-                            codigo = result.Data.modalidadintegridad_codigo,
-                            descripcion = result.Data.modalidadintegridad_descripcion,
-                            abreviatura = result.Data.modalidadintegridad_abreviatura
-                        },
-                        ubigeo = new Ubigeo
-                        {
-                            departamento_inei = result.Data.ubigeo_departamento_inei,
-                            departamento = result.Data.ubigeo_departamento,
-                            provincia_inei = result.Data.ubigeo_provincia_inei,
-                            provincia = result.Data.ubigeo_provincia,
-                            distrito = result.Data.ubigeo_distrito
                         },
                         estado = result.Data.estado,
                         usuario_reg = result.Data.usuario_reg,
@@ -243,8 +220,6 @@ namespace PCM.SIP.ICP.Aplicacion.Features
                 entidad.entidad_id = string.IsNullOrEmpty(request.entidad.SerialKey) ? 0 : Convert.ToInt32(CShrapEncryption.DecryptString(request.entidad.SerialKey, _userService.GetUser().authkey));
                 entidad.entidadgrupo_id = string.IsNullOrEmpty(request.entidad.entidadgrupokey) ? null : Convert.ToInt32(CShrapEncryption.DecryptString(request.entidad.entidadgrupokey, _userService.GetUser().authkey));
                 entidad.entidadsector_id = string.IsNullOrEmpty(request.entidad.entidadsectorkey) ? null : Convert.ToInt32(CShrapEncryption.DecryptString(request.entidad.entidadsectorkey, _userService.GetUser().authkey));
-                entidad.modalidadintegridad_id = string.IsNullOrEmpty(request.entidad.modalidadintegridadkey) ? null : Convert.ToInt32(CShrapEncryption.DecryptString(request.entidad.modalidadintegridadkey, _userService.GetUser().authkey));
-                entidad.ubigeo_id = string.IsNullOrEmpty(request.entidad.ubigeokey) ? null : Convert.ToInt32(CShrapEncryption.DecryptString(request.entidad.ubigeokey, _userService.GetUser().authkey));
 
                 var result = _unitOfWork.Entidad.GetList(entidad);
 
@@ -265,8 +240,6 @@ namespace PCM.SIP.ICP.Aplicacion.Features
                             SerialKey = string.IsNullOrEmpty(item.entidad_id.ToString()) ? null : CShrapEncryption.EncryptString(item.entidad_id.ToString(), _userService.GetUser().authkey),
                             entidadgrupokey = string.IsNullOrEmpty(item.entidadgrupo_id == null ? null : item.entidadgrupo_id.ToString()) ? null : CShrapEncryption.EncryptString(item.entidadgrupo_id.ToString(), _userService.GetUser().authkey),
                             entidadsectorkey = string.IsNullOrEmpty(item.entidadsector_id == null ? null : item.entidadsector_id.ToString()) ? null : CShrapEncryption.EncryptString(item.entidadsector_id.ToString(), _userService.GetUser().authkey),
-                            modalidadintegridadkey = string.IsNullOrEmpty(item.modalidadintegridad_id == null ? null : item.modalidadintegridad_id.ToString()) ? null : CShrapEncryption.EncryptString(item.modalidadintegridad_id.ToString(), _userService.GetUser().authkey),
-                            ubigeokey = string.IsNullOrEmpty(item.ubigeo_id == null ? null : item.ubigeo_id.ToString()) ? null : CShrapEncryption.EncryptString(item.ubigeo_id.ToString(), _userService.GetUser().authkey),
                             numero_ruc = item.numero_ruc,
                             codigo = item.codigo,
                             acronimo = item.acronimo,
@@ -282,20 +255,6 @@ namespace PCM.SIP.ICP.Aplicacion.Features
                                 codigo = item.entidadsector_codigo,
                                 descripcion = item.entidadsector_descripcion,
                                 abreviatura = item.entidadsector_abreviatura
-                            },
-                            modalidadintegridad = new ModalidadIntegridad
-                            {
-                                codigo = item.modalidadintegridad_codigo,
-                                descripcion = item.modalidadintegridad_descripcion,
-                                abreviatura = item.modalidadintegridad_abreviatura
-                            },
-                            ubigeo = new Ubigeo
-                            {
-                                departamento_inei = item.ubigeo_departamento_inei,
-                                departamento = item.ubigeo_departamento,
-                                provincia_inei = item.ubigeo_provincia_inei,
-                                provincia = item.ubigeo_provincia,
-                                distrito = item.ubigeo_distrito
                             },
                             usuario_reg = item.usuario_reg,
                             fecha_reg = item.fecha_reg
