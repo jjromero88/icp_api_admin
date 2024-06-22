@@ -20,7 +20,7 @@ namespace PCM.SIP.ICP.Aplicacion.Dto
         public bool? interno { get; set; }
         public bool? habilitado { get; set; }
         public string? perfileskey { get; set; }
-        public EntidadPersonaResponse? entidad { get; set; }
+        public EntidadDto? entidad { get; set; }
         public UsuarioDto? usuario { get; set; }
     }
     public class PersonaIdRequest
