@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PCM.SIP.ICP.Api.Filters;
 using PCM.SIP.ICP.Aplicacion.Dto;
-using PCM.SIP.ICP.Aplicacion.Features;
 using PCM.SIP.ICP.Aplicacion.Interface.Features;
 using PCM.SIP.ICP.Transversal.Common.Generics;
 using PCM.SIP.ICP.Transversal.Common;

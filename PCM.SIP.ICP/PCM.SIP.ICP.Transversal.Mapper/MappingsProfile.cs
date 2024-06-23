@@ -349,10 +349,31 @@ namespace PCM.SIP.ICP.Transversal.Mapper
             .ForMember(destination => destination.acronimo, source => source.MapFrom(src => src.acronimo))
             .ForMember(destination => destination.nombre, source => source.MapFrom(src => src.nombre));
 
+            CreateMap<EntidadDto, GeneralidadesUpdateRequest>().ReverseMap()
+            .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey))
+            .ForMember(destination => destination.ubigeokey, source => source.MapFrom(src => src.ubigeokey))
+            .ForMember(destination => destination.documentoestructurakey, source => source.MapFrom(src => src.documentoestructurakey))
+            .ForMember(destination => destination.modalidadintegridadkey, source => source.MapFrom(src => src.modalidadintegridadkey))
+            .ForMember(destination => destination.documentoestructura_doc, source => source.MapFrom(src => src.documentoestructura_doc))
+            .ForMember(destination => destination.modalidadintegridad_doc, source => source.MapFrom(src => src.modalidadintegridad_doc))
+            .ForMember(destination => destination.modalidadintegridad_anterior, source => source.MapFrom(src => src.modalidadintegridad_anterior))
+            .ForMember(destination => destination.documentointegridad_desc, source => source.MapFrom(src => src.documentointegridad_desc))
+            .ForMember(destination => destination.documentointegridad_doc, source => source.MapFrom(src => src.documentointegridad_doc))
+            .ForMember(destination => destination.num_servidores, source => source.MapFrom(src => src.num_servidores));
+
             CreateMap<EntidadDto, EntidadFilterRequest>().ReverseMap()
             .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey))
             .ForMember(destination => destination.entidadgrupokey, source => source.MapFrom(src => src.entidadgrupokey))
             .ForMember(destination => destination.entidadsectorkey, source => source.MapFrom(src => src.entidadsectorkey))
+            .ForMember(destination => destination.filtro, source => source.MapFrom(src => src.filtro));
+
+            CreateMap<EntidadDto, GeneralidadesFilterRequest>().ReverseMap()
+            .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey))
+            .ForMember(destination => destination.entidadgrupokey, source => source.MapFrom(src => src.entidadgrupokey))
+            .ForMember(destination => destination.entidadsectorkey, source => source.MapFrom(src => src.entidadsectorkey))
+            .ForMember(destination => destination.ubigeokey, source => source.MapFrom(src => src.ubigeokey))
+            .ForMember(destination => destination.modalidadintegridadkey, source => source.MapFrom(src => src.modalidadintegridadkey))
+            .ForMember(destination => destination.documentoestructurakey, source => source.MapFrom(src => src.documentoestructurakey))
             .ForMember(destination => destination.filtro, source => source.MapFrom(src => src.filtro));
 
             CreateMap<EntidadDto, EntidadResponse>().ReverseMap()

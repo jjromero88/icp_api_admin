@@ -16,8 +16,22 @@ namespace PCM.SIP.ICP.Domain.Entities
         public string? codigo { get; set; }
         public string? acronimo { get; set; }
         public string? nombre { get; set; }
-        public Ubigeo? ubigeo { get; set; }  
+
+
+        public int? documentoestructura_id { get; set; }
+        public string? documentoestructurakey { get; set; }
+        public string? documentoestructura_doc { get; set; }
+        public string? modalidadintegridad_doc { get; set; }
+        public string? modalidadintegridad_anterior { get; set; }
+        public string? documentointegridad_desc { get; set; }
+        public string? documentointegridad_doc { get; set; }
+        public int? num_servidores { get; set; }
+
+
+
+        public Ubigeo? ubigeo { get; set; }
         public ModalidadIntegridad? modalidadintegridad { get; set; }
+        public DocumentoEstructura? documentoestructura { get; set; }
         public EntidadSector? entidadsector { get; set; }
         public EntidadGrupo? entidadgrupo { get; set; }
     }

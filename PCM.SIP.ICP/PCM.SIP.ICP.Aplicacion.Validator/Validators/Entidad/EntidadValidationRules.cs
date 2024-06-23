@@ -86,4 +86,26 @@ namespace PCM.SIP.ICP.Aplicacion.Validator
             .WithMessage("El número RUC solo puede contener dígitos numéricos del 0 al 9");
         }
     }
+    public class GeneralidadesUpdateRequestValidator : AbstractValidator<GeneralidadesUpdateRequest>
+    {
+        public GeneralidadesUpdateRequestValidator()
+        {
+            RuleFor(u => u.SerialKey)
+            .IsNullOrWhiteSpace()
+            .WithMessage("Debe seleccionar una entidad");
+
+            RuleFor(u => u.ubigeokey)
+           .IsNullOrWhiteSpace()
+           .WithMessage("Debe seleccionar el distirto");
+
+            RuleFor(u => u.documentoestructurakey)
+            .IsNullOrWhiteSpace()
+            .WithMessage("Debe seleccionar el documento que aprueba la estructura orgánica");
+
+            RuleFor(u => u.modalidadintegridadkey)
+            .IsNullOrWhiteSpace()
+            .WithMessage("Debe seleccionar el Tipo de modalidad con la que incorporan la funcion de integridad");
+
+        }
+    }
 }
