@@ -13,14 +13,14 @@ namespace PCM.SIP.ICP.Api.Controllers
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    public class ModalidadIntegridadController : Controller
+    public class DocumentoEstructuraController : Controller
     {
-        private readonly IModalidadIntegridadApplication _modalidadIntegridadApplication;
+        private readonly IDocumentoEstructuraApplication _documentoEstructuraApplication;
         private readonly IMapper _mapper;
 
-        public ModalidadIntegridadController(IModalidadIntegridadApplication modalidadIntegridadApplication, IMapper mapper)
+        public DocumentoEstructuraController(IDocumentoEstructuraApplication documentoEstructuraApplication, IMapper mapper)
         {
-            _modalidadIntegridadApplication = modalidadIntegridadApplication;
+            _documentoEstructuraApplication = documentoEstructuraApplication;
             _mapper = mapper;
         }
 
@@ -28,12 +28,12 @@ namespace PCM.SIP.ICP.Api.Controllers
         [ServiceFilter(typeof(ValidateTokenRequestAttribute))]
         [ServiceFilter(typeof(UpdateUserDataAttribute))]
         [ProducesResponseType((int)HttpStatusCode.OK, Type = typeof(PcmResponse))]
-        public async Task<ActionResult<PcmResponse>> GetList([FromQuery] ModalidadIntegridadFilterRequest request)
+        public async Task<ActionResult<PcmResponse>> GetList([FromQuery] DocumentoEstructuraFilterRequest request)
         {
             if (request == null)
                 return BadRequest();
 
-            return await _modalidadIntegridadApplication.GetList(new Request<ModalidadIntegridadDto>() { entidad = _mapper.Map<ModalidadIntegridadDto>(request) });
+            return await _documentoEstructuraApplication.GetList(new Request<DocumentoEstructuraDto>() { entidad = _mapper.Map<DocumentoEstructuraDto>(request) });
         }
     }
 }

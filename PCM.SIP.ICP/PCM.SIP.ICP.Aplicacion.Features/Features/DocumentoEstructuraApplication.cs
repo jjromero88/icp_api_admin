@@ -11,17 +11,17 @@ using PCM.SIP.ICP.Transversal.Util.Encryptions;
 
 namespace PCM.SIP.ICP.Aplicacion.Features
 {
-    public class ModalidadIntegridadApplication : IModalidadIntegridadApplication
+    public class DocumentoEstructuraApplication : IDocumentoEstructuraApplication
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        private readonly IAppLogger<ModalidadIntegridadApplication> _logger;
+        private readonly IAppLogger<DocumentoEstructuraApplication> _logger;
         private readonly IUserService _userService;
 
-        public ModalidadIntegridadApplication(
+        public DocumentoEstructuraApplication(
             IUnitOfWork unitOfWork, 
             IMapper mapper, 
-            IAppLogger<ModalidadIntegridadApplication> logger, 
+            IAppLogger<DocumentoEstructuraApplication> logger, 
             IUserService userService)
         {
             _unitOfWork = unitOfWork;
@@ -30,15 +30,15 @@ namespace PCM.SIP.ICP.Aplicacion.Features
             _userService = userService;
         }
 
-        public async Task<PcmResponse> GetList(Request<ModalidadIntegridadDto> request)
+        public async Task<PcmResponse> GetList(Request<DocumentoEstructuraDto> request)
         {
             try
             {
-                var entidad = _mapper.Map<ModalidadIntegridad>(request.entidad);
+                var entidad = _mapper.Map<DocumentoEstructura>(request.entidad);
 
-                entidad.modalidadintegridad_id = string.IsNullOrEmpty(request.entidad.SerialKey) ? 0 : Convert.ToInt32(CShrapEncryption.DecryptString(request.entidad.SerialKey, _userService.GetUser().authkey));
+                entidad.documentoestructura_id = string.IsNullOrEmpty(request.entidad.SerialKey) ? 0 : Convert.ToInt32(CShrapEncryption.DecryptString(request.entidad.SerialKey, _userService.GetUser().authkey));
 
-                var result = _unitOfWork.ModalidadIntegridad.GetList(entidad);
+                var result = _unitOfWork.DocumentoEstructura.GetList(entidad);
 
                 if (result.Error)
                 {
@@ -46,16 +46,16 @@ namespace PCM.SIP.ICP.Aplicacion.Features
                     return ResponseUtil.InternalError(message: result.Message);
                 }
 
-                List<ModalidadIntegridad> Lista = new List<ModalidadIntegridad>();
+                List<DocumentoEstructura> Lista = new List<DocumentoEstructura>();
 
                 if (result.Data != null)
                 {
 
                     foreach (var item in result.Data)
                     {
-                        Lista.Add(new ModalidadIntegridad()
+                        Lista.Add(new DocumentoEstructura()
                         {
-                            SerialKey = string.IsNullOrEmpty(item.modalidadintegridad_id.ToString()) ? null : CShrapEncryption.EncryptString(item.modalidadintegridad_id.ToString(), _userService.GetUser().authkey),
+                            SerialKey = string.IsNullOrEmpty(item.documentoestructura_id.ToString()) ? null : CShrapEncryption.EncryptString(item.documentoestructura_id.ToString(), _userService.GetUser().authkey),
                             codigo = item.codigo,
                             abreviatura = item.abreviatura,
                             descripcion = item.descripcion,
@@ -67,7 +67,7 @@ namespace PCM.SIP.ICP.Aplicacion.Features
 
                 _logger.LogInformation(TransactionMessage.QuerySuccess);
                 return result != null ? ResponseUtil.Ok(
-                    _mapper.Map<List<ModalidadIntegridadResponse>>(_mapper.Map<List<ModalidadIntegridadDto>>(Lista)),
+                    _mapper.Map<List<DocumentoEstructuraResponse>>(_mapper.Map<List<DocumentoEstructuraDto>>(Lista)),
                     result.Message ?? TransactionMessage.QuerySuccess
                     ) : ResponseUtil.NoContent();
             }

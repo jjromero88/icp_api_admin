@@ -13,6 +13,7 @@ namespace PCM.SIP.ICP.Aplicacion.Features
             services.AddScoped<IUbigeoApplication, UbigeoApplication>();
             services.AddScoped<IPersonaApplication, PersonaApplication>();
             services.AddScoped<IEntidadApplication, EntidadApplication>();
+            services.AddScoped<IDocumentoEstructuraApplication, DocumentoEstructuraApplication>();
 
             return services;
         }

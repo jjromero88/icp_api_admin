@@ -18,6 +18,7 @@ namespace PCM.SIP.ICP.Persistence
             services.AddScoped<IUbigeoRepository, UbigeoRepository>();
             services.AddScoped<IPersonaRepository, PersonaRepository>();
             services.AddScoped<IEntidadRepository, EntidadRepository>();
+            services.AddScoped<IDocumentoEstructuraRepository, DocumentoEstructuraRepository>();
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             return services;
