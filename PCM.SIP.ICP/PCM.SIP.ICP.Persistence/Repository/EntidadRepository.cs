@@ -210,7 +210,7 @@ namespace PCM.SIP.ICP.Persistence.Repository
                     parameters.Add("modalidadintegridad_anterior", entidad.modalidadintegridad_anterior);
                     parameters.Add("documentointegridad_desc", entidad.documentointegridad_desc);
                     parameters.Add("documentointegridad_doc", entidad.documentointegridad_doc);
-                    parameters.Add("num_servidores", entidad.documentointegridad_doc);
+                    parameters.Add("num_servidores", entidad.num_servidores);
                     parameters.Add("usuario_act", entidad.usuario_act);
                     parameters.Add("error", dbType: DbType.Boolean, direction: ParameterDirection.Output);
                     parameters.Add("message", dbType: DbType.String, direction: ParameterDirection.Output, size: 500);
@@ -244,10 +244,10 @@ namespace PCM.SIP.ICP.Persistence.Repository
 
                     parameters.Add("entidad_id", entidad.entidad_id.Equals(0) ? (int?)null : entidad.entidad_id);
                     parameters.Add("entidadgrupo_id", entidad.entidadgrupo_id);
-                    parameters.Add("entidadsector_id", entidad.entidadgrupo_id);
-                    parameters.Add("ubigeo_id", entidad.entidadgrupo_id);
-                    parameters.Add("documentoestructura_id", entidad.entidadgrupo_id);
-                    parameters.Add("modalidadintegridad_id", entidad.entidadgrupo_id);
+                    parameters.Add("entidadsector_id", entidad.entidadsector_id);
+                    parameters.Add("ubigeo_id", entidad.ubigeo_id);
+                    parameters.Add("documentoestructura_id", entidad.documentoestructura_id);
+                    parameters.Add("modalidadintegridad_id", entidad.modalidadintegridad_id);
                     parameters.Add("filtro", entidad.filtro);
                     parameters.Add("error", dbType: DbType.Boolean, direction: ParameterDirection.Output);
                     parameters.Add("message", dbType: DbType.String, direction: ParameterDirection.Output, size: 500);

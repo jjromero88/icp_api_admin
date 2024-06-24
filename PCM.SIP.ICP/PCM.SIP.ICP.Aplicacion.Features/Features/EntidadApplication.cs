@@ -290,9 +290,9 @@ namespace PCM.SIP.ICP.Aplicacion.Features
                 var entidad = _mapper.Map<Entidad>(request.entidad);
 
                 entidad.entidad_id = string.IsNullOrEmpty(request.entidad.SerialKey) ? 0 : Convert.ToInt32(CShrapEncryption.DecryptString(request.entidad.SerialKey, _userService.GetUser().authkey));
-                entidad.ubigeo_id = string.IsNullOrEmpty(request.entidad.ubigeokey) ? 0 : Convert.ToInt32(CShrapEncryption.DecryptString(request.entidad.ubigeokey, _userService.GetUser().authkey));
-                entidad.documentoestructura_id = string.IsNullOrEmpty(request.entidad.documentoestructurakey) ? 0 : Convert.ToInt32(CShrapEncryption.DecryptString(request.entidad.documentoestructurakey, _userService.GetUser().authkey));
-                entidad.modalidadintegridad_id = string.IsNullOrEmpty(request.entidad.modalidadintegridadkey) ? 0 : Convert.ToInt32(CShrapEncryption.DecryptString(request.entidad.modalidadintegridadkey, _userService.GetUser().authkey));
+                entidad.ubigeo_id = string.IsNullOrEmpty(request.entidad.ubigeokey) ? null : Convert.ToInt32(CShrapEncryption.DecryptString(request.entidad.ubigeokey, _userService.GetUser().authkey));
+                entidad.documentoestructura_id = string.IsNullOrEmpty(request.entidad.documentoestructurakey) ? null : Convert.ToInt32(CShrapEncryption.DecryptString(request.entidad.documentoestructurakey, _userService.GetUser().authkey));
+                entidad.modalidadintegridad_id = string.IsNullOrEmpty(request.entidad.modalidadintegridadkey) ? null : Convert.ToInt32(CShrapEncryption.DecryptString(request.entidad.modalidadintegridadkey, _userService.GetUser().authkey));
                 entidad.usuario_act = _userService.GetUser().username;
 
                 var result = _unitOfWork.Entidad.UpdateGeneralidades(entidad);
@@ -322,11 +322,11 @@ namespace PCM.SIP.ICP.Aplicacion.Features
                 entidad.entidad_id = string.IsNullOrEmpty(request.entidad.SerialKey) ? 0 : Convert.ToInt32(CShrapEncryption.DecryptString(request.entidad.SerialKey, _userService.GetUser().authkey));
                 entidad.entidadgrupo_id = string.IsNullOrEmpty(request.entidad.entidadgrupokey) ? null : Convert.ToInt32(CShrapEncryption.DecryptString(request.entidad.entidadgrupokey, _userService.GetUser().authkey));
                 entidad.entidadsector_id = string.IsNullOrEmpty(request.entidad.entidadsectorkey) ? null : Convert.ToInt32(CShrapEncryption.DecryptString(request.entidad.entidadsectorkey, _userService.GetUser().authkey));
-                entidad.ubigeo_id = string.IsNullOrEmpty(request.entidad.ubigeokey) ? 0 : Convert.ToInt32(CShrapEncryption.DecryptString(request.entidad.ubigeokey, _userService.GetUser().authkey));
-                entidad.documentoestructura_id = string.IsNullOrEmpty(request.entidad.documentoestructurakey) ? 0 : Convert.ToInt32(CShrapEncryption.DecryptString(request.entidad.documentoestructurakey, _userService.GetUser().authkey));
-                entidad.modalidadintegridad_id = string.IsNullOrEmpty(request.entidad.modalidadintegridadkey) ? 0 : Convert.ToInt32(CShrapEncryption.DecryptString(request.entidad.modalidadintegridadkey, _userService.GetUser().authkey));
+                entidad.ubigeo_id = string.IsNullOrEmpty(request.entidad.ubigeokey) ? null : Convert.ToInt32(CShrapEncryption.DecryptString(request.entidad.ubigeokey, _userService.GetUser().authkey));
+                entidad.documentoestructura_id = string.IsNullOrEmpty(request.entidad.documentoestructurakey) ? null : Convert.ToInt32(CShrapEncryption.DecryptString(request.entidad.documentoestructurakey, _userService.GetUser().authkey));
+                entidad.modalidadintegridad_id = string.IsNullOrEmpty(request.entidad.modalidadintegridadkey) ? null : Convert.ToInt32(CShrapEncryption.DecryptString(request.entidad.modalidadintegridadkey, _userService.GetUser().authkey));
 
-                var result = _unitOfWork.Entidad.GetList(entidad);
+                var result = _unitOfWork.Entidad.GetListGeneralidades(entidad);
 
                 if (result.Error)
                 {
@@ -352,8 +352,16 @@ namespace PCM.SIP.ICP.Aplicacion.Features
                             codigo = item.codigo,
                             acronimo = item.acronimo,
                             nombre = item.nombre,
+                            documentoestructura_doc = item.documentoestructura_doc,
+                            modalidadintegridad_doc = item.modalidadintegridad_doc,
+                            modalidadintegridad_anterior = item.modalidadintegridad_anterior,
+                            documentointegridad_desc = item.documentointegridad_desc,
+                            documentointegridad_doc = item.documentointegridad_doc,
+                            num_servidores = item.num_servidores,
                             ubigeo = new Ubigeo
                             {
+                                departamento_inei = item.ubigeo_departamento_inei,
+                                provincia_inei = item.ubigeo_provincia_inei,
                                 departamento = item.ubigeo_departamento,
                                 provincia = item.ubigeo_provincia,
                                 distrito = item.ubigeo_distrito
@@ -379,8 +387,8 @@ namespace PCM.SIP.ICP.Aplicacion.Features
                             modalidadintegridad = new ModalidadIntegridad
                             {
                                 codigo = item.modalidadintegridad_codigo,
-                                descripcion = item.modalidadintegridad_abreviatura,
-                                abreviatura = item.modalidadintegridad_descripcion
+                                abreviatura = item.modalidadintegridad_abreviatura,
+                                descripcion = item.modalidadintegridad_descripcion
                             },
                             usuario_reg = item.usuario_reg,
                             fecha_reg = item.fecha_reg
@@ -390,7 +398,7 @@ namespace PCM.SIP.ICP.Aplicacion.Features
 
                 _logger.LogInformation(TransactionMessage.QuerySuccess);
                 return result != null ? ResponseUtil.Ok(
-                    _mapper.Map<List<EntidadResponse>>(_mapper.Map<List<EntidadDto>>(Lista)),
+                    _mapper.Map<List<GeneralidadesResponse>>(_mapper.Map<List<EntidadDto>>(Lista)),
                     result.Message ?? TransactionMessage.QuerySuccess
                     ) : ResponseUtil.NoContent();
             }
