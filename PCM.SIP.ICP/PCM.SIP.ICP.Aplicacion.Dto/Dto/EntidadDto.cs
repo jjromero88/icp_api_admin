@@ -12,6 +12,7 @@ namespace PCM.SIP.ICP.Aplicacion.Dto
         public string? codigo { get; set; }
         public string? acronimo { get; set; }
         public string? nombre { get; set; }
+        public bool? generalidades { get; set; }
         public string? documentoestructura_doc { get; set; }
         public string? modalidadintegridad_doc { get; set; }
         public string? modalidadintegridad_anterior { get; set; }
@@ -76,6 +77,7 @@ namespace PCM.SIP.ICP.Aplicacion.Dto
         public string? ubigeokey { get; set; }
         public string? documentoestructurakey { get; set; }
         public string? modalidadintegridadkey { get; set; }
+        public bool? generalidades { get; set; }
         public string? filtro { get; set; }
     }
     public class EntidadResponse
@@ -102,6 +104,7 @@ namespace PCM.SIP.ICP.Aplicacion.Dto
         public string? codigo { get; set; }
         public string? acronimo { get; set; }
         public string? nombre { get; set; }
+        public bool? generalidades { get; set; }
         public string? documentoestructura_doc { get; set; }
         public string? modalidadintegridad_doc { get; set; }
         public string? modalidadintegridad_anterior { get; set; }

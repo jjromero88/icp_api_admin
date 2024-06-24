@@ -17,7 +17,8 @@ namespace PCM.SIP.ICP.Domain.Entities
         public string? numero_ruc { get; set; }
         public string? codigo { get; set; }
         public string? acronimo { get; set; }
-        public string? nombre { get; set; }        
+        public string? nombre { get; set; }
+        public bool? generalidades { get; set; }
         public string? documentoestructura_doc { get; set; }
         public string? modalidadintegridad_doc { get; set; }
         public string? modalidadintegridad_anterior { get; set; }

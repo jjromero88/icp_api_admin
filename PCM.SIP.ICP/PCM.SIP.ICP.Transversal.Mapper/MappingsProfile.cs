@@ -335,6 +335,7 @@ namespace PCM.SIP.ICP.Transversal.Mapper
             .ForMember(destination => destination.codigo, source => source.MapFrom(src => src.codigo))
             .ForMember(destination => destination.acronimo, source => source.MapFrom(src => src.acronimo))
             .ForMember(destination => destination.nombre, source => source.MapFrom(src => src.nombre))
+            .ForMember(destination => destination.generalidades, source => source.MapFrom(src => src.generalidades))
             .ForMember(destination => destination.documentoestructura_doc, source => source.MapFrom(src => src.documentoestructura_doc))
             .ForMember(destination => destination.modalidadintegridad_doc, source => source.MapFrom(src => src.modalidadintegridad_doc))
             .ForMember(destination => destination.modalidadintegridad_anterior, source => source.MapFrom(src => src.modalidadintegridad_anterior))
@@ -391,6 +392,7 @@ namespace PCM.SIP.ICP.Transversal.Mapper
             .ForMember(destination => destination.ubigeokey, source => source.MapFrom(src => src.ubigeokey))
             .ForMember(destination => destination.modalidadintegridadkey, source => source.MapFrom(src => src.modalidadintegridadkey))
             .ForMember(destination => destination.documentoestructurakey, source => source.MapFrom(src => src.documentoestructurakey))
+            .ForMember(destination => destination.generalidades, source => source.MapFrom(src => src.generalidades))
             .ForMember(destination => destination.filtro, source => source.MapFrom(src => src.filtro));
 
             CreateMap<EntidadDto, EntidadResponse>().ReverseMap()
@@ -415,6 +417,7 @@ namespace PCM.SIP.ICP.Transversal.Mapper
             .ForMember(destination => destination.codigo, source => source.MapFrom(src => src.codigo))
             .ForMember(destination => destination.acronimo, source => source.MapFrom(src => src.acronimo))
             .ForMember(destination => destination.nombre, source => source.MapFrom(src => src.nombre))
+            .ForMember(destination => destination.generalidades, source => source.MapFrom(src => src.generalidades))
             .ForMember(destination => destination.documentoestructura_doc, source => source.MapFrom(src => src.documentoestructura_doc))
             .ForMember(destination => destination.modalidadintegridad_doc, source => source.MapFrom(src => src.modalidadintegridad_doc))
             .ForMember(destination => destination.modalidadintegridad_anterior, source => source.MapFrom(src => src.modalidadintegridad_anterior))

@@ -352,6 +352,7 @@ namespace PCM.SIP.ICP.Aplicacion.Features
                             codigo = item.codigo,
                             acronimo = item.acronimo,
                             nombre = item.nombre,
+                            generalidades = item.generalidades,
                             documentoestructura_doc = item.documentoestructura_doc,
                             modalidadintegridad_doc = item.modalidadintegridad_doc,
                             modalidadintegridad_anterior = item.modalidadintegridad_anterior,

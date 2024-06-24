@@ -248,6 +248,7 @@ namespace PCM.SIP.ICP.Persistence.Repository
                     parameters.Add("ubigeo_id", entidad.ubigeo_id);
                     parameters.Add("documentoestructura_id", entidad.documentoestructura_id);
                     parameters.Add("modalidadintegridad_id", entidad.modalidadintegridad_id);
+                    parameters.Add("generalidades", entidad.generalidades);
                     parameters.Add("filtro", entidad.filtro);
                     parameters.Add("error", dbType: DbType.Boolean, direction: ParameterDirection.Output);
                     parameters.Add("message", dbType: DbType.String, direction: ParameterDirection.Output, size: 500);
