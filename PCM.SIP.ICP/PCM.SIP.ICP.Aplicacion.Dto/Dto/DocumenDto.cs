@@ -15,6 +15,11 @@ namespace PCM.SIP.ICP.Aplicacion.Dto
         public string? base64content { get; set; }
         public string? category { get; set; }
     }
+    public class DocumentInsertRequest
+    {
+        public string? filename { get; set; }
+        public string? base64content { get; set; }
+    }
     public class DownloadDocumentRequest
     {
         public string? category { get; set; }

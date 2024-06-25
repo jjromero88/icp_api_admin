@@ -372,12 +372,15 @@ namespace PCM.SIP.ICP.Transversal.Mapper
             .ForMember(destination => destination.ubigeokey, source => source.MapFrom(src => src.ubigeokey))
             .ForMember(destination => destination.documentoestructurakey, source => source.MapFrom(src => src.documentoestructurakey))
             .ForMember(destination => destination.modalidadintegridadkey, source => source.MapFrom(src => src.modalidadintegridadkey))
-            .ForMember(destination => destination.documentoestructura_doc, source => source.MapFrom(src => src.documentoestructura_doc))
-            .ForMember(destination => destination.modalidadintegridad_doc, source => source.MapFrom(src => src.modalidadintegridad_doc))
+            //.ForMember(destination => destination.documentoestructura_doc, source => source.MapFrom(src => src.documentoestructura_doc))
+            //.ForMember(destination => destination.modalidadintegridad_doc, source => source.MapFrom(src => src.modalidadintegridad_doc))
             .ForMember(destination => destination.modalidadintegridad_anterior, source => source.MapFrom(src => src.modalidadintegridad_anterior))
             .ForMember(destination => destination.documentointegridad_desc, source => source.MapFrom(src => src.documentointegridad_desc))
-            .ForMember(destination => destination.documentointegridad_doc, source => source.MapFrom(src => src.documentointegridad_doc))
-            .ForMember(destination => destination.num_servidores, source => source.MapFrom(src => src.num_servidores));
+            //.ForMember(destination => destination.documentointegridad_doc, source => source.MapFrom(src => src.documentointegridad_doc))
+            .ForMember(destination => destination.num_servidores, source => source.MapFrom(src => src.num_servidores))
+            .ForMember(destination => destination.documento_estructura, source => source.MapFrom(src => src.documento_estructura))
+            .ForMember(destination => destination.documento_integridad, source => source.MapFrom(src => src.documento_integridad))
+            .ForMember(destination => destination.documento_modalidadintegridad, source => source.MapFrom(src => src.documento_modalidadintegridad));
 
             CreateMap<EntidadDto, EntidadFilterRequest>().ReverseMap()
             .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey))

@@ -19,6 +19,9 @@ namespace PCM.SIP.ICP.Aplicacion.Dto
         public string? documentointegridad_desc { get; set; }
         public string? documentointegridad_doc { get; set; }
         public int? num_servidores { get; set; }
+        public DocumentInsertRequest? documento_estructura { get; set; }
+        public DocumentInsertRequest? documento_modalidadintegridad { get; set; }
+        public DocumentInsertRequest? documento_integridad { get; set; }
         public UbigeoEntidadResponse? ubigeo { get; set; }
         public ModalidadIntegridadEntidadResponse? modalidadintegridad { get; set; }
         public DocumentoEstructuraEntidadResponse? documentoestructura { get; set; }
@@ -55,12 +58,15 @@ namespace PCM.SIP.ICP.Aplicacion.Dto
         public string? ubigeokey { get; set; }
         public string? documentoestructurakey { get; set; }
         public string? modalidadintegridadkey { get; set; }
-        public string? documentoestructura_doc { get; set; }
-        public string? modalidadintegridad_doc { get; set; }
+        //public string? documentoestructura_doc { get; set; }
+        //public string? modalidadintegridad_doc { get; set; }
         public string? modalidadintegridad_anterior { get; set; }
         public string? documentointegridad_desc { get; set; }
-        public string? documentointegridad_doc { get; set; }
+        //public string? documentointegridad_doc { get; set; }
         public int? num_servidores { get; set; }
+        public DocumentInsertRequest? documento_estructura { get; set; }
+        public DocumentInsertRequest? documento_modalidadintegridad { get; set; }
+        public DocumentInsertRequest? documento_integridad { get; set; }
     }
     public class EntidadFilterRequest
     {

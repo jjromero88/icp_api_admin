@@ -12,6 +12,8 @@ namespace PCM.SIP.ICP.Transversal.Common
             _config = builder.Build();
         }
 
-        public static string UrlValidateToken => _config["Config:UrlValidateToken"];
+        public static string estructuraPath => _config["DocumentStorage:EstructuraPath"];
+        public static string modalidadIntegridadPath => _config["DocumentStorage:ModalidadIntegridadPath"];
+        public static string documentoIntegridad => _config["DocumentStorage:DocumentoIntegridad"];
     }
 }

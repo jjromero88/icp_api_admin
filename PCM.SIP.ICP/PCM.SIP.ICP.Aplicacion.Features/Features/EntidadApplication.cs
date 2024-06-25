@@ -295,6 +295,12 @@ namespace PCM.SIP.ICP.Aplicacion.Features
                 entidad.modalidadintegridad_id = string.IsNullOrEmpty(request.entidad.modalidadintegridadkey) ? null : Convert.ToInt32(CShrapEncryption.DecryptString(request.entidad.modalidadintegridadkey, _userService.GetUser().authkey));
                 entidad.usuario_act = _userService.GetUser().username;
 
+                // guardamos los documentos y obtenemos la metadata
+                entidad.documentoestructura_doc = await _unitOfWork.DocumentRepository.SaveDocumentAsync(request.entidad.documento_estructura.filename, request.entidad.documento_estructura.base64content, ApplicationKeys.estructuraPath);
+                entidad.documentointegridad_doc = await _unitOfWork.DocumentRepository.SaveDocumentAsync(request.entidad.documento_integridad.filename, request.entidad.documento_integridad.base64content, ApplicationKeys.documentoIntegridad);
+                entidad.modalidadintegridad_doc = await _unitOfWork.DocumentRepository.SaveDocumentAsync(request.entidad.documento_modalidadintegridad.filename, request.entidad.documento_modalidadintegridad.base64content, ApplicationKeys.modalidadIntegridadPath);
+
+
                 var result = _unitOfWork.Entidad.UpdateGeneralidades(entidad);
 
                 if (result.Error)
