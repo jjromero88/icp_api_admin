@@ -6,8 +6,20 @@ using System.Threading.Tasks;
 
 namespace PCM.SIP.ICP.Aplicacion.Dto
 {
-    public class DocumenDto
+    public class DocumentDto
     {
+        public string? category { get; set; }
+        public string? filename { get; set; }
+        public string? extension { get; set; }
+        public string? size { get; set; }
+        public string? base64content { get; set; }
+    }
+    public class DocumentResponse
+    {
+        public string? category { get; set; }
+        public string? filename { get; set; }
+        public string? extension { get; set; }
+        public string? size { get; set; }
     }
     public class UploadDocumentRequest
     {

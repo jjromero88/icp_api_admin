@@ -25,6 +25,9 @@ namespace PCM.SIP.ICP.Domain.Entities
         public string? documentointegridad_desc { get; set; }
         public string? documentointegridad_doc { get; set; }
         public int? num_servidores { get; set; }
+        public Document? documento_estructura { get; set; }
+        public Document? documento_modalidadintegridad { get; set; }
+        public Document? documento_integridad { get; set; }
         public Ubigeo? ubigeo { get; set; }
         public ModalidadIntegridad? modalidadintegridad { get; set; }
         public DocumentoEstructura? documentoestructura { get; set; }

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using System.Text.Json;
 using PCM.SIP.ICP.Aplicacion.Dto;
 using PCM.SIP.ICP.Aplicacion.Interface;
 using PCM.SIP.ICP.Aplicacion.Interface.Features;
@@ -296,10 +297,9 @@ namespace PCM.SIP.ICP.Aplicacion.Features
                 entidad.usuario_act = _userService.GetUser().username;
 
                 // guardamos los documentos y obtenemos la metadata
-                entidad.documentoestructura_doc = await _unitOfWork.DocumentRepository.SaveDocumentAsync(request.entidad.documento_estructura.filename, request.entidad.documento_estructura.base64content, "EstructuraPath");
-                entidad.documentointegridad_doc = await _unitOfWork.DocumentRepository.SaveDocumentAsync(request.entidad.documento_integridad.filename, request.entidad.documento_integridad.base64content, "ModalidadIntegridadPath");
-                entidad.modalidadintegridad_doc = await _unitOfWork.DocumentRepository.SaveDocumentAsync(request.entidad.documento_modalidadintegridad.filename, request.entidad.documento_modalidadintegridad.base64content, "DocumentoIntegridad");
-
+                entidad.documentoestructura_doc = await _unitOfWork.DocumentRepository.SaveDocumentAsync(request.entidad.documento_estructura.filename, request.entidad.documento_estructura.base64content, PathKey.DocEstructura);
+                entidad.documentointegridad_doc = await _unitOfWork.DocumentRepository.SaveDocumentAsync(request.entidad.documento_integridad.filename, request.entidad.documento_integridad.base64content, PathKey.DocModalidadIntegridad);
+                entidad.modalidadintegridad_doc = await _unitOfWork.DocumentRepository.SaveDocumentAsync(request.entidad.documento_modalidadintegridad.filename, request.entidad.documento_modalidadintegridad.base64content, PathKey.DocIntegridad);
 
                 var result = _unitOfWork.Entidad.UpdateGeneralidades(entidad);
 
@@ -358,13 +358,15 @@ namespace PCM.SIP.ICP.Aplicacion.Features
                             codigo = item.codigo,
                             acronimo = item.acronimo,
                             nombre = item.nombre,
-                            generalidades = item.generalidades,
-                            documentoestructura_doc = item.documentoestructura_doc,
+                            generalidades = item.generalidades,                            
                             modalidadintegridad_doc = item.modalidadintegridad_doc,
                             modalidadintegridad_anterior = item.modalidadintegridad_anterior,
                             documentointegridad_desc = item.documentointegridad_desc,
                             documentointegridad_doc = item.documentointegridad_doc,
                             num_servidores = item.num_servidores,
+                            documento_estructura = string.IsNullOrEmpty(item.documentoestructura_doc) ? null : JsonSerializer.Deserialize<Document>(item.documentoestructura_doc),
+                            documento_modalidadintegridad = string.IsNullOrEmpty(item.modalidadintegridad_doc) ? null : JsonSerializer.Deserialize<Document>(item.modalidadintegridad_doc),
+                            documento_integridad = string.IsNullOrEmpty(item.documentointegridad_doc) ? null : JsonSerializer.Deserialize<Document>(item.documentointegridad_doc),
                             ubigeo = new Ubigeo
                             {
                                 departamento_inei = item.ubigeo_departamento_inei,

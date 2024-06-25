@@ -33,4 +33,10 @@ namespace PCM.SIP.ICP.Transversal.Common.Constants
     {
         public const string AuthenticateSuccess = "Ingreso exitoso";
     }
+    public static class PathKey
+    {
+        public const string DocEstructura = "EstructuraPath";
+        public const string DocModalidadIntegridad = "ModalidadIntegridadPath";
+        public const string DocIntegridad = "DocumentoIntegridad";
+    }
 }

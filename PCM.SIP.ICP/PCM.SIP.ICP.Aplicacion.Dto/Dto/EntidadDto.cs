@@ -19,9 +19,9 @@ namespace PCM.SIP.ICP.Aplicacion.Dto
         public string? documentointegridad_desc { get; set; }
         public string? documentointegridad_doc { get; set; }
         public int? num_servidores { get; set; }
-        public DocumentInsertRequest? documento_estructura { get; set; }
-        public DocumentInsertRequest? documento_modalidadintegridad { get; set; }
-        public DocumentInsertRequest? documento_integridad { get; set; }
+        public DocumentDto? documento_estructura { get; set; }
+        public DocumentDto? documento_modalidadintegridad { get; set; }
+        public DocumentDto? documento_integridad { get; set; }
         public UbigeoEntidadResponse? ubigeo { get; set; }
         public ModalidadIntegridadEntidadResponse? modalidadintegridad { get; set; }
         public DocumentoEstructuraEntidadResponse? documentoestructura { get; set; }
@@ -40,7 +40,7 @@ namespace PCM.SIP.ICP.Aplicacion.Dto
         public string? acronimo { get; set; }
         public string? nombre { get; set; }
     }
-    
+
     public class EntidadUpdateRequest
     {
         public string? SerialKey { get; set; }
@@ -108,12 +108,12 @@ namespace PCM.SIP.ICP.Aplicacion.Dto
         public string? acronimo { get; set; }
         public string? nombre { get; set; }
         public bool? generalidades { get; set; }
-        public string? documentoestructura_doc { get; set; }
-        public string? modalidadintegridad_doc { get; set; }
         public string? modalidadintegridad_anterior { get; set; }
         public string? documentointegridad_desc { get; set; }
-        public string? documentointegridad_doc { get; set; }
         public int? num_servidores { get; set; }
+        public DocumentResponse? documento_estructura { get; set; }
+        public DocumentResponse? documento_modalidadintegridad { get; set; }
+        public DocumentResponse? documento_integridad { get; set; }
         public UbigeoEntidadResponse? ubigeo { get; set; }
         public ModalidadIntegridadEntidadResponse? modalidadintegridad { get; set; }
         public DocumentoEstructuraEntidadResponse? documentoestructura { get; set; }
