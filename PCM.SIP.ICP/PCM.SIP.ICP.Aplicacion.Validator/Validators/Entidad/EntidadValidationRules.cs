@@ -106,6 +106,10 @@ namespace PCM.SIP.ICP.Aplicacion.Validator
             .IsNullOrWhiteSpace()
             .WithMessage("Debe seleccionar el Tipo de modalidad con la que incorporan la funcion de integridad");
 
+            RuleFor(x => x.num_servidores)
+              .Must(CustomValidators.BeValidInteger)
+              .WithMessage("El Número de servidores debe ser un número entero.");
+
         }
     }
 }
