@@ -12,6 +12,7 @@ namespace PCM.SIP.ICP.Aplicacion.Interface.Features
         Task<PcmResponse> Insert(Request<EntidadDto> request);
         Task<PcmResponse> Update(Request<EntidadDto> request);
         Task<PcmResponse> UpdateGeneralidades(Request<EntidadDto> request);
+        Task<PcmResponse> GetByIdGeneralidades(Request<EntidadDto> request);
         Task<PcmResponse> GetListGeneralidades(Request<EntidadDto> request);
     }
 }

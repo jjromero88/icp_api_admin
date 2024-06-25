@@ -269,5 +269,37 @@ namespace PCM.SIP.ICP.Persistence.Repository
 
             return retorno;
         }
+
+        public Response<dynamic> GetByIdGeneralidades(Entidad entidad)
+        {
+            Response<dynamic> retorno = new Response<dynamic>();
+
+            try
+            {
+                using (var connection = _context.CreateConnection())
+                {
+                    var query = "dbo.USP_GET_ENTIDAD_GENERALIDADES";
+
+                    var parameters = new DynamicParameters();
+
+                    parameters.Add("entidad_id", entidad.entidad_id.Equals(0) ? (int?)null : entidad.entidad_id);
+                    parameters.Add("error", dbType: DbType.Boolean, direction: ParameterDirection.Output);
+                    parameters.Add("message", dbType: DbType.String, direction: ParameterDirection.Output, size: 500);
+
+                    var result = connection.QuerySingleOrDefault<dynamic>(query, param: parameters, commandType: CommandType.StoredProcedure);
+
+                    retorno.Data = result ?? new Entidad();
+                    retorno.Error = parameters.Get<bool?>("error") ?? false;
+                    retorno.Message = parameters.Get<string>("message") ?? string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+                retorno.Error = true;
+                retorno.Message = ex.Message;
+            }
+
+            return retorno;
+        }
     }
 }

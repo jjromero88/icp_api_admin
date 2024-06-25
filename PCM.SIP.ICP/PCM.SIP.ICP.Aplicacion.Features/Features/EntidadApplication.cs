@@ -417,5 +417,105 @@ namespace PCM.SIP.ICP.Aplicacion.Features
                 return ResponseUtil.InternalError(message: ex.Message);
             }
         }
+
+        public async Task<PcmResponse> GetByIdGeneralidades(Request<EntidadDto> request)
+        {
+            try
+            {
+                var validation = _entidadValidationManager.Validate(_mapper.Map<EntidadIdRequest>(request.entidad));
+
+                if (!validation.IsValid)
+                {
+                    _logger.LogError(Validation.InvalidMessage);
+                    return ResponseUtil.BadRequest(validation.Errors != null ? validation.Errors : null, Validation.InvalidMessage);
+                }
+
+                var entidad = _mapper.Map<Entidad>(request.entidad);
+
+                entidad.entidad_id = string.IsNullOrEmpty(request.entidad.SerialKey) ? 0 : Convert.ToInt32(CShrapEncryption.DecryptString(request.entidad.SerialKey, _userService.GetUser().authkey));
+                entidad.entidadgrupo_id = string.IsNullOrEmpty(request.entidad.entidadgrupokey) ? null : Convert.ToInt32(CShrapEncryption.DecryptString(request.entidad.entidadgrupokey, _userService.GetUser().authkey));
+                entidad.entidadsector_id = string.IsNullOrEmpty(request.entidad.entidadsectorkey) ? null : Convert.ToInt32(CShrapEncryption.DecryptString(request.entidad.entidadsectorkey, _userService.GetUser().authkey));
+                entidad.ubigeo_id = string.IsNullOrEmpty(request.entidad.ubigeokey) ? null : Convert.ToInt32(CShrapEncryption.DecryptString(request.entidad.ubigeokey, _userService.GetUser().authkey));
+                entidad.documentoestructura_id = string.IsNullOrEmpty(request.entidad.documentoestructurakey) ? null : Convert.ToInt32(CShrapEncryption.DecryptString(request.entidad.documentoestructurakey, _userService.GetUser().authkey));
+                entidad.modalidadintegridad_id = string.IsNullOrEmpty(request.entidad.modalidadintegridadkey) ? null : Convert.ToInt32(CShrapEncryption.DecryptString(request.entidad.modalidadintegridadkey, _userService.GetUser().authkey));
+
+                var result = _unitOfWork.Entidad.GetByIdGeneralidades(entidad);
+
+                if (result.Error)
+                {
+                    _logger.LogError(result.Message);
+                    return ResponseUtil.BadRequest(message: result.Message, error: null);
+                }
+
+                if (result.Data != null)
+                {
+                    entidad = new Entidad
+                    {
+                        SerialKey = string.IsNullOrEmpty(result.Data.entidad_id.ToString()) ? null : CShrapEncryption.EncryptString(result.Data.entidad_id.ToString(), _userService.GetUser().authkey),
+                        entidadgrupokey = string.IsNullOrEmpty(result.Data.entidadgrupo_id == null ? null : result.Data.entidadgrupo_id.ToString()) ? null : CShrapEncryption.EncryptString(result.Data.entidadgrupo_id.ToString(), _userService.GetUser().authkey),
+                        entidadsectorkey = string.IsNullOrEmpty(result.Data.entidadsector_id == null ? null : result.Data.entidadsector_id.ToString()) ? null : CShrapEncryption.EncryptString(result.Data.entidadsector_id.ToString(), _userService.GetUser().authkey),
+                        documentoestructurakey = string.IsNullOrEmpty(result.Data.documentoestructura_id == null ? null : result.Data.documentoestructura_id.ToString()) ? null : CShrapEncryption.EncryptString(result.Data.documentoestructura_id.ToString(), _userService.GetUser().authkey),
+                        ubigeokey = string.IsNullOrEmpty(result.Data.ubigeo_id == null ? null : result.Data.ubigeo_id.ToString()) ? null : CShrapEncryption.EncryptString(result.Data.ubigeo_id.ToString(), _userService.GetUser().authkey),
+                        modalidadintegridadkey = string.IsNullOrEmpty(result.Data.modalidadintegridad_id == null ? null : result.Data.modalidadintegridad_id.ToString()) ? null : CShrapEncryption.EncryptString(result.Data.modalidadintegridad_id.ToString(), _userService.GetUser().authkey),
+                        numero_ruc = result.Data.numero_ruc,
+                        codigo = result.Data.codigo,
+                        acronimo = result.Data.acronimo,
+                        nombre = result.Data.nombre,
+                        generalidades = result.Data.generalidades,
+                        modalidadintegridad_doc = result.Data.modalidadintegridad_doc,
+                        modalidadintegridad_anterior = result.Data.modalidadintegridad_anterior,
+                        documentointegridad_desc = result.Data.documentointegridad_desc,
+                        documentointegridad_doc = result.Data.documentointegridad_doc,
+                        num_servidores = result.Data.num_servidores,
+                        documento_estructura = string.IsNullOrEmpty(result.Data.documentoestructura_doc) ? null : JsonSerializer.Deserialize<Document>(result.Data.documentoestructura_doc),
+                        documento_modalidadintegridad = string.IsNullOrEmpty(result.Data.modalidadintegridad_doc) ? null : JsonSerializer.Deserialize<Document>(result.Data.modalidadintegridad_doc),
+                        documento_integridad = string.IsNullOrEmpty(result.Data.documentointegridad_doc) ? null : JsonSerializer.Deserialize<Document>(result.Data.documentointegridad_doc),
+                        ubigeo = new Ubigeo
+                        {
+                            departamento_inei = result.Data.ubigeo_departamento_inei,
+                            provincia_inei = result.Data.ubigeo_provincia_inei,
+                            departamento = result.Data.ubigeo_departamento,
+                            provincia = result.Data.ubigeo_provincia,
+                            distrito = result.Data.ubigeo_distrito
+                        },
+                        entidadgrupo = new EntidadGrupo
+                        {
+                            codigo = result.Data.entidadgrupo_codigo,
+                            descripcion = result.Data.entidadgrupo_descripcion,
+                            abreviatura = result.Data.entidadgrupo_abreviatura
+                        },
+                        entidadsector = new EntidadSector
+                        {
+                            codigo = result.Data.entidadsector_codigo,
+                            descripcion = result.Data.entidadsector_descripcion,
+                            abreviatura = result.Data.entidadsector_abreviatura
+                        },
+                        documentoestructura = new DocumentoEstructura
+                        {
+                            codigo = result.Data.doccumentoestructura_codigo,
+                            descripcion = result.Data.doccumentoestructura_abreviatura,
+                            abreviatura = result.Data.doccumentoestructura_descripcion
+                        },
+                        modalidadintegridad = new ModalidadIntegridad
+                        {
+                            codigo = result.Data.modalidadintegridad_codigo,
+                            abreviatura = result.Data.modalidadintegridad_abreviatura,
+                            descripcion = result.Data.modalidadintegridad_descripcion
+                        },
+                        usuario_reg = result.Data.usuario_reg,
+                        fecha_reg = result.Data.fecha_reg                    };
+                }
+
+                _logger.LogInformation(TransactionMessage.QuerySuccess);
+                return result.Data != null ? ResponseUtil.Ok(
+                    _mapper.Map<GeneralidadesResponse>(_mapper.Map<EntidadDto>(entidad)), result.Message ?? TransactionMessage.QuerySuccess
+                    ) : ResponseUtil.NoContent();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return ResponseUtil.InternalError(message: ex.Message);
+            }
+        }
     }
 }

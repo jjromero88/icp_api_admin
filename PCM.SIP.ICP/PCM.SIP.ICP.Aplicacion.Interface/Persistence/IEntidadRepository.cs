@@ -6,6 +6,7 @@ namespace PCM.SIP.ICP.Aplicacion.Interface.Persistence
     public interface IEntidadRepository : IGenericRepository<Entidad>
     {
         Response UpdateGeneralidades(Entidad entidad);
+        Response<dynamic> GetByIdGeneralidades(Entidad entidad);
         Response<List<dynamic>> GetListGeneralidades(Entidad entidad);
     }
 }

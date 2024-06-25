@@ -48,5 +48,17 @@ namespace PCM.SIP.ICP.Api.Controllers
             return await _entidadApplication.GetListGeneralidades(new Request<EntidadDto>() { entidad = _mapper.Map<EntidadDto>(request) });
         }
 
+        [HttpGet("GetById")]
+        [ServiceFilter(typeof(ValidateTokenRequestAttribute))]
+        [ServiceFilter(typeof(UpdateUserDataAttribute))]
+        [ProducesResponseType((int)HttpStatusCode.OK, Type = typeof(PcmResponse))]
+        public async Task<ActionResult<PcmResponse>> GetById([FromQuery] EntidadIdRequest request)
+        {
+            if (request == null)
+                return BadRequest();
+
+            return await _entidadApplication.GetByIdGeneralidades(new Request<EntidadDto>() { entidad = _mapper.Map<EntidadDto>(request) });
+        }
+
     }
 }
