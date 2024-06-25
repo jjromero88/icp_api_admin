@@ -11,5 +11,6 @@ namespace PCM.SIP.ICP.Aplicacion.Interface
         IUbigeoRepository Ubigeo { get; }
         IEntidadRepository Entidad { get; }
         IDocumentoEstructuraRepository DocumentoEstructura { get; }
+        IDocumentRepository DocumentRepository { get; }
     }
 }
