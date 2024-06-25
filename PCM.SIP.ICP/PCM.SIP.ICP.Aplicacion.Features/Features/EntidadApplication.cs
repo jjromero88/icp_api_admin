@@ -296,9 +296,9 @@ namespace PCM.SIP.ICP.Aplicacion.Features
                 entidad.usuario_act = _userService.GetUser().username;
 
                 // guardamos los documentos y obtenemos la metadata
-                entidad.documentoestructura_doc = await _unitOfWork.DocumentRepository.SaveDocumentAsync(request.entidad.documento_estructura.filename, request.entidad.documento_estructura.base64content, ApplicationKeys.estructuraPath);
-                entidad.documentointegridad_doc = await _unitOfWork.DocumentRepository.SaveDocumentAsync(request.entidad.documento_integridad.filename, request.entidad.documento_integridad.base64content, ApplicationKeys.documentoIntegridad);
-                entidad.modalidadintegridad_doc = await _unitOfWork.DocumentRepository.SaveDocumentAsync(request.entidad.documento_modalidadintegridad.filename, request.entidad.documento_modalidadintegridad.base64content, ApplicationKeys.modalidadIntegridadPath);
+                entidad.documentoestructura_doc = await _unitOfWork.DocumentRepository.SaveDocumentAsync(request.entidad.documento_estructura.filename, request.entidad.documento_estructura.base64content, "EstructuraPath");
+                entidad.documentointegridad_doc = await _unitOfWork.DocumentRepository.SaveDocumentAsync(request.entidad.documento_integridad.filename, request.entidad.documento_integridad.base64content, "ModalidadIntegridadPath");
+                entidad.modalidadintegridad_doc = await _unitOfWork.DocumentRepository.SaveDocumentAsync(request.entidad.documento_modalidadintegridad.filename, request.entidad.documento_modalidadintegridad.base64content, "DocumentoIntegridad");
 
 
                 var result = _unitOfWork.Entidad.UpdateGeneralidades(entidad);
