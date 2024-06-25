@@ -1,12 +1,15 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Authorization;
+using System.Net;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using PCM.SIP.ICP.Api.Filters;
 using PCM.SIP.ICP.Aplicacion.Dto;
 using PCM.SIP.ICP.Aplicacion.Interface.Features;
+using PCM.SIP.ICP.Transversal.Common.Generics;
 
 namespace PCM.SIP.ICP.Api.Controllers
 {
-    [AllowAnonymous]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class DocumentController : Controller
@@ -20,17 +23,26 @@ namespace PCM.SIP.ICP.Api.Controllers
             _mapper = mapper;
         }
 
-        [HttpPost("upload")]
-        public async Task<IActionResult> UploadDocument([FromBody] UploadDocumentRequest request)
+        [HttpPost("Upload")]
+        [ServiceFilter(typeof(ValidateTokenRequestAttribute))]
+        [ProducesResponseType((int)HttpStatusCode.OK, Type = typeof(PcmResponse))]
+        public async Task<ActionResult<PcmResponse>> UploadDocument([FromBody] UploadDocumentRequest request)
         {
-            var documentJson = await _documentService.UploadDocumentAsync(request.filename, request.base64content, request.category);
-            return Ok(new { DocumentJson = documentJson });
+            if (request == null)
+                return BadRequest();
+
+            return await _documentService.UploadDocumentAsync(request);
         }
-        [HttpPost("download")]
-        public async Task<IActionResult> DownloadDocument([FromBody] DownloadDocumentRequest request)
+
+        [HttpPost("Download")]
+        [ServiceFilter(typeof(ValidateTokenRequestAttribute))]
+        [ProducesResponseType((int)HttpStatusCode.OK, Type = typeof(PcmResponse))]
+        public async Task<ActionResult<PcmResponse>> DownloadDocument([FromBody] DownloadDocumentRequest request)
         {
-            var documentResponse = await _documentService.DownloadDocumentAsync(request);
-            return Ok(documentResponse);
+            if (request == null)
+                return BadRequest();
+
+            return await _documentService.DownloadDocumentAsync(request);
         }
 
     }

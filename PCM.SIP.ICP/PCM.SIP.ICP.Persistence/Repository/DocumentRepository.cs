@@ -23,7 +23,7 @@ namespace PCM.SIP.ICP.Persistence.Repository
 
                 if (!File.Exists(documentPath))
                 {
-                    throw new FileNotFoundException("The specified file was not found.");
+                    throw new FileNotFoundException("El documento solicitado no fue encontrado.");
                 }
 
                 byte[] fileBytes = await File.ReadAllBytesAsync(documentPath);

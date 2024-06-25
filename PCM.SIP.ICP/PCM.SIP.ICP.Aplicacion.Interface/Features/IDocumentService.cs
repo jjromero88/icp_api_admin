@@ -1,10 +1,11 @@
 ﻿using PCM.SIP.ICP.Aplicacion.Dto;
+using PCM.SIP.ICP.Transversal.Common.Generics;
 
 namespace PCM.SIP.ICP.Aplicacion.Interface.Features
 {
     public interface IDocumentService
     {
-        Task<string> UploadDocumentAsync(string fileName, string base64Content, string category);
-        Task<DownloadDocumentResponse> DownloadDocumentAsync(DownloadDocumentRequest request);
+        Task<PcmResponse> UploadDocumentAsync(UploadDocumentRequest request);
+        Task<PcmResponse> DownloadDocumentAsync(DownloadDocumentRequest request);
     }
 }
