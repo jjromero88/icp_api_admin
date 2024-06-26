@@ -461,6 +461,37 @@ namespace PCM.SIP.ICP.Transversal.Mapper
 
             #endregion
 
+            #region Profesion
+
+            CreateMap<Profesion, ProfesionDto>().ReverseMap()
+            .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey))
+            .ForMember(destination => destination.codigo, source => source.MapFrom(src => src.codigo))
+            .ForMember(destination => destination.descripcion, source => source.MapFrom(src => src.descripcion));
+
+            CreateMap<ProfesionDto, ProfesionResponse>().ReverseMap()
+            .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey))
+            .ForMember(destination => destination.codigo, source => source.MapFrom(src => src.codigo))
+            .ForMember(destination => destination.descripcion, source => source.MapFrom(src => src.descripcion));
+
+            #endregion
+
+            #region ModalidadContrato
+
+            CreateMap<ModalidadContrato, ModalidadContratoDto>().ReverseMap()
+            .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey))
+            .ForMember(destination => destination.codigo, source => source.MapFrom(src => src.codigo))
+            .ForMember(destination => destination.abreviatura, source => source.MapFrom(src => src.abreviatura))
+            .ForMember(destination => destination.descripcion, source => source.MapFrom(src => src.descripcion));
+
+            CreateMap<ModalidadContratoDto, ModalidadContratoResponse>().ReverseMap()
+            .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey))
+            .ForMember(destination => destination.codigo, source => source.MapFrom(src => src.codigo))
+            .ForMember(destination => destination.abreviatura, source => source.MapFrom(src => src.abreviatura))
+            .ForMember(destination => destination.descripcion, source => source.MapFrom(src => src.descripcion));
+
+            #endregion
+
+
         }
     }
 }

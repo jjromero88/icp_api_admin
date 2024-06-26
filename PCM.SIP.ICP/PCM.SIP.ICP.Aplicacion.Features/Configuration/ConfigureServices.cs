@@ -14,6 +14,8 @@ namespace PCM.SIP.ICP.Aplicacion.Features
             services.AddScoped<IPersonaApplication, PersonaApplication>();
             services.AddScoped<IEntidadApplication, EntidadApplication>();
             services.AddScoped<IDocumentoEstructuraApplication, DocumentoEstructuraApplication>();
+            services.AddScoped<IProfesionApplication, ProfesionApplication>();
+            services.AddScoped<IModalidadContratoApplication, ModalidadContratoApplication>();
 
             services.AddScoped<IDocumentService, DocumentService>();
 
