@@ -468,6 +468,10 @@ namespace PCM.SIP.ICP.Transversal.Mapper
             .ForMember(destination => destination.codigo, source => source.MapFrom(src => src.codigo))
             .ForMember(destination => destination.descripcion, source => source.MapFrom(src => src.descripcion));
 
+            CreateMap<ProfesionDto, ProfesionFilterRequest>().ReverseMap()
+           .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey))
+           .ForMember(destination => destination.filtro, source => source.MapFrom(src => src.filtro));
+
             CreateMap<ProfesionDto, ProfesionResponse>().ReverseMap()
             .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey))
             .ForMember(destination => destination.codigo, source => source.MapFrom(src => src.codigo))
@@ -482,6 +486,10 @@ namespace PCM.SIP.ICP.Transversal.Mapper
             .ForMember(destination => destination.codigo, source => source.MapFrom(src => src.codigo))
             .ForMember(destination => destination.abreviatura, source => source.MapFrom(src => src.abreviatura))
             .ForMember(destination => destination.descripcion, source => source.MapFrom(src => src.descripcion));
+
+            CreateMap<ModalidadContratoDto, ModalidadContratoFilterRequest>().ReverseMap()
+            .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey))
+            .ForMember(destination => destination.filtro, source => source.MapFrom(src => src.filtro));
 
             CreateMap<ModalidadContratoDto, ModalidadContratoResponse>().ReverseMap()
             .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey))
