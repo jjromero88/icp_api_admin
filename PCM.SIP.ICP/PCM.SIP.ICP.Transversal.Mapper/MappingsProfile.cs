@@ -455,6 +455,10 @@ namespace PCM.SIP.ICP.Transversal.Mapper
             .ForMember(destination => destination.extension, source => source.MapFrom(src => src.extension))
             .ForMember(destination => destination.size, source => source.MapFrom(src => src.size));
 
+            CreateMap<DocumentDto, DocumentInsertRequest>().ReverseMap()
+           .ForMember(destination => destination.filename, source => source.MapFrom(src => src.filename))
+           .ForMember(destination => destination.base64content, source => source.MapFrom(src => src.base64content));
+
             #endregion
 
         }
