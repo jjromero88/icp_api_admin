@@ -197,6 +197,17 @@ namespace PCM.SIP.ICP.Aplicacion.Features
                         fecha_fin = result.Data.fecha_fin,
                         actual = result.Data.actual,
                         documento_designacion = string.IsNullOrEmpty(result.Data.designacion_doc) ? null : JsonSerializer.Deserialize<Document>(result.Data.designacion_doc),
+                        profesion = new Profesion
+                        {
+                            codigo = result.Data.profesion_codigo,
+                            descripcion = result.Data.profesion_descripcion
+                        },
+                        modalidadcontrato = new ModalidadContrato
+                        {
+                            codigo = result.Data.modalidad_codigo,
+                            descripcion = result.Data.modalidad_descripcion,
+                            abreviatura = result.Data.modalidad_abreviatura,
+                        },
                         estado = result.Data.estado,
                         usuario_reg = result.Data.usuario_reg,
                         fecha_reg = result.Data.fecha_reg,
