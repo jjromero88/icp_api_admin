@@ -499,7 +499,155 @@ namespace PCM.SIP.ICP.Transversal.Mapper
 
             #endregion
 
+            #region EntidadOficial
 
+            CreateMap<EntidadOficial, EntidadOficialDto>().ReverseMap()
+            .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey))
+            .ForMember(destination => destination.entidadkey, source => source.MapFrom(src => src.entidadkey))
+            .ForMember(destination => destination.modalidadkey, source => source.MapFrom(src => src.modalidadkey))
+            .ForMember(destination => destination.profesionkey, source => source.MapFrom(src => src.profesionkey))
+            .ForMember(destination => destination.nombres, source => source.MapFrom(src => src.nombres))
+            .ForMember(destination => destination.apellidos, source => source.MapFrom(src => src.apellidos))
+            .ForMember(destination => destination.numero_celular, source => source.MapFrom(src => src.numero_celular))
+            .ForMember(destination => destination.correo_institucional, source => source.MapFrom(src => src.correo_institucional))
+            .ForMember(destination => destination.fecha_inicio, source => source.MapFrom(src => src.fecha_inicio))
+            .ForMember(destination => destination.fecha_fin, source => source.MapFrom(src => src.fecha_fin))
+            .ForMember(destination => destination.designacion_doc, source => source.MapFrom(src => src.designacion_doc))
+            .ForMember(destination => destination.actual, source => source.MapFrom(src => src.actual))
+            .ForMember(destination => destination.profesion, source => source.MapFrom(src => src.profesion))
+            .ForMember(destination => destination.modalidadcontrato, source => source.MapFrom(src => src.modalidadcontrato))
+            .ForMember(destination => destination.documento_designacion, source => source.MapFrom(src => src.documento_designacion));
+
+            CreateMap<EntidadOficialDto, EntidadOficialIdRequest>().ReverseMap()
+            .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey));
+
+            CreateMap<EntidadOficialDto, EntidadOficialInsertRequest>().ReverseMap()
+            .ForMember(destination => destination.entidadkey, source => source.MapFrom(src => src.entidadkey))
+            .ForMember(destination => destination.modalidadkey, source => source.MapFrom(src => src.modalidadkey))
+            .ForMember(destination => destination.profesionkey, source => source.MapFrom(src => src.profesionkey))
+            .ForMember(destination => destination.nombres, source => source.MapFrom(src => src.nombres))
+            .ForMember(destination => destination.apellidos, source => source.MapFrom(src => src.apellidos))
+            .ForMember(destination => destination.numero_celular, source => source.MapFrom(src => src.numero_celular))
+            .ForMember(destination => destination.correo_institucional, source => source.MapFrom(src => src.correo_institucional))
+            .ForMember(destination => destination.fecha_inicio, source => source.MapFrom(src => src.fecha_inicio))
+            .ForMember(destination => destination.fecha_fin, source => source.MapFrom(src => src.fecha_fin))
+            .ForMember(destination => destination.actual, source => source.MapFrom(src => src.actual))
+            .ForMember(destination => destination.documento_designacion, source => source.MapFrom(src => src.documento_designacion));
+
+            CreateMap<EntidadOficialDto, EntidadOficialUpdateRequest>().ReverseMap()
+            .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey))
+            .ForMember(destination => destination.entidadkey, source => source.MapFrom(src => src.entidadkey))
+            .ForMember(destination => destination.modalidadkey, source => source.MapFrom(src => src.modalidadkey))
+            .ForMember(destination => destination.profesionkey, source => source.MapFrom(src => src.profesionkey))
+            .ForMember(destination => destination.nombres, source => source.MapFrom(src => src.nombres))
+            .ForMember(destination => destination.apellidos, source => source.MapFrom(src => src.apellidos))
+            .ForMember(destination => destination.numero_celular, source => source.MapFrom(src => src.numero_celular))
+            .ForMember(destination => destination.correo_institucional, source => source.MapFrom(src => src.correo_institucional))
+            .ForMember(destination => destination.fecha_inicio, source => source.MapFrom(src => src.fecha_inicio))
+            .ForMember(destination => destination.fecha_fin, source => source.MapFrom(src => src.fecha_fin))
+            .ForMember(destination => destination.actual, source => source.MapFrom(src => src.actual))
+            .ForMember(destination => destination.documento_designacion, source => source.MapFrom(src => src.documento_designacion));
+
+            CreateMap<EntidadOficialDto, EntidadOficialFilterRequest>().ReverseMap()
+            .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey))
+            .ForMember(destination => destination.entidadkey, source => source.MapFrom(src => src.entidadkey))
+            .ForMember(destination => destination.modalidadkey, source => source.MapFrom(src => src.modalidadkey))
+            .ForMember(destination => destination.profesionkey, source => source.MapFrom(src => src.profesionkey))
+            .ForMember(destination => destination.actual, source => source.MapFrom(src => src.actual))
+            .ForMember(destination => destination.filtro, source => source.MapFrom(src => src.filtro));
+
+            CreateMap<EntidadOficialDto, EntidadOficialResponse>().ReverseMap()
+            .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey))
+            .ForMember(destination => destination.entidadkey, source => source.MapFrom(src => src.entidadkey))
+            .ForMember(destination => destination.modalidadkey, source => source.MapFrom(src => src.modalidadkey))
+            .ForMember(destination => destination.profesionkey, source => source.MapFrom(src => src.profesionkey))
+            .ForMember(destination => destination.nombres, source => source.MapFrom(src => src.nombres))
+            .ForMember(destination => destination.apellidos, source => source.MapFrom(src => src.apellidos))
+            .ForMember(destination => destination.numero_celular, source => source.MapFrom(src => src.numero_celular))
+            .ForMember(destination => destination.correo_institucional, source => source.MapFrom(src => src.correo_institucional))
+            .ForMember(destination => destination.fecha_inicio, source => source.MapFrom(src => src.fecha_inicio))
+            .ForMember(destination => destination.fecha_fin, source => source.MapFrom(src => src.fecha_fin))            
+            .ForMember(destination => destination.actual, source => source.MapFrom(src => src.actual))
+            .ForMember(destination => destination.documento_designacion, source => source.MapFrom(src => src.documento_designacion))
+            .ForMember(destination => destination.profesion, source => source.MapFrom(src => src.profesion))
+            .ForMember(destination => destination.modalidadcontrato, source => source.MapFrom(src => src.modalidadcontrato));
+
+            #endregion
+
+            #region EntidadCoordinador
+
+            CreateMap<EntidadCoordinador, EntidadCoordinadorDto>().ReverseMap()
+            .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey))
+            .ForMember(destination => destination.entidadkey, source => source.MapFrom(src => src.entidadkey))
+            .ForMember(destination => destination.modalidadkey, source => source.MapFrom(src => src.modalidadkey))
+            .ForMember(destination => destination.profesionkey, source => source.MapFrom(src => src.profesionkey))
+            .ForMember(destination => destination.nombres, source => source.MapFrom(src => src.nombres))
+            .ForMember(destination => destination.apellidos, source => source.MapFrom(src => src.apellidos))
+            .ForMember(destination => destination.numero_celular, source => source.MapFrom(src => src.numero_celular))
+            .ForMember(destination => destination.correo_institucional, source => source.MapFrom(src => src.correo_institucional))
+            .ForMember(destination => destination.fecha_inicio, source => source.MapFrom(src => src.fecha_inicio))
+            .ForMember(destination => destination.fecha_fin, source => source.MapFrom(src => src.fecha_fin))
+            .ForMember(destination => destination.designacion_doc, source => source.MapFrom(src => src.designacion_doc))
+            .ForMember(destination => destination.actual, source => source.MapFrom(src => src.actual))
+            .ForMember(destination => destination.profesion, source => source.MapFrom(src => src.profesion))
+            .ForMember(destination => destination.modalidadcontrato, source => source.MapFrom(src => src.modalidadcontrato))
+            .ForMember(destination => destination.documento_designacion, source => source.MapFrom(src => src.documento_designacion));
+
+            CreateMap<EntidadCoordinadorDto, EntidadCoordinadorIdRequest>().ReverseMap()
+            .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey));
+
+            CreateMap<EntidadCoordinadorDto, EntidadCoordinadorInsertRequest>().ReverseMap()
+            .ForMember(destination => destination.entidadkey, source => source.MapFrom(src => src.entidadkey))
+            .ForMember(destination => destination.modalidadkey, source => source.MapFrom(src => src.modalidadkey))
+            .ForMember(destination => destination.profesionkey, source => source.MapFrom(src => src.profesionkey))
+            .ForMember(destination => destination.nombres, source => source.MapFrom(src => src.nombres))
+            .ForMember(destination => destination.apellidos, source => source.MapFrom(src => src.apellidos))
+            .ForMember(destination => destination.numero_celular, source => source.MapFrom(src => src.numero_celular))
+            .ForMember(destination => destination.correo_institucional, source => source.MapFrom(src => src.correo_institucional))
+            .ForMember(destination => destination.fecha_inicio, source => source.MapFrom(src => src.fecha_inicio))
+            .ForMember(destination => destination.fecha_fin, source => source.MapFrom(src => src.fecha_fin))
+            .ForMember(destination => destination.actual, source => source.MapFrom(src => src.actual))
+            .ForMember(destination => destination.documento_designacion, source => source.MapFrom(src => src.documento_designacion));
+
+            CreateMap<EntidadCoordinadorDto, EntidadCoordinadorUpdateRequest>().ReverseMap()
+            .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey))
+            .ForMember(destination => destination.entidadkey, source => source.MapFrom(src => src.entidadkey))
+            .ForMember(destination => destination.modalidadkey, source => source.MapFrom(src => src.modalidadkey))
+            .ForMember(destination => destination.profesionkey, source => source.MapFrom(src => src.profesionkey))
+            .ForMember(destination => destination.nombres, source => source.MapFrom(src => src.nombres))
+            .ForMember(destination => destination.apellidos, source => source.MapFrom(src => src.apellidos))
+            .ForMember(destination => destination.numero_celular, source => source.MapFrom(src => src.numero_celular))
+            .ForMember(destination => destination.correo_institucional, source => source.MapFrom(src => src.correo_institucional))
+            .ForMember(destination => destination.fecha_inicio, source => source.MapFrom(src => src.fecha_inicio))
+            .ForMember(destination => destination.fecha_fin, source => source.MapFrom(src => src.fecha_fin))
+            .ForMember(destination => destination.documento_designacion, source => source.MapFrom(src => src.documento_designacion))
+            .ForMember(destination => destination.actual, source => source.MapFrom(src => src.actual));
+
+            CreateMap<EntidadCoordinadorDto, EntidadCoordinadorFilterRequest>().ReverseMap()
+            .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey))
+            .ForMember(destination => destination.entidadkey, source => source.MapFrom(src => src.entidadkey))
+            .ForMember(destination => destination.modalidadkey, source => source.MapFrom(src => src.modalidadkey))
+            .ForMember(destination => destination.profesionkey, source => source.MapFrom(src => src.profesionkey))
+            .ForMember(destination => destination.actual, source => source.MapFrom(src => src.actual))
+            .ForMember(destination => destination.filtro, source => source.MapFrom(src => src.filtro));
+
+            CreateMap<EntidadCoordinadorDto, EntidadCoordinadorResponse>().ReverseMap()
+            .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey))
+            .ForMember(destination => destination.entidadkey, source => source.MapFrom(src => src.entidadkey))
+            .ForMember(destination => destination.modalidadkey, source => source.MapFrom(src => src.modalidadkey))
+            .ForMember(destination => destination.profesionkey, source => source.MapFrom(src => src.profesionkey))
+            .ForMember(destination => destination.nombres, source => source.MapFrom(src => src.nombres))
+            .ForMember(destination => destination.apellidos, source => source.MapFrom(src => src.apellidos))
+            .ForMember(destination => destination.numero_celular, source => source.MapFrom(src => src.numero_celular))
+            .ForMember(destination => destination.correo_institucional, source => source.MapFrom(src => src.correo_institucional))
+            .ForMember(destination => destination.fecha_inicio, source => source.MapFrom(src => src.fecha_inicio))
+            .ForMember(destination => destination.fecha_fin, source => source.MapFrom(src => src.fecha_fin))            
+            .ForMember(destination => destination.actual, source => source.MapFrom(src => src.actual))
+            .ForMember(destination => destination.documento_designacion, source => source.MapFrom(src => src.documento_designacion))
+            .ForMember(destination => destination.profesion, source => source.MapFrom(src => src.profesion))
+            .ForMember(destination => destination.modalidadcontrato, source => source.MapFrom(src => src.modalidadcontrato));
+
+            #endregion
         }
     }
 }

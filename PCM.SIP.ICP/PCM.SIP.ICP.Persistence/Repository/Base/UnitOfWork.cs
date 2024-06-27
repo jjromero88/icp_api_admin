@@ -8,16 +8,18 @@ namespace PCM.SIP.ICP.Persistence.Repository.Base
         public IEntidadGrupoRepository EntidadGrupo { get; }
         public IPersonaRepository Persona { get; }
         public IEntidadSectorRepository EntidadSector { get; }
-        public IModalidadIntegridadRepository ModalidadIntegridad {  get; }
+        public IModalidadIntegridadRepository ModalidadIntegridad { get; }
         public IUbigeoRepository Ubigeo { get; }
         public IEntidadRepository Entidad { get; }
         public IDocumentoEstructuraRepository DocumentoEstructura { get; }
         public IDocumentRepository DocumentRepository { get; }
         public IProfesionRepository Profesion { get; }
         public IModalidadContratoRepository ModalidadContrato { get; }
+        public IEntidadOficialRepository EntidadOficial { get; }
+        public IEntidadCoordinadorRepository EntidadCoordinador { get; }
 
         public UnitOfWork(
-            IEntidadGrupoRepository entidadGrupo, 
+            IEntidadGrupoRepository entidadGrupo,
             IPersonaRepository persona,
             IEntidadSectorRepository entidadSector,
             IModalidadIntegridadRepository modalidadIntegridad,
@@ -26,7 +28,9 @@ namespace PCM.SIP.ICP.Persistence.Repository.Base
             IDocumentoEstructuraRepository documentoEstructura,
             IDocumentRepository documentRepository,
             IProfesionRepository profesion,
-            IModalidadContratoRepository modalidadContrato)
+            IModalidadContratoRepository modalidadContrato,
+            IEntidadOficialRepository entidadOficial,
+            IEntidadCoordinadorRepository entidadCoordinador)
         {
             EntidadGrupo = entidadGrupo;
             Persona = persona;
@@ -38,6 +42,8 @@ namespace PCM.SIP.ICP.Persistence.Repository.Base
             DocumentRepository = documentRepository;
             Profesion = profesion;
             ModalidadContrato = modalidadContrato;
+            EntidadOficial = entidadOficial;
+            EntidadCoordinador = entidadCoordinador;
         }
 
         public void Dispose()

@@ -23,6 +23,16 @@ namespace PCM.SIP.ICP.Api.Modules.Validator
             services.AddTransient<IValidator<EntidadUpdateRequest>, EntidadUpdateRequestValidator>();
             services.AddTransient<EntidadValidationManager>();
 
+            services.AddTransient<IValidator<EntidadCoordinadorIdRequest>, EntidadCoordinadorIdRequestValidator>();
+            services.AddTransient<IValidator<EntidadCoordinadorInsertRequest>, EntidadCoordinadorInsertRequestValidator>();
+            services.AddTransient<IValidator<EntidadCoordinadorUpdateRequest>, EntidadCoordinadorUpdateRequestValidator>();
+            services.AddTransient<EntidadCoordinadorValidationManager>();
+
+            services.AddTransient<IValidator<EntidadOficialIdRequest>, EntidadOficialIdRequestValidator>();
+            services.AddTransient<IValidator<EntidadOficialInsertRequest>, EntidadOficialInsertRequestValidator>();
+            services.AddTransient<IValidator<EntidadOficialUpdateRequest>, EntidadOficialUpdateRequestValidator>();
+            services.AddTransient<EntidadOficialValidationManager>();
+
             return services;
         }
     }

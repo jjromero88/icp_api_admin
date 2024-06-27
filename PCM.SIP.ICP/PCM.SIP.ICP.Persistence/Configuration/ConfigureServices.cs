@@ -22,6 +22,8 @@ namespace PCM.SIP.ICP.Persistence
             services.AddScoped<IProfesionRepository, ProfesionRepository>();
             services.AddScoped<IModalidadContratoRepository, ModalidadContratoRepository>();
             services.AddScoped<IDocumentRepository, DocumentRepository>();
+            services.AddScoped<IEntidadOficialRepository, EntidadOficialRepository>();
+            services.AddScoped<IEntidadCoordinadorRepository, EntidadCoordinadorRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             return services;
         }
