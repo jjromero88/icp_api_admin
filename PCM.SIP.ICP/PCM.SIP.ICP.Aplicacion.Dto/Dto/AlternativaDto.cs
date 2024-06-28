@@ -15,6 +15,11 @@ namespace PCM.SIP.ICP.Aplicacion.Dto
     {
         public string? SerialKey { get; set; }
     }
+    public class AlternativaFilterRequest
+    {
+        public string? SerialKey { get; set; }
+        public string? filtro { get; set; }
+    }
     public class AlternativaInsertRequest
     {
         public string? preguntakey { get; set; }
@@ -38,6 +43,7 @@ namespace PCM.SIP.ICP.Aplicacion.Dto
     }
     public class AlternativaResponse
     {
+        public string? SerialKey { get; set; }
         public string? preguntakey { get; set; }
         public string? codigo { get; set; }
         public string? alternativa { get; set; }

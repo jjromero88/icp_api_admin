@@ -50,6 +50,7 @@ namespace PCM.SIP.ICP.Aplicacion.Dto
     }
     public class PreguntaResponse
     {
+        public string? SerialKey { get; set; }
         public string? componentekey { get; set; }
         public string? codigo { get; set; }
         public int? numero { get; set; }
