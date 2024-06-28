@@ -681,11 +681,7 @@ namespace PCM.SIP.ICP.Transversal.Mapper
             .ForMember(destination => destination.medio_verificacion, source => source.MapFrom(src => src.medio_verificacion))
             .ForMember(destination => destination.numero_orden, source => source.MapFrom(src => src.numero_orden));
 
-            CreateMap<AlternativaDto, AlternativaIdRequest>().ReverseMap()
-            .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey));
-
-            CreateMap<AlternativaDto, AlternativaInsertRequest>().ReverseMap()
-            .ForMember(destination => destination.preguntakey, source => source.MapFrom(src => src.preguntakey))
+            CreateMap<Alternativa, TypeAlternativa>().ReverseMap()
             .ForMember(destination => destination.codigo, source => source.MapFrom(src => src.codigo))
             .ForMember(destination => destination.alternativa, source => source.MapFrom(src => src.alternativa))
             .ForMember(destination => destination.descripcion, source => source.MapFrom(src => src.descripcion))
@@ -693,9 +689,17 @@ namespace PCM.SIP.ICP.Transversal.Mapper
             .ForMember(destination => destination.medio_verificacion, source => source.MapFrom(src => src.medio_verificacion))
             .ForMember(destination => destination.numero_orden, source => source.MapFrom(src => src.numero_orden));
 
+            CreateMap<AlternativaDto, AlternativaIdRequest>().ReverseMap()
+            .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey));
+
+            CreateMap<AlternativaDto, AlternativaInsertRequest>().ReverseMap()
+            .ForMember(destination => destination.alternativa, source => source.MapFrom(src => src.alternativa))
+            .ForMember(destination => destination.descripcion, source => source.MapFrom(src => src.descripcion))
+            .ForMember(destination => destination.valor, source => source.MapFrom(src => src.valor))
+            .ForMember(destination => destination.medio_verificacion, source => source.MapFrom(src => src.medio_verificacion))
+            .ForMember(destination => destination.numero_orden, source => source.MapFrom(src => src.numero_orden));
+
             CreateMap<AlternativaDto, AlternativaUpdateRequest>().ReverseMap()
-            .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey))
-            .ForMember(destination => destination.preguntakey, source => source.MapFrom(src => src.preguntakey))
             .ForMember(destination => destination.codigo, source => source.MapFrom(src => src.codigo))
             .ForMember(destination => destination.alternativa, source => source.MapFrom(src => src.alternativa))
             .ForMember(destination => destination.descripcion, source => source.MapFrom(src => src.descripcion))
@@ -707,9 +711,7 @@ namespace PCM.SIP.ICP.Transversal.Mapper
             .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey))
             .ForMember(destination => destination.filtro, source => source.MapFrom(src => src.filtro));
 
-            CreateMap<AlternativaDto, AlternativaResponse>().ReverseMap()
-            .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey))
-            .ForMember(destination => destination.preguntakey, source => source.MapFrom(src => src.preguntakey))
+            CreateMap<AlternativaDto, AlternativaResponse>().ReverseMap()           
             .ForMember(destination => destination.codigo, source => source.MapFrom(src => src.codigo))
             .ForMember(destination => destination.alternativa, source => source.MapFrom(src => src.alternativa))
             .ForMember(destination => destination.descripcion, source => source.MapFrom(src => src.descripcion))
@@ -737,7 +739,6 @@ namespace PCM.SIP.ICP.Transversal.Mapper
 
             CreateMap<PreguntaDto, PreguntaInsertRequest>().ReverseMap()
             .ForMember(destination => destination.componentekey, source => source.MapFrom(src => src.componentekey))
-            .ForMember(destination => destination.codigo, source => source.MapFrom(src => src.codigo))
             .ForMember(destination => destination.numero, source => source.MapFrom(src => src.numero))
             .ForMember(destination => destination.descripcion, source => source.MapFrom(src => src.descripcion))
             .ForMember(destination => destination.calculo_icp, source => source.MapFrom(src => src.calculo_icp))
@@ -747,7 +748,6 @@ namespace PCM.SIP.ICP.Transversal.Mapper
             CreateMap<PreguntaDto, PreguntaUpdateRequest>().ReverseMap()
             .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey))
             .ForMember(destination => destination.componentekey, source => source.MapFrom(src => src.componentekey))
-            .ForMember(destination => destination.codigo, source => source.MapFrom(src => src.codigo))
             .ForMember(destination => destination.numero, source => source.MapFrom(src => src.numero))
             .ForMember(destination => destination.descripcion, source => source.MapFrom(src => src.descripcion))
             .ForMember(destination => destination.calculo_icp, source => source.MapFrom(src => src.calculo_icp))

@@ -24,7 +24,6 @@ namespace PCM.SIP.ICP.Aplicacion.Dto
     public class PreguntaInsertRequest
     {
         public string? componentekey { get; set; }
-        public string? codigo { get; set; }
         public int? numero { get; set; }
         public string? descripcion { get; set; }
         public bool? calculo_icp { get; set; }
@@ -35,7 +34,6 @@ namespace PCM.SIP.ICP.Aplicacion.Dto
     {
         public string? SerialKey { get; set; }
         public string? componentekey { get; set; }
-        public string? codigo { get; set; }
         public int? numero { get; set; }
         public string? descripcion { get; set; }
         public bool? calculo_icp { get; set; }

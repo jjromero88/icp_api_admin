@@ -33,6 +33,11 @@ namespace PCM.SIP.ICP.Api.Modules.Validator
             services.AddTransient<IValidator<EntidadOficialUpdateRequest>, EntidadOficialUpdateRequestValidator>();
             services.AddTransient<EntidadOficialValidationManager>();
 
+            services.AddTransient<IValidator<PreguntaIdRequest>, PreguntaIdRequestValidator>();
+            services.AddTransient<IValidator<PreguntaInsertRequest>, PreguntaInsertRequestValidator>();
+            services.AddTransient<IValidator<PreguntaUpdateRequest>, PreguntaUpdateRequestValidator>();
+            services.AddTransient<PreguntaValidationManager>();
+
             return services;
         }
     }

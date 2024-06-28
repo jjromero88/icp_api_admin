@@ -12,6 +12,7 @@ namespace PCM.SIP.ICP.Domain.Entities
         public bool? calculo_icp { get; set; }
         public bool? habilitado { get; set; }
         public Componente? componente { get; set; }
+        public List<TypeAlternativa>? alternativas { get; set; }
         public List<Alternativa>? lista_alternativas { get; set; }
     }
 }

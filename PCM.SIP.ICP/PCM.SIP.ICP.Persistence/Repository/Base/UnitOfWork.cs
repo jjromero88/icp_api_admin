@@ -18,6 +18,7 @@ namespace PCM.SIP.ICP.Persistence.Repository.Base
         public IEntidadOficialRepository EntidadOficial { get; }
         public IEntidadCoordinadorRepository EntidadCoordinador { get; }
         public IComponenteRepository Componente { get; }
+        public IPreguntaRepository Pregunta {  get; }
 
         public UnitOfWork(
             IEntidadGrupoRepository entidadGrupo,
@@ -32,7 +33,8 @@ namespace PCM.SIP.ICP.Persistence.Repository.Base
             IModalidadContratoRepository modalidadContrato,
             IEntidadOficialRepository entidadOficial,
             IEntidadCoordinadorRepository entidadCoordinador,
-            IComponenteRepository componente)
+            IComponenteRepository componente,
+            IPreguntaRepository pregunta)
         {
             EntidadGrupo = entidadGrupo;
             Persona = persona;
@@ -47,6 +49,7 @@ namespace PCM.SIP.ICP.Persistence.Repository.Base
             EntidadOficial = entidadOficial;
             EntidadCoordinador = entidadCoordinador;
             Componente = componente;
+            Pregunta = pregunta;
         }
 
         public void Dispose()

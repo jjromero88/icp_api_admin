@@ -22,8 +22,6 @@ namespace PCM.SIP.ICP.Aplicacion.Dto
     }
     public class AlternativaInsertRequest
     {
-        public string? preguntakey { get; set; }
-        public string? codigo { get; set; }
         public string? alternativa { get; set; }
         public string? descripcion { get; set; }
         public decimal? valor { get; set; }
@@ -32,8 +30,6 @@ namespace PCM.SIP.ICP.Aplicacion.Dto
     }
     public class AlternativaUpdateRequest
     {
-        public string? SerialKey { get; set; }
-        public string? preguntakey { get; set; }
         public string? codigo { get; set; }
         public string? alternativa { get; set; }
         public string? descripcion { get; set; }
@@ -43,8 +39,6 @@ namespace PCM.SIP.ICP.Aplicacion.Dto
     }
     public class AlternativaResponse
     {
-        public string? SerialKey { get; set; }
-        public string? preguntakey { get; set; }
         public string? codigo { get; set; }
         public string? alternativa { get; set; }
         public string? descripcion { get; set; }
