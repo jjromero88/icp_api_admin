@@ -16,5 +16,6 @@ namespace PCM.SIP.ICP.Aplicacion.Interface
         IModalidadContratoRepository ModalidadContrato { get; }
         IEntidadOficialRepository EntidadOficial { get; }
         IEntidadCoordinadorRepository EntidadCoordinador { get; }
+        IComponenteRepository Componente { get; }
     }
 }

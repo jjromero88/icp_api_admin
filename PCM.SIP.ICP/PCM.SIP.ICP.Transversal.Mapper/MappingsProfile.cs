@@ -648,6 +648,27 @@ namespace PCM.SIP.ICP.Transversal.Mapper
             .ForMember(destination => destination.modalidadcontrato, source => source.MapFrom(src => src.modalidadcontrato));
 
             #endregion
+
+            #region Componente
+
+            CreateMap<Componente, ComponenteDto>().ReverseMap()
+            .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey))
+            .ForMember(destination => destination.codigo, source => source.MapFrom(src => src.codigo))
+            .ForMember(destination => destination.abreviatura, source => source.MapFrom(src => src.abreviatura))
+            .ForMember(destination => destination.descripcion, source => source.MapFrom(src => src.descripcion));
+
+            CreateMap<ComponenteDto, ComponenteFilterRequest>().ReverseMap()
+           .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey))
+           .ForMember(destination => destination.filtro, source => source.MapFrom(src => src.filtro));
+
+            CreateMap<ComponenteDto, ComponenteResponse>().ReverseMap()
+            .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey))
+            .ForMember(destination => destination.codigo, source => source.MapFrom(src => src.codigo))
+            .ForMember(destination => destination.abreviatura, source => source.MapFrom(src => src.abreviatura))
+            .ForMember(destination => destination.descripcion, source => source.MapFrom(src => src.descripcion));
+
+            #endregion
+
         }
     }
 }
