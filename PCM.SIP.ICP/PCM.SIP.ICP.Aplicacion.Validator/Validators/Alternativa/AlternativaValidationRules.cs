@@ -18,7 +18,7 @@ namespace PCM.SIP.ICP.Aplicacion.Validator
             RuleFor(x => x.valor)
             .NotNull().WithMessage("El valor es obligatorio.")
             .GreaterThan(0).WithMessage("El valor debe ser mayor que 0.")
-            .LessThan(1).WithMessage("El valor debe ser menor que 1.")
+            .LessThanOrEqualTo(1).WithMessage("El valor debe ser menor que 1.")
             .Must(CustomValidators.BeValidDecimal).WithMessage("El valor ICP debe ser un valor decimal.");
 
             RuleFor(x => x.numero_orden)
@@ -44,7 +44,7 @@ namespace PCM.SIP.ICP.Aplicacion.Validator
             RuleFor(x => x.valor)
             .NotNull().WithMessage("El valor es obligatorio.")
             .GreaterThan(0).WithMessage("El valor debe ser mayor que 0.")
-            .LessThan(1).WithMessage("El valor debe ser menor que 1.")
+            .LessThanOrEqualTo(1).WithMessage("El valor debe ser menor que 1.")
             .Must(CustomValidators.BeValidDecimal).WithMessage("El valor ICP debe ser un valor decimal.");
 
             RuleFor(x => x.numero_orden)
