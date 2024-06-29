@@ -709,6 +709,7 @@ namespace PCM.SIP.ICP.Transversal.Mapper
 
             CreateMap<AlternativaDto, AlternativaFilterRequest>().ReverseMap()
             .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey))
+            .ForMember(destination => destination.preguntakey, source => source.MapFrom(src => src.preguntakey))
             .ForMember(destination => destination.filtro, source => source.MapFrom(src => src.filtro));
 
             CreateMap<AlternativaDto, AlternativaResponse>().ReverseMap()           

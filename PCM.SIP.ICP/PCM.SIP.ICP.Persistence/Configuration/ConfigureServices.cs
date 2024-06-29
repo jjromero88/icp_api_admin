@@ -26,6 +26,7 @@ namespace PCM.SIP.ICP.Persistence
             services.AddScoped<IEntidadCoordinadorRepository, EntidadCoordinadorRepository>();
             services.AddScoped<IComponenteRepository, ComponenteRepository>();
             services.AddScoped<IPreguntaRepository, PreguntaRepository>();
+            services.AddScoped<IAlternativaRepository, AlternativaRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             return services;
         }

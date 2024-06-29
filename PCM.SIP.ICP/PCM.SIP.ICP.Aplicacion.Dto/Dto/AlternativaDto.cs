@@ -18,6 +18,7 @@ namespace PCM.SIP.ICP.Aplicacion.Dto
     public class AlternativaFilterRequest
     {
         public string? SerialKey { get; set; }
+        public string? preguntakey { get; set; }
         public string? filtro { get; set; }
     }
     public class AlternativaInsertRequest
