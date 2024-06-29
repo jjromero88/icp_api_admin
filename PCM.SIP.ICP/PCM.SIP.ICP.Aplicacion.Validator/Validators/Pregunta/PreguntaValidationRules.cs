@@ -44,6 +44,14 @@ namespace PCM.SIP.ICP.Aplicacion.Validator
             RuleFor(x => x.descripcion)
             .MaximumLength(250)
             .WithMessage("La pregunta debe tener un máximo 250 caracteres");
+
+            RuleFor(x => x.lista_alternativas)
+            .Must(lista => lista != null && lista.Any())
+            .WithMessage("Debe incluir al menos una alternativa para la pregunta.");
+
+            RuleForEach(x => x.lista_alternativas)
+            .SetValidator(new AlternativaInsertRequestValidator())
+            .WithMessage("Las alternativas deben cumplir con las reglas de validación.");
         }
     }
     public class PreguntaUpdateRequestValidator : AbstractValidator<PreguntaUpdateRequest>
@@ -82,6 +90,14 @@ namespace PCM.SIP.ICP.Aplicacion.Validator
             RuleFor(x => x.descripcion)
             .MaximumLength(250)
             .WithMessage("La pregunta debe tener un máximo 250 caracteres");
+
+            RuleFor(x => x.lista_alternativas)
+            .Must(lista => lista != null && lista.Any())
+            .WithMessage("Debe incluir al menos una alternativa para la pregunta.");
+
+            RuleForEach(x => x.lista_alternativas)
+            .SetValidator(new AlternativaUpdateRequestValidator())
+            .WithMessage("Las alternativas deben cumplir con las reglas de validación.");
         }
     }
 }
