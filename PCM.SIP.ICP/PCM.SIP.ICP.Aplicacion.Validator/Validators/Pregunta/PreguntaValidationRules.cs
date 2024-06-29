@@ -42,8 +42,8 @@ namespace PCM.SIP.ICP.Aplicacion.Validator
             .WithMessage("Debe indicar si esta pregunta se encuentra habilitada o deshabilitada");
 
             RuleFor(x => x.descripcion)
-            .MaximumLength(250)
-            .WithMessage("La pregunta debe tener un máximo 250 caracteres");
+            .MaximumLength(650)
+            .WithMessage("La pregunta debe tener un máximo 650 caracteres");
 
             RuleFor(x => x.lista_alternativas)
             .Must(lista => lista != null && lista.Any())
@@ -88,8 +88,8 @@ namespace PCM.SIP.ICP.Aplicacion.Validator
             .WithMessage("Debe indicar si esta pregunta se encuentra habilitada o deshabilitada");
 
             RuleFor(x => x.descripcion)
-            .MaximumLength(250)
-            .WithMessage("La pregunta debe tener un máximo 250 caracteres");
+             .MaximumLength(650)
+             .WithMessage("La pregunta debe tener un máximo 650 caracteres");
 
             RuleFor(x => x.lista_alternativas)
             .Must(lista => lista != null && lista.Any())
