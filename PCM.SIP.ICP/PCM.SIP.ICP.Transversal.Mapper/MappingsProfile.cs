@@ -772,6 +772,29 @@ namespace PCM.SIP.ICP.Transversal.Mapper
 
             #endregion
 
+            #region Etapa
+
+            CreateMap<Etapa, EtapaDto>().ReverseMap()
+            .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey))
+            .ForMember(destination => destination.codigo, source => source.MapFrom(src => src.codigo))
+            .ForMember(destination => destination.nombre, source => source.MapFrom(src => src.nombre))
+            .ForMember(destination => destination.abreviatura, source => source.MapFrom(src => src.abreviatura))
+            .ForMember(destination => destination.descripcion, source => source.MapFrom(src => src.descripcion));
+
+            CreateMap<EtapaDto, EtapaFilterRequest>().ReverseMap()
+           .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey))
+           .ForMember(destination => destination.filtro, source => source.MapFrom(src => src.filtro));
+
+            CreateMap<EtapaDto, EtapaResponse>().ReverseMap()
+            .ForMember(destination => destination.SerialKey, source => source.MapFrom(src => src.SerialKey))
+            .ForMember(destination => destination.codigo, source => source.MapFrom(src => src.codigo))
+            .ForMember(destination => destination.nombre, source => source.MapFrom(src => src.nombre))
+            .ForMember(destination => destination.abreviatura, source => source.MapFrom(src => src.abreviatura))
+            .ForMember(destination => destination.descripcion, source => source.MapFrom(src => src.descripcion));
+
+
+            #endregion
+
         }
     }
 }

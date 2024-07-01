@@ -19,5 +19,6 @@ namespace PCM.SIP.ICP.Aplicacion.Interface
         IComponenteRepository Componente { get; }
         IPreguntaRepository Pregunta { get; }
         IAlternativaRepository Alternativa { get; }
+        IEtapaRepository Etapa { get; }
     }
 }

@@ -21,6 +21,7 @@ namespace PCM.SIP.ICP.Aplicacion.Features
             services.AddScoped<IComponenteApplication, ComponenteApplication>();
             services.AddScoped<IPreguntaApplication, PreguntaApplication>();
             services.AddScoped<IAlternativaApplication, AlternativaApplication>();
+            services.AddScoped<IEtapaApplication, EtapaApplication>();
             services.AddScoped<IDocumentService, DocumentService>();
             
             return services;
