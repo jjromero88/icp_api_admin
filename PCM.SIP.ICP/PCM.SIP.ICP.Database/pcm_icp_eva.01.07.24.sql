@@ -1,6 +1,6 @@
 USE [pcm_icp_eva]
 GO
-/****** Object:  UserDefinedTableType [dbo].[UDT_ALTERNATIVA]    Script Date: 29/06/2024 17:09:34 ******/
+/****** Object:  UserDefinedTableType [dbo].[UDT_ALTERNATIVA]    Script Date: 1/07/2024 22:43:23 ******/
 CREATE TYPE [dbo].[UDT_ALTERNATIVA] AS TABLE(
 	[codigo] [varchar](10) NULL,
 	[alternativa] [varchar](5) NULL,
@@ -10,7 +10,7 @@ CREATE TYPE [dbo].[UDT_ALTERNATIVA] AS TABLE(
 	[numero_orden] [int] NULL
 )
 GO
-/****** Object:  Table [dbo].[ALTERNATIVA]    Script Date: 29/06/2024 17:09:34 ******/
+/****** Object:  Table [dbo].[ALTERNATIVA]    Script Date: 1/07/2024 22:43:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -35,7 +35,27 @@ CREATE TABLE [dbo].[ALTERNATIVA](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[COMPONENTE]    Script Date: 29/06/2024 17:09:34 ******/
+/****** Object:  Table [dbo].[ASPECTOEVALUADO]    Script Date: 1/07/2024 22:43:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ASPECTOEVALUADO](
+	[aspectoevaluado_id] [int] IDENTITY(1,1) NOT NULL,
+	[componente_id] [int] NULL,
+	[descripcion] [varchar](180) NULL,
+	[estado] [bit] NULL,
+	[usuario_reg] [varchar](20) NULL,
+	[fecha_reg] [datetime] NULL,
+	[fecha_act] [datetime] NULL,
+	[usuario_act] [varchar](20) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[aspectoevaluado_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[COMPONENTE]    Script Date: 1/07/2024 22:43:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -56,7 +76,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[DOCUMENTOESTRUCTURA]    Script Date: 29/06/2024 17:09:34 ******/
+/****** Object:  Table [dbo].[DOCUMENTOESTRUCTURA]    Script Date: 1/07/2024 22:43:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -77,7 +97,7 @@ CREATE TABLE [dbo].[DOCUMENTOESTRUCTURA](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ENTIDAD]    Script Date: 29/06/2024 17:09:34 ******/
+/****** Object:  Table [dbo].[ENTIDAD]    Script Date: 1/07/2024 22:43:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -111,7 +131,7 @@ CREATE TABLE [dbo].[ENTIDAD](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ENTIDADCOORDINADOR]    Script Date: 29/06/2024 17:09:34 ******/
+/****** Object:  Table [dbo].[ENTIDADCOORDINADOR]    Script Date: 1/07/2024 22:43:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -140,7 +160,27 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ENTIDADGRUPO]    Script Date: 29/06/2024 17:09:34 ******/
+/****** Object:  Table [dbo].[ENTIDADETAPA]    Script Date: 1/07/2024 22:43:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ENTIDADETAPA](
+	[entidadetapa_id] [int] IDENTITY(1,1) NOT NULL,
+	[evaluacionetapa_id] [int] NULL,
+	[entidad_id] [int] NULL,
+	[estado] [bit] NULL,
+	[usuario_reg] [varchar](20) NULL,
+	[fecha_reg] [datetime] NULL,
+	[fecha_act] [datetime] NULL,
+	[usuario_act] [varchar](20) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[entidadetapa_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[ENTIDADGRUPO]    Script Date: 1/07/2024 22:43:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -161,7 +201,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ENTIDADOFICIAL]    Script Date: 29/06/2024 17:09:34 ******/
+/****** Object:  Table [dbo].[ENTIDADOFICIAL]    Script Date: 1/07/2024 22:43:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -190,7 +230,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ENTIDADSECTOR]    Script Date: 29/06/2024 17:09:34 ******/
+/****** Object:  Table [dbo].[ENTIDADSECTOR]    Script Date: 1/07/2024 22:43:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -212,7 +252,76 @@ CREATE TABLE [dbo].[ENTIDADSECTOR](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[MODALIDAD]    Script Date: 29/06/2024 17:09:34 ******/
+/****** Object:  Table [dbo].[ETAPA]    Script Date: 1/07/2024 22:43:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ETAPA](
+	[etapa_id] [int] IDENTITY(1,1) NOT NULL,
+	[codigo] [varchar](10) NULL,
+	[nombre] [varchar](50) NULL,
+	[abreviatura] [varchar](20) NULL,
+	[descripcion] [varchar](200) NULL,
+	[estado] [bit] NULL,
+	[usuario_reg] [varchar](20) NULL,
+	[fecha_reg] [datetime] NULL,
+	[fecha_act] [datetime] NULL,
+	[usuario_act] [varchar](20) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[etapa_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[EVALUACION]    Script Date: 1/07/2024 22:43:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[EVALUACION](
+	[evaluacion_id] [int] IDENTITY(1,1) NOT NULL,
+	[codigo] [varchar](10) NULL,
+	[fecha_inicio] [datetime] NULL,
+	[fecha_fin] [datetime] NULL,
+	[descripcion] [varchar](100) NULL,
+	[comentarios] [varchar](250) NULL,
+	[estado] [bit] NULL,
+	[usuario_reg] [varchar](20) NULL,
+	[fecha_reg] [datetime] NULL,
+	[fecha_act] [datetime] NULL,
+	[usuario_act] [varchar](20) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[evaluacion_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[EVALUACIONETAPA]    Script Date: 1/07/2024 22:43:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[EVALUACIONETAPA](
+	[evaluacionetapa_id] [int] IDENTITY(1,1) NOT NULL,
+	[evaluacion_id] [int] NULL,
+	[etapa_id] [int] NULL,
+	[fecha_inicio] [datetime] NULL,
+	[fecha_fin] [datetime] NULL,
+	[comentarios] [varchar](250) NULL,
+	[habilitado] [bit] NULL,
+	[estado] [bit] NULL,
+	[usuario_reg] [varchar](20) NULL,
+	[fecha_reg] [datetime] NULL,
+	[fecha_act] [datetime] NULL,
+	[usuario_act] [varchar](20) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[evaluacionetapa_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[MODALIDAD]    Script Date: 1/07/2024 22:43:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -233,7 +342,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[MODALIDADINTEGRIDAD]    Script Date: 29/06/2024 17:09:34 ******/
+/****** Object:  Table [dbo].[MODALIDADINTEGRIDAD]    Script Date: 1/07/2024 22:43:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -254,7 +363,7 @@ CREATE TABLE [dbo].[MODALIDADINTEGRIDAD](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[PERSONA]    Script Date: 29/06/2024 17:09:34 ******/
+/****** Object:  Table [dbo].[PERSONA]    Script Date: 1/07/2024 22:43:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -279,7 +388,7 @@ CREATE TABLE [dbo].[PERSONA](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[PREGUNTA]    Script Date: 29/06/2024 17:09:34 ******/
+/****** Object:  Table [dbo].[PREGUNTA]    Script Date: 1/07/2024 22:43:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -303,7 +412,27 @@ CREATE TABLE [dbo].[PREGUNTA](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[PROFESION]    Script Date: 29/06/2024 17:09:34 ******/
+/****** Object:  Table [dbo].[PREGUNTAETAPA]    Script Date: 1/07/2024 22:43:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[PREGUNTAETAPA](
+	[preguntaetapa_id] [int] IDENTITY(1,1) NOT NULL,
+	[evaluacionetapa_id] [int] NULL,
+	[pregunta_id] [int] NULL,
+	[estado] [bit] NULL,
+	[usuario_reg] [varchar](20) NULL,
+	[fecha_reg] [datetime] NULL,
+	[fecha_act] [datetime] NULL,
+	[usuario_act] [varchar](20) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[preguntaetapa_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[PROFESION]    Script Date: 1/07/2024 22:43:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -327,7 +456,7 @@ CREATE TABLE [dbo].[PROFESION](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[TIPOSECTOR]    Script Date: 29/06/2024 17:09:34 ******/
+/****** Object:  Table [dbo].[TIPOSECTOR]    Script Date: 1/07/2024 22:43:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -348,7 +477,7 @@ CREATE TABLE [dbo].[TIPOSECTOR](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[UBIGEO]    Script Date: 29/06/2024 17:09:34 ******/
+/****** Object:  Table [dbo].[UBIGEO]    Script Date: 1/07/2024 22:43:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -380,61 +509,107 @@ CREATE TABLE [dbo].[UBIGEO](
 GO
 SET IDENTITY_INSERT [dbo].[ALTERNATIVA] ON 
 GO
-INSERT [dbo].[ALTERNATIVA] ([alternativa_id], [pregunta_id], [codigo], [alternativa], [descripcion], [valor], [medio_verificacion], [numero_orden], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (1, 5, N'00001', N'A', N'Alternativa A', CAST(1.00 AS Decimal(4, 2)), 1, 1, 0, N'sys', CAST(N'2024-06-28T00:47:28.120' AS DateTime), N'usuario_test', CAST(N'2024-06-28T01:20:20.550' AS DateTime))
+INSERT [dbo].[ALTERNATIVA] ([alternativa_id], [pregunta_id], [codigo], [alternativa], [descripcion], [valor], [medio_verificacion], [numero_orden], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (1022, 1010, N'01022', N'A', N'No corresponde al Poder Ejecutivo', CAST(0.50 AS Decimal(4, 2)), 0, 1, 1, N'jjromero88', CAST(N'2024-06-29T21:28:09.040' AS DateTime), N'jjromero88', CAST(N'2024-06-29T21:41:47.253' AS DateTime))
 GO
-INSERT [dbo].[ALTERNATIVA] ([alternativa_id], [pregunta_id], [codigo], [alternativa], [descripcion], [valor], [medio_verificacion], [numero_orden], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (2, 5, N'00002', N'B', N'Alternativa B test', CAST(2.00 AS Decimal(4, 2)), 1, 1, 1, N'sys', CAST(N'2024-06-28T00:47:28.120' AS DateTime), N'jjromero88', CAST(N'2024-06-28T18:56:37.377' AS DateTime))
+INSERT [dbo].[ALTERNATIVA] ([alternativa_id], [pregunta_id], [codigo], [alternativa], [descripcion], [valor], [medio_verificacion], [numero_orden], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (1023, 1010, N'01023', N'B', N'Justicia y Derechos Humanos', CAST(1.00 AS Decimal(4, 2)), 1, 2, 1, N'jjromero88', CAST(N'2024-06-29T21:28:09.040' AS DateTime), N'jjromero88', CAST(N'2024-06-29T21:41:47.253' AS DateTime))
 GO
-INSERT [dbo].[ALTERNATIVA] ([alternativa_id], [pregunta_id], [codigo], [alternativa], [descripcion], [valor], [medio_verificacion], [numero_orden], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (5, 5, N'00005', N'B', N'Alternativa B', CAST(2.20 AS Decimal(4, 2)), 1, 2, 1, N'usuario_test', CAST(N'2024-06-28T01:19:50.917' AS DateTime), N'jjromero88', CAST(N'2024-06-28T18:56:37.377' AS DateTime))
+INSERT [dbo].[ALTERNATIVA] ([alternativa_id], [pregunta_id], [codigo], [alternativa], [descripcion], [valor], [medio_verificacion], [numero_orden], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (1024, 1011, N'01024', N'a', N'Sí, se encuentra solo en el PEI (objetivo o acción estratégica)', CAST(0.80 AS Decimal(4, 2)), 1, 1, 1, N'jjromero88', CAST(N'2024-06-29T21:30:29.860' AS DateTime), N'jjromero88', CAST(N'2024-06-29T21:33:10.680' AS DateTime))
 GO
-INSERT [dbo].[ALTERNATIVA] ([alternativa_id], [pregunta_id], [codigo], [alternativa], [descripcion], [valor], [medio_verificacion], [numero_orden], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (6, 6, N'00006', N'a', N'alternativa a test', CAST(1.50 AS Decimal(4, 2)), 1, 1, 1, N'sys', CAST(N'2024-06-28T17:54:58.537' AS DateTime), NULL, NULL)
+INSERT [dbo].[ALTERNATIVA] ([alternativa_id], [pregunta_id], [codigo], [alternativa], [descripcion], [valor], [medio_verificacion], [numero_orden], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (1025, 1011, N'01025', N'b', N'Sí, se encuentra solo en el PEI (objetivo o acción estratégica)', CAST(0.60 AS Decimal(4, 2)), 0, 2, 1, N'jjromero88', CAST(N'2024-06-29T21:30:29.860' AS DateTime), N'jjromero88', CAST(N'2024-06-29T21:33:10.680' AS DateTime))
 GO
-INSERT [dbo].[ALTERNATIVA] ([alternativa_id], [pregunta_id], [codigo], [alternativa], [descripcion], [valor], [medio_verificacion], [numero_orden], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (7, 6, N'00007', N'b', N'alternativa b test', CAST(1.20 AS Decimal(4, 2)), 0, 2, 1, N'sys', CAST(N'2024-06-28T17:54:58.537' AS DateTime), NULL, NULL)
+INSERT [dbo].[ALTERNATIVA] ([alternativa_id], [pregunta_id], [codigo], [alternativa], [descripcion], [valor], [medio_verificacion], [numero_orden], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (1026, 1011, N'01026', N'c', N'Máxima autoridad administrativa con delegación a un servidor (no aplica a gobiernos regionales ni locales)', CAST(1.00 AS Decimal(4, 2)), 1, 3, 1, N'jjromero88', CAST(N'2024-06-29T21:30:29.860' AS DateTime), N'jjromero88', CAST(N'2024-06-29T21:33:10.680' AS DateTime))
 GO
-INSERT [dbo].[ALTERNATIVA] ([alternativa_id], [pregunta_id], [codigo], [alternativa], [descripcion], [valor], [medio_verificacion], [numero_orden], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (8, 7, N'00008', N'a', N'alternativa a test', CAST(1.50 AS Decimal(4, 2)), 1, 1, 1, N'jjromero88', CAST(N'2024-06-28T17:58:19.263' AS DateTime), NULL, NULL)
+INSERT [dbo].[ALTERNATIVA] ([alternativa_id], [pregunta_id], [codigo], [alternativa], [descripcion], [valor], [medio_verificacion], [numero_orden], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (1027, 1012, N'01027', N'a', N'No se cuenta con información', CAST(0.50 AS Decimal(4, 2)), 0, 1, 1, N'jjromero88', CAST(N'2024-06-29T21:32:45.610' AS DateTime), N'jjromero88', CAST(N'2024-06-29T21:42:14.230' AS DateTime))
 GO
-INSERT [dbo].[ALTERNATIVA] ([alternativa_id], [pregunta_id], [codigo], [alternativa], [descripcion], [valor], [medio_verificacion], [numero_orden], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (9, 7, N'00009', N'b', N'alternativa b test', CAST(1.20 AS Decimal(4, 2)), 0, 2, 1, N'jjromero88', CAST(N'2024-06-28T17:58:19.263' AS DateTime), NULL, NULL)
+INSERT [dbo].[ALTERNATIVA] ([alternativa_id], [pregunta_id], [codigo], [alternativa], [descripcion], [valor], [medio_verificacion], [numero_orden], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (1028, 1012, N'01028', N'b', N'Sí, cumplen entre el 67% y 100%', CAST(0.60 AS Decimal(4, 2)), 1, 2, 1, N'jjromero88', CAST(N'2024-06-29T21:32:45.610' AS DateTime), N'jjromero88', CAST(N'2024-06-29T21:42:14.230' AS DateTime))
 GO
-INSERT [dbo].[ALTERNATIVA] ([alternativa_id], [pregunta_id], [codigo], [alternativa], [descripcion], [valor], [medio_verificacion], [numero_orden], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (10, 7, N'00010', N'C', N'alternativa c test', CAST(0.90 AS Decimal(4, 2)), 0, 3, 1, N'jjromero88', CAST(N'2024-06-28T17:58:19.263' AS DateTime), NULL, NULL)
+INSERT [dbo].[ALTERNATIVA] ([alternativa_id], [pregunta_id], [codigo], [alternativa], [descripcion], [valor], [medio_verificacion], [numero_orden], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (1029, 1012, N'01029', N'c', N'La entidad no ha implementado la Función de Integridad', CAST(0.80 AS Decimal(4, 2)), 1, 3, 1, N'jjromero88', CAST(N'2024-06-29T21:32:45.610' AS DateTime), N'jjromero88', CAST(N'2024-06-29T21:42:14.230' AS DateTime))
 GO
-INSERT [dbo].[ALTERNATIVA] ([alternativa_id], [pregunta_id], [codigo], [alternativa], [descripcion], [valor], [medio_verificacion], [numero_orden], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (11, 8, N'00011', N'a', N'P3 alternativa test', CAST(1.50 AS Decimal(4, 2)), 1, 1, 1, N'jjromero88', CAST(N'2024-06-28T18:17:43.483' AS DateTime), NULL, NULL)
+INSERT [dbo].[ALTERNATIVA] ([alternativa_id], [pregunta_id], [codigo], [alternativa], [descripcion], [valor], [medio_verificacion], [numero_orden], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (1030, 1012, N'01030', N'd', N'Sí (máxima puntuación a junio de 2023)', CAST(1.00 AS Decimal(4, 2)), 1, 4, 1, N'jjromero88', CAST(N'2024-06-29T21:32:45.610' AS DateTime), N'jjromero88', CAST(N'2024-06-29T21:42:14.230' AS DateTime))
 GO
-INSERT [dbo].[ALTERNATIVA] ([alternativa_id], [pregunta_id], [codigo], [alternativa], [descripcion], [valor], [medio_verificacion], [numero_orden], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (12, 8, N'00012', N'b', N'P3 alternativa b test', CAST(1.20 AS Decimal(4, 2)), 0, 2, 1, N'jjromero88', CAST(N'2024-06-28T18:17:43.483' AS DateTime), NULL, NULL)
+INSERT [dbo].[ALTERNATIVA] ([alternativa_id], [pregunta_id], [codigo], [alternativa], [descripcion], [valor], [medio_verificacion], [numero_orden], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (1031, 1013, N'01031', N'a', N'No, aún no se presentan los entregables del 2023', CAST(0.60 AS Decimal(4, 2)), 1, 1, 1, N'jjromero88', CAST(N'2024-06-29T21:39:23.743' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[ALTERNATIVA] ([alternativa_id], [pregunta_id], [codigo], [alternativa], [descripcion], [valor], [medio_verificacion], [numero_orden], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (13, 5, N'00013', N'x', N'Alternativa x test', CAST(1.10 AS Decimal(4, 2)), 1, 99, 1, N'jjromero88', CAST(N'2024-06-28T18:56:37.377' AS DateTime), NULL, CAST(N'2024-06-28T18:56:37.377' AS DateTime))
+INSERT [dbo].[ALTERNATIVA] ([alternativa_id], [pregunta_id], [codigo], [alternativa], [descripcion], [valor], [medio_verificacion], [numero_orden], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (1032, 1013, N'01032', N'b', N'Sí, ha cumplido con presentar: i) cinco entregables a junio 2023; o ii) siete entregables a noviembre 2023', CAST(0.20 AS Decimal(4, 2)), 1, 2, 1, N'jjromero88', CAST(N'2024-06-29T21:39:23.743' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[ALTERNATIVA] ([alternativa_id], [pregunta_id], [codigo], [alternativa], [descripcion], [valor], [medio_verificacion], [numero_orden], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (14, 9, N'00014', N'a', N'test descripcion', CAST(0.30 AS Decimal(4, 2)), 1, 998, 1, N'jjromero88', CAST(N'2024-06-28T19:32:01.447' AS DateTime), NULL, NULL)
+INSERT [dbo].[ALTERNATIVA] ([alternativa_id], [pregunta_id], [codigo], [alternativa], [descripcion], [valor], [medio_verificacion], [numero_orden], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (1033, 1013, N'01033', N'c', N'No se cuenta con información al respecto', CAST(0.30 AS Decimal(4, 2)), 1, 3, 1, N'jjromero88', CAST(N'2024-06-29T21:39:23.743' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[ALTERNATIVA] ([alternativa_id], [pregunta_id], [codigo], [alternativa], [descripcion], [valor], [medio_verificacion], [numero_orden], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (15, 10, N'00015', N'a', N'test descripcion 12', CAST(0.32 AS Decimal(4, 2)), 1, 997, 1, N'jjromero88', CAST(N'2024-06-28T19:33:12.610' AS DateTime), NULL, NULL)
+INSERT [dbo].[ALTERNATIVA] ([alternativa_id], [pregunta_id], [codigo], [alternativa], [descripcion], [valor], [medio_verificacion], [numero_orden], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (1034, 1013, N'01034', N'd', N'Sí, ha cumplido con presentar: i) cinco entregables a junio 2023; o ii) siete entregables a noviembre 2023', CAST(0.50 AS Decimal(4, 2)), 1, 4, 1, N'jjromero88', CAST(N'2024-06-29T21:39:23.743' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[ALTERNATIVA] ([alternativa_id], [pregunta_id], [codigo], [alternativa], [descripcion], [valor], [medio_verificacion], [numero_orden], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (1008, 1007, N'01008', N'a', N'La entidad no ha implementado la Función de Integridad', CAST(0.50 AS Decimal(4, 2)), 1, 1, 0, N'jjromero88', CAST(N'2024-06-29T16:04:55.683' AS DateTime), N'jjromero88', CAST(N'2024-06-29T16:22:59.320' AS DateTime))
+INSERT [dbo].[ALTERNATIVA] ([alternativa_id], [pregunta_id], [codigo], [alternativa], [descripcion], [valor], [medio_verificacion], [numero_orden], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (1035, 1014, N'01035', N'a', N'No, la entidad no cuenta con una evaluación del ICP a noviembre del 2022. (alternativa valida para junio de 2023)', CAST(0.20 AS Decimal(4, 2)), 1, 1, 1, N'jjromero88', CAST(N'2024-06-29T21:40:57.890' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[ALTERNATIVA] ([alternativa_id], [pregunta_id], [codigo], [alternativa], [descripcion], [valor], [medio_verificacion], [numero_orden], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (1009, 1007, N'01009', N'b', N'ededededed', CAST(1.00 AS Decimal(4, 2)), 0, 1, 0, N'jjromero88', CAST(N'2024-06-29T16:17:49.360' AS DateTime), N'jjromero88', CAST(N'2024-06-29T16:22:59.320' AS DateTime))
+INSERT [dbo].[ALTERNATIVA] ([alternativa_id], [pregunta_id], [codigo], [alternativa], [descripcion], [valor], [medio_verificacion], [numero_orden], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (1036, 1014, N'01036', N'b', N'No, aún no se presentan los entregables del 2023', CAST(0.30 AS Decimal(4, 2)), 1, 2, 1, N'jjromero88', CAST(N'2024-06-29T21:40:57.890' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[ALTERNATIVA] ([alternativa_id], [pregunta_id], [codigo], [alternativa], [descripcion], [valor], [medio_verificacion], [numero_orden], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (1010, 1007, N'01010', N'b', N'ceddeeded', CAST(0.20 AS Decimal(4, 2)), 1, 2, 1, N'jjromero88', CAST(N'2024-06-29T16:17:49.360' AS DateTime), N'jjromero88', CAST(N'2024-06-29T16:39:03.780' AS DateTime))
-GO
-INSERT [dbo].[ALTERNATIVA] ([alternativa_id], [pregunta_id], [codigo], [alternativa], [descripcion], [valor], [medio_verificacion], [numero_orden], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (1011, 1007, N'01011', N'c', N'una descripcion', CAST(1.00 AS Decimal(4, 2)), 0, 3, 1, N'jjromero88', CAST(N'2024-06-29T16:18:51.890' AS DateTime), N'jjromero88', CAST(N'2024-06-29T16:39:03.780' AS DateTime))
-GO
-INSERT [dbo].[ALTERNATIVA] ([alternativa_id], [pregunta_id], [codigo], [alternativa], [descripcion], [valor], [medio_verificacion], [numero_orden], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (1012, 1007, N'01012', N'D', N'efrrfrfrfrf', CAST(0.50 AS Decimal(4, 2)), 0, 5, 0, N'jjromero88', CAST(N'2024-06-29T16:18:51.890' AS DateTime), N'jjromero88', CAST(N'2024-06-29T16:22:59.320' AS DateTime))
-GO
-INSERT [dbo].[ALTERNATIVA] ([alternativa_id], [pregunta_id], [codigo], [alternativa], [descripcion], [valor], [medio_verificacion], [numero_orden], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (1013, 1007, N'01013', N'a', N'ejemplo abc', CAST(0.50 AS Decimal(4, 2)), 1, 1, 1, N'jjromero88', CAST(N'2024-06-29T16:23:40.250' AS DateTime), N'jjromero88', CAST(N'2024-06-29T16:39:03.780' AS DateTime))
-GO
-INSERT [dbo].[ALTERNATIVA] ([alternativa_id], [pregunta_id], [codigo], [alternativa], [descripcion], [valor], [medio_verificacion], [numero_orden], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (1014, 1008, N'01014', N'a', N'deedeede', CAST(0.20 AS Decimal(4, 2)), 1, 1, 1, N'jjromero88', CAST(N'2024-06-29T16:51:06.133' AS DateTime), N'jjromero88', CAST(N'2024-06-29T16:52:29.320' AS DateTime))
-GO
-INSERT [dbo].[ALTERNATIVA] ([alternativa_id], [pregunta_id], [codigo], [alternativa], [descripcion], [valor], [medio_verificacion], [numero_orden], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (1015, 1008, N'01015', N'b', N'deddeeded', CAST(1.00 AS Decimal(4, 2)), 1, 2, 1, N'jjromero88', CAST(N'2024-06-29T16:51:06.133' AS DateTime), N'jjromero88', CAST(N'2024-06-29T16:52:29.320' AS DateTime))
-GO
-INSERT [dbo].[ALTERNATIVA] ([alternativa_id], [pregunta_id], [codigo], [alternativa], [descripcion], [valor], [medio_verificacion], [numero_orden], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (1016, 1008, N'01016', N'c', N'ejemekj hghygeded', CAST(0.30 AS Decimal(4, 2)), 0, 3, 1, N'jjromero88', CAST(N'2024-06-29T16:51:06.133' AS DateTime), N'jjromero88', CAST(N'2024-06-29T16:52:29.320' AS DateTime))
-GO
-INSERT [dbo].[ALTERNATIVA] ([alternativa_id], [pregunta_id], [codigo], [alternativa], [descripcion], [valor], [medio_verificacion], [numero_orden], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (1017, 1008, N'01017', N'd', N'No se cuenta con información ', CAST(0.20 AS Decimal(4, 2)), 0, 4, 1, N'jjromero88', CAST(N'2024-06-29T16:52:29.317' AS DateTime), NULL, CAST(N'2024-06-29T16:52:29.317' AS DateTime))
-GO
-INSERT [dbo].[ALTERNATIVA] ([alternativa_id], [pregunta_id], [codigo], [alternativa], [descripcion], [valor], [medio_verificacion], [numero_orden], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (1018, 1009, N'01018', N'a', N'Sí, se precisa en otro documento', CAST(1.00 AS Decimal(4, 2)), 1, 1, 1, N'jjromero88', CAST(N'2024-06-29T17:00:17.640' AS DateTime), N'jjromero88', CAST(N'2024-06-29T17:01:42.407' AS DateTime))
-GO
-INSERT [dbo].[ALTERNATIVA] ([alternativa_id], [pregunta_id], [codigo], [alternativa], [descripcion], [valor], [medio_verificacion], [numero_orden], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (1019, 1009, N'01019', N'b', N'No, pero se cuenta con documento similar (alternativa válida hasta junio 2023).', CAST(0.50 AS Decimal(4, 2)), 0, 2, 1, N'jjromero88', CAST(N'2024-06-29T17:00:17.640' AS DateTime), N'jjromero88', CAST(N'2024-06-29T17:01:42.407' AS DateTime))
-GO
-INSERT [dbo].[ALTERNATIVA] ([alternativa_id], [pregunta_id], [codigo], [alternativa], [descripcion], [valor], [medio_verificacion], [numero_orden], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (1020, 1009, N'01020', N'c', N'Oficina de Recursos Humanos (por delegación) (no aplica a gobiernos regionales ni locales)', CAST(0.30 AS Decimal(4, 2)), 1, 3, 1, N'jjromero88', CAST(N'2024-06-29T17:00:17.640' AS DateTime), N'jjromero88', CAST(N'2024-06-29T17:01:42.407' AS DateTime))
-GO
-INSERT [dbo].[ALTERNATIVA] ([alternativa_id], [pregunta_id], [codigo], [alternativa], [descripcion], [valor], [medio_verificacion], [numero_orden], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (1021, 1009, N'01021', N'd', N'No aplica, la entidad no es un ministerio del Poder Ejecutivo', CAST(0.60 AS Decimal(4, 2)), 0, 4, 1, N'jjromero88', CAST(N'2024-06-29T17:00:17.640' AS DateTime), N'jjromero88', CAST(N'2024-06-29T17:01:42.407' AS DateTime))
+INSERT [dbo].[ALTERNATIVA] ([alternativa_id], [pregunta_id], [codigo], [alternativa], [descripcion], [valor], [medio_verificacion], [numero_orden], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (1037, 1014, N'01037', N'c', N'No se cuenta con información', CAST(0.40 AS Decimal(4, 2)), 0, 3, 1, N'jjromero88', CAST(N'2024-06-29T21:40:57.890' AS DateTime), NULL, NULL)
 GO
 SET IDENTITY_INSERT [dbo].[ALTERNATIVA] OFF
+GO
+SET IDENTITY_INSERT [dbo].[ASPECTOEVALUADO] ON 
+GO
+INSERT [dbo].[ASPECTOEVALUADO] ([aspectoevaluado_id], [componente_id], [descripcion], [estado], [usuario_reg], [fecha_reg], [fecha_act], [usuario_act]) VALUES (1, 1, N'Creación de un órgano, unidad funcional o delegación de la función de integridad.', 1, N'sys', CAST(N'2024-07-01T15:14:23.537' AS DateTime), NULL, NULL)
+GO
+INSERT [dbo].[ASPECTOEVALUADO] ([aspectoevaluado_id], [componente_id], [descripcion], [estado], [usuario_reg], [fecha_reg], [fecha_act], [usuario_act]) VALUES (2, 1, N'Incorporación de la integridad en los documentos de planeamiento (PEI - POI).', 1, N'sys', CAST(N'2024-07-01T15:14:23.540' AS DateTime), NULL, NULL)
+GO
+INSERT [dbo].[ASPECTOEVALUADO] ([aspectoevaluado_id], [componente_id], [descripcion], [estado], [usuario_reg], [fecha_reg], [fecha_act], [usuario_act]) VALUES (3, 1, N'Elaboración y/o aprobación del Programa de Integridad de la entidad.', 1, N'sys', CAST(N'2024-07-01T15:14:23.540' AS DateTime), NULL, NULL)
+GO
+INSERT [dbo].[ASPECTOEVALUADO] ([aspectoevaluado_id], [componente_id], [descripcion], [estado], [usuario_reg], [fecha_reg], [fecha_act], [usuario_act]) VALUES (4, 2, N'Identificación y establecimiento de mecanismos de prevención y mitigación de riesgos que afectan la integridad.', 1, N'sys', CAST(N'2024-07-01T15:15:08.437' AS DateTime), NULL, NULL)
+GO
+INSERT [dbo].[ASPECTOEVALUADO] ([aspectoevaluado_id], [componente_id], [descripcion], [estado], [usuario_reg], [fecha_reg], [fecha_act], [usuario_act]) VALUES (5, 3, N'Aprobación del Código de Conducta de la entidad.', 1, N'sys', CAST(N'2024-07-01T15:16:33.567' AS DateTime), NULL, NULL)
+GO
+INSERT [dbo].[ASPECTOEVALUADO] ([aspectoevaluado_id], [componente_id], [descripcion], [estado], [usuario_reg], [fecha_reg], [fecha_act], [usuario_act]) VALUES (6, 3, N'Asesoría a la máxima autoridad administrativa de la entidad para la elaboración de la lista de sujetos obligados (DJI).', 1, N'sys', CAST(N'2024-07-01T15:16:33.567' AS DateTime), NULL, NULL)
+GO
+INSERT [dbo].[ASPECTOEVALUADO] ([aspectoevaluado_id], [componente_id], [descripcion], [estado], [usuario_reg], [fecha_reg], [fecha_act], [usuario_act]) VALUES (7, 3, N'Cumplimiento de las disposiciones establecidas en la Ley N°31564 Ley de Prevención y Mitigación del Conflicto de Intereses.', 1, N'sys', CAST(N'2024-07-01T15:16:33.567' AS DateTime), NULL, NULL)
+GO
+INSERT [dbo].[ASPECTOEVALUADO] ([aspectoevaluado_id], [componente_id], [descripcion], [estado], [usuario_reg], [fecha_reg], [fecha_act], [usuario_act]) VALUES (8, 3, N'Reconocimiento al personal por contribución al desempeño ético.', 1, N'sys', CAST(N'2024-07-01T15:16:33.567' AS DateTime), NULL, NULL)
+GO
+INSERT [dbo].[ASPECTOEVALUADO] ([aspectoevaluado_id], [componente_id], [descripcion], [estado], [usuario_reg], [fecha_reg], [fecha_act], [usuario_act]) VALUES (9, 3, N'Establecimiento de mecanismos para asegurar la integridad en el proceso de contratación de personal.', 1, N'sys', CAST(N'2024-07-01T15:16:33.567' AS DateTime), NULL, NULL)
+GO
+INSERT [dbo].[ASPECTOEVALUADO] ([aspectoevaluado_id], [componente_id], [descripcion], [estado], [usuario_reg], [fecha_reg], [fecha_act], [usuario_act]) VALUES (10, 4, N'Difusión en el portal institucional de los avances en la implementación del modelo de integridad en la entidad.', 1, N'sys', CAST(N'2024-07-01T15:21:32.230' AS DateTime), NULL, NULL)
+GO
+INSERT [dbo].[ASPECTOEVALUADO] ([aspectoevaluado_id], [componente_id], [descripcion], [estado], [usuario_reg], [fecha_reg], [fecha_act], [usuario_act]) VALUES (11, 4, N'Monitoreo de publicación de información en el Portal de Transparencia Estándar.', 1, N'sys', CAST(N'2024-07-01T15:21:32.230' AS DateTime), NULL, NULL)
+GO
+INSERT [dbo].[ASPECTOEVALUADO] ([aspectoevaluado_id], [componente_id], [descripcion], [estado], [usuario_reg], [fecha_reg], [fecha_act], [usuario_act]) VALUES (12, 4, N'Presentación de la Declaración Jurada de Intereses.', 1, N'sys', CAST(N'2024-07-01T15:21:32.230' AS DateTime), NULL, NULL)
+GO
+INSERT [dbo].[ASPECTOEVALUADO] ([aspectoevaluado_id], [componente_id], [descripcion], [estado], [usuario_reg], [fecha_reg], [fecha_act], [usuario_act]) VALUES (13, 4, N'Implementación del Registro de Visitas en Línea.', 1, N'sys', CAST(N'2024-07-01T15:21:32.230' AS DateTime), NULL, NULL)
+GO
+INSERT [dbo].[ASPECTOEVALUADO] ([aspectoevaluado_id], [componente_id], [descripcion], [estado], [usuario_reg], [fecha_reg], [fecha_act], [usuario_act]) VALUES (14, 4, N'Implementación de un sistema en línea de atención de solicitudes de acceso a la información pública.', 1, N'sys', CAST(N'2024-07-01T15:21:32.230' AS DateTime), NULL, NULL)
+GO
+INSERT [dbo].[ASPECTOEVALUADO] ([aspectoevaluado_id], [componente_id], [descripcion], [estado], [usuario_reg], [fecha_reg], [fecha_act], [usuario_act]) VALUES (15, 4, N'Porcentaje de solicitudes de acceso a la información pública atendidas.', 1, N'sys', CAST(N'2024-07-01T15:21:32.230' AS DateTime), NULL, NULL)
+GO
+INSERT [dbo].[ASPECTOEVALUADO] ([aspectoevaluado_id], [componente_id], [descripcion], [estado], [usuario_reg], [fecha_reg], [fecha_act], [usuario_act]) VALUES (16, 5, N'Nivel de avance en la implementación del Sistema de Control Interno.', 1, N'sys', CAST(N'2024-07-01T15:21:32.230' AS DateTime), NULL, NULL)
+GO
+INSERT [dbo].[ASPECTOEVALUADO] ([aspectoevaluado_id], [componente_id], [descripcion], [estado], [usuario_reg], [fecha_reg], [fecha_act], [usuario_act]) VALUES (17, 5, N'Nivel de avance en la implementación de las recomendaciones emitidas por el Órgano de Control Institucional.', 1, N'sys', CAST(N'2024-07-01T15:21:32.230' AS DateTime), NULL, NULL)
+GO
+INSERT [dbo].[ASPECTOEVALUADO] ([aspectoevaluado_id], [componente_id], [descripcion], [estado], [usuario_reg], [fecha_reg], [fecha_act], [usuario_act]) VALUES (18, 6, N'Incorporación de contenidos de ética e integridad pública en el proceso de inducción.', 1, N'sys', CAST(N'2024-07-01T15:21:32.230' AS DateTime), NULL, NULL)
+GO
+INSERT [dbo].[ASPECTOEVALUADO] ([aspectoevaluado_id], [componente_id], [descripcion], [estado], [usuario_reg], [fecha_reg], [fecha_act], [usuario_act]) VALUES (19, 6, N'Inclusión de temas vinculados con la integridad en el Plan de Desarrollo de las Personas.', 1, N'sys', CAST(N'2024-07-01T15:21:32.230' AS DateTime), NULL, NULL)
+GO
+INSERT [dbo].[ASPECTOEVALUADO] ([aspectoevaluado_id], [componente_id], [descripcion], [estado], [usuario_reg], [fecha_reg], [fecha_act], [usuario_act]) VALUES (20, 6, N'Desarrollo de jornadas de capacitación en ética e integridad pública.', 1, N'sys', CAST(N'2024-07-01T15:21:32.230' AS DateTime), NULL, NULL)
+GO
+INSERT [dbo].[ASPECTOEVALUADO] ([aspectoevaluado_id], [componente_id], [descripcion], [estado], [usuario_reg], [fecha_reg], [fecha_act], [usuario_act]) VALUES (21, 6, N'Difusión y promoción de la cultura integridad pública a los servidores civiles de la entidad.', 1, N'sys', CAST(N'2024-07-01T15:21:32.230' AS DateTime), NULL, NULL)
+GO
+INSERT [dbo].[ASPECTOEVALUADO] ([aspectoevaluado_id], [componente_id], [descripcion], [estado], [usuario_reg], [fecha_reg], [fecha_act], [usuario_act]) VALUES (22, 6, N'Difusión y promoción de la cultura de integridad pública a los administrados, proveedores, y otros públicos de interés.', 1, N'sys', CAST(N'2024-07-01T15:21:32.230' AS DateTime), NULL, NULL)
+GO
+INSERT [dbo].[ASPECTOEVALUADO] ([aspectoevaluado_id], [componente_id], [descripcion], [estado], [usuario_reg], [fecha_reg], [fecha_act], [usuario_act]) VALUES (23, 6, N'Inclusión de un componente de integridad en las evaluaciones de clima laboral.', 1, N'sys', CAST(N'2024-07-01T15:21:32.230' AS DateTime), NULL, NULL)
+GO
+INSERT [dbo].[ASPECTOEVALUADO] ([aspectoevaluado_id], [componente_id], [descripcion], [estado], [usuario_reg], [fecha_reg], [fecha_act], [usuario_act]) VALUES (24, 7, N'Implementación de la Plataforma Digital Única de Denuncias del Ciudadano.', 1, N'sys', CAST(N'2024-07-01T15:21:32.230' AS DateTime), NULL, NULL)
+GO
+INSERT [dbo].[ASPECTOEVALUADO] ([aspectoevaluado_id], [componente_id], [descripcion], [estado], [usuario_reg], [fecha_reg], [fecha_act], [usuario_act]) VALUES (25, 7, N'Aprobación de directiva sobre el otorgamiento de medidas de protección al denunciante.', 1, N'sys', CAST(N'2024-07-01T15:21:32.230' AS DateTime), NULL, NULL)
+GO
+INSERT [dbo].[ASPECTOEVALUADO] ([aspectoevaluado_id], [componente_id], [descripcion], [estado], [usuario_reg], [fecha_reg], [fecha_act], [usuario_act]) VALUES (26, 8, N'Monitoreo del reporte sobre implementación del modelo de integridad de las entidades adscritas (solo aplica ministerios).', 1, N'sys', CAST(N'2024-07-01T15:21:32.230' AS DateTime), NULL, NULL)
+GO
+INSERT [dbo].[ASPECTOEVALUADO] ([aspectoevaluado_id], [componente_id], [descripcion], [estado], [usuario_reg], [fecha_reg], [fecha_act], [usuario_act]) VALUES (27, 8, N'Elaboración del reporte de seguimiento y monitoreo del modelo de integridad.', 1, N'sys', CAST(N'2024-07-01T15:21:32.230' AS DateTime), NULL, NULL)
+GO
+INSERT [dbo].[ASPECTOEVALUADO] ([aspectoevaluado_id], [componente_id], [descripcion], [estado], [usuario_reg], [fecha_reg], [fecha_act], [usuario_act]) VALUES (28, 8, N'Elaboración de informe de capacidad operativa de la oficina de integridad.', 1, N'sys', CAST(N'2024-07-01T15:21:32.230' AS DateTime), NULL, NULL)
+GO
+INSERT [dbo].[ASPECTOEVALUADO] ([aspectoevaluado_id], [componente_id], [descripcion], [estado], [usuario_reg], [fecha_reg], [fecha_act], [usuario_act]) VALUES (29, 8, N'Elaboración de informes de evaluación de resultados emitidos por la SIP.', 1, N'sys', CAST(N'2024-07-01T15:21:32.230' AS DateTime), NULL, NULL)
+GO
+INSERT [dbo].[ASPECTOEVALUADO] ([aspectoevaluado_id], [componente_id], [descripcion], [estado], [usuario_reg], [fecha_reg], [fecha_act], [usuario_act]) VALUES (30, 9, N'Desarrollo de reuniones con las demás unidades de organización de la entidad para monitorear la implementación del modelo de integridad.', 1, N'sys', CAST(N'2024-07-01T15:21:32.230' AS DateTime), NULL, NULL)
+GO
+INSERT [dbo].[ASPECTOEVALUADO] ([aspectoevaluado_id], [componente_id], [descripcion], [estado], [usuario_reg], [fecha_reg], [fecha_act], [usuario_act]) VALUES (31, 9, N'Incorporación de la función de seguimiento y monitoreo del modelo de integridad en documentos institucionales.', 1, N'sys', CAST(N'2024-07-01T15:21:32.230' AS DateTime), NULL, NULL)
+GO
+INSERT [dbo].[ASPECTOEVALUADO] ([aspectoevaluado_id], [componente_id], [descripcion], [estado], [usuario_reg], [fecha_reg], [fecha_act], [usuario_act]) VALUES (32, 9, N'Difusión de la función de asistencia técnica de la oficina de integridad a las demás áreas de la entidad.', 1, N'sys', CAST(N'2024-07-01T15:21:32.233' AS DateTime), NULL, NULL)
+GO
+SET IDENTITY_INSERT [dbo].[ASPECTOEVALUADO] OFF
 GO
 SET IDENTITY_INSERT [dbo].[COMPONENTE] ON 
 GO
@@ -442,19 +617,19 @@ INSERT [dbo].[COMPONENTE] ([componente_id], [codigo], [abreviatura], [descripcio
 GO
 INSERT [dbo].[COMPONENTE] ([componente_id], [codigo], [abreviatura], [descripcion], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (2, N'00002', N'C2', N'Gestión de Riesgos', 1, N'sys', CAST(N'2024-06-28T00:38:21.583' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[COMPONENTE] ([componente_id], [codigo], [abreviatura], [descripcion], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (3, N'00003', N'C3', N'Transparencia y Acceso a la Información:', 1, N'sys', CAST(N'2024-06-28T00:38:29.087' AS DateTime), NULL, NULL)
+INSERT [dbo].[COMPONENTE] ([componente_id], [codigo], [abreviatura], [descripcion], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (3, N'00003', N'C3', N'Políticas de Integridad', 1, N'sys', CAST(N'2024-06-28T00:38:29.087' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[COMPONENTE] ([componente_id], [codigo], [abreviatura], [descripcion], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (4, N'00004', N'C4', N'Ética e Integridad', 1, N'sys', CAST(N'2024-06-28T00:38:37.050' AS DateTime), NULL, NULL)
+INSERT [dbo].[COMPONENTE] ([componente_id], [codigo], [abreviatura], [descripcion], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (4, N'00004', N'C4', N'Transparencia', 1, N'sys', CAST(N'2024-06-28T00:38:37.050' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[COMPONENTE] ([componente_id], [codigo], [abreviatura], [descripcion], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (5, N'00005', N'C5', N'Participación Ciudadana', 1, N'sys', CAST(N'2024-06-28T00:38:44.353' AS DateTime), NULL, NULL)
+INSERT [dbo].[COMPONENTE] ([componente_id], [codigo], [abreviatura], [descripcion], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (5, N'00005', N'C5', N'Controles', 1, N'sys', CAST(N'2024-06-28T00:38:44.353' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[COMPONENTE] ([componente_id], [codigo], [abreviatura], [descripcion], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (6, N'00006', N'C6', N'Control Interno y Auditoría', 1, N'sys', CAST(N'2024-06-28T00:38:55.247' AS DateTime), NULL, NULL)
+INSERT [dbo].[COMPONENTE] ([componente_id], [codigo], [abreviatura], [descripcion], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (6, N'00006', N'C6', N'Comunicación Capacitación', 1, N'sys', CAST(N'2024-06-28T00:38:55.247' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[COMPONENTE] ([componente_id], [codigo], [abreviatura], [descripcion], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (7, N'00007', N'C7', N'Denuncias y Protección al Denunciante', 1, N'sys', CAST(N'2024-06-28T00:39:05.190' AS DateTime), NULL, NULL)
+INSERT [dbo].[COMPONENTE] ([componente_id], [codigo], [abreviatura], [descripcion], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (7, N'00007', N'C7', N'Canal de Denuncia', 1, N'sys', CAST(N'2024-06-28T00:39:05.190' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[COMPONENTE] ([componente_id], [codigo], [abreviatura], [descripcion], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (8, N'00008', N'C8', N'Sanciones y Consecuencias', 1, N'sys', CAST(N'2024-06-28T00:39:17.433' AS DateTime), NULL, NULL)
+INSERT [dbo].[COMPONENTE] ([componente_id], [codigo], [abreviatura], [descripcion], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (8, N'00008', N'C8', N'Supervisión y Monitoreo', 1, N'sys', CAST(N'2024-06-28T00:39:17.433' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[COMPONENTE] ([componente_id], [codigo], [abreviatura], [descripcion], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (9, N'00009', N'C9', N'Innovación y Mejora Continua', 1, N'sys', CAST(N'2024-06-28T00:39:25.083' AS DateTime), NULL, NULL)
+INSERT [dbo].[COMPONENTE] ([componente_id], [codigo], [abreviatura], [descripcion], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (9, N'00009', N'C9', N'Encargado del Modelo', 1, N'sys', CAST(N'2024-06-28T00:39:25.083' AS DateTime), NULL, NULL)
 GO
 SET IDENTITY_INSERT [dbo].[COMPONENTE] OFF
 GO
@@ -636,6 +811,20 @@ INSERT [dbo].[ENTIDADSECTOR] ([entidadsector_id], [tiposector_id], [codigo], [ab
 GO
 SET IDENTITY_INSERT [dbo].[ENTIDADSECTOR] OFF
 GO
+SET IDENTITY_INSERT [dbo].[ETAPA] ON 
+GO
+INSERT [dbo].[ETAPA] ([etapa_id], [codigo], [nombre], [abreviatura], [descripcion], [estado], [usuario_reg], [fecha_reg], [fecha_act], [usuario_act]) VALUES (1, N'00001', N'Etapa 01', N'E01', N'Cumplimiento normativo e Institucionalización', 1, N'sys', CAST(N'2024-07-01T16:24:11.220' AS DateTime), NULL, NULL)
+GO
+INSERT [dbo].[ETAPA] ([etapa_id], [codigo], [nombre], [abreviatura], [descripcion], [estado], [usuario_reg], [fecha_reg], [fecha_act], [usuario_act]) VALUES (2, N'00002', N'Etapa 02', N'E02', N'Implementación y aplicación de mecanismos y herramientas de integridad', 1, N'sys', CAST(N'2024-07-01T16:24:14.630' AS DateTime), NULL, NULL)
+GO
+INSERT [dbo].[ETAPA] ([etapa_id], [codigo], [nombre], [abreviatura], [descripcion], [estado], [usuario_reg], [fecha_reg], [fecha_act], [usuario_act]) VALUES (3, N'00003', N'Etapa 03', N'E03', N'Consolidación de mecanismos y herramientas', 1, N'sys', CAST(N'2024-07-01T16:24:18.370' AS DateTime), NULL, NULL)
+GO
+INSERT [dbo].[ETAPA] ([etapa_id], [codigo], [nombre], [abreviatura], [descripcion], [estado], [usuario_reg], [fecha_reg], [fecha_act], [usuario_act]) VALUES (4, N'00004', N'Etapa 04', N'E04', N'Evaluación de resultados', 1, N'sys', CAST(N'2024-07-01T16:24:20.587' AS DateTime), NULL, NULL)
+GO
+INSERT [dbo].[ETAPA] ([etapa_id], [codigo], [nombre], [abreviatura], [descripcion], [estado], [usuario_reg], [fecha_reg], [fecha_act], [usuario_act]) VALUES (5, N'00005', N'Etapa 05', N'E05', N'Evaluación de impacto', 1, N'sys', CAST(N'2024-07-01T16:24:25.090' AS DateTime), NULL, NULL)
+GO
+SET IDENTITY_INSERT [dbo].[ETAPA] OFF
+GO
 SET IDENTITY_INSERT [dbo].[MODALIDAD] ON 
 GO
 INSERT [dbo].[MODALIDAD] ([modalidad_id], [codigo], [descripcion], [abreviatura], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (7, N'00001', N'Contrato Administrativo de Servicios', N'CAS', 1, N'sys', CAST(N'2024-06-22T16:01:04.490' AS DateTime), NULL, NULL)
@@ -690,23 +879,15 @@ SET IDENTITY_INSERT [dbo].[PERSONA] OFF
 GO
 SET IDENTITY_INSERT [dbo].[PREGUNTA] ON 
 GO
-INSERT [dbo].[PREGUNTA] ([pregunta_id], [componente_id], [codigo], [numero], [descripcion], [calculo_icp], [habilitado], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (5, 8, N'00005', 18, N'Descripción de test', 1, 1, 1, N'test', CAST(N'2024-06-28T00:47:28.120' AS DateTime), N'jjromero88', CAST(N'2024-06-28T18:56:37.377' AS DateTime))
+INSERT [dbo].[PREGUNTA] ([pregunta_id], [componente_id], [codigo], [numero], [descripcion], [calculo_icp], [habilitado], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (1010, 6, NULL, 1, N'¿Cuál es el nivel de avance de implementación de las recomendaciones derivadas de Informes de servicios de control posterior emitidos por el OCI, CGR y Sociedades de Auditoría realizada en el marco de la Directiva N° 014-2020-CG/SESNC (según las evaluaciones realizadas por el OCI dispuestas por la CGR en forma bimensual) desde el 31 de diciembre 2022 hasta el corte bimestral anterior a la fecha de presentación del 1er reporte ICP 2023?', 1, 1, 1, N'jjromero88', CAST(N'2024-06-29T21:28:09.037' AS DateTime), N'jjromero88', CAST(N'2024-06-29T21:41:47.253' AS DateTime))
 GO
-INSERT [dbo].[PREGUNTA] ([pregunta_id], [componente_id], [codigo], [numero], [descripcion], [calculo_icp], [habilitado], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (6, 1, N'00006', 1, N'Pregunta test', 1, 1, 1, N'jjromero88', CAST(N'2024-06-28T17:54:58.533' AS DateTime), NULL, NULL)
+INSERT [dbo].[PREGUNTA] ([pregunta_id], [componente_id], [codigo], [numero], [descripcion], [calculo_icp], [habilitado], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (1011, 7, N'01011', 2, N'¿Se han modificado los documentos de planeamiento (PEI - POI) para incorporar a la integridad como objetivo o acción estratégica institucional?', 1, 1, 1, N'jjromero88', CAST(N'2024-06-29T21:30:29.860' AS DateTime), N'jjromero88', CAST(N'2024-06-29T21:33:10.680' AS DateTime))
 GO
-INSERT [dbo].[PREGUNTA] ([pregunta_id], [componente_id], [codigo], [numero], [descripcion], [calculo_icp], [habilitado], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (7, 1, N'00007', 2, N'Pregunta test Numero 2', 0, 1, 1, N'jjromero88', CAST(N'2024-06-28T17:58:19.263' AS DateTime), NULL, NULL)
+INSERT [dbo].[PREGUNTA] ([pregunta_id], [componente_id], [codigo], [numero], [descripcion], [calculo_icp], [habilitado], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (1012, 2, N'01012', 3, N'¿La entidad cuenta con algún procedimiento institucionalizado para reconocer la contribución del personal a la observancia de los valores, principios y normas que promuevan y protejan el desempeño ético de la función pública?', 1, 1, 1, N'jjromero88', CAST(N'2024-06-29T21:32:45.607' AS DateTime), N'jjromero88', CAST(N'2024-06-29T21:42:14.230' AS DateTime))
 GO
-INSERT [dbo].[PREGUNTA] ([pregunta_id], [componente_id], [codigo], [numero], [descripcion], [calculo_icp], [habilitado], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (8, 1, N'00008', 3, N'Pregunta test 3', 1, 1, 1, N'jjromero88', CAST(N'2024-06-28T18:17:43.483' AS DateTime), NULL, NULL)
+INSERT [dbo].[PREGUNTA] ([pregunta_id], [componente_id], [codigo], [numero], [descripcion], [calculo_icp], [habilitado], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (1013, 8, N'01013', 4, N'¿La entidad ha cumplido con presentar los siete entregables para la implementación del Sistema de Control Interno, correspondientes al 2023?', 1, 1, 1, N'jjromero88', CAST(N'2024-06-29T21:39:23.740' AS DateTime), NULL, NULL)
 GO
-INSERT [dbo].[PREGUNTA] ([pregunta_id], [componente_id], [codigo], [numero], [descripcion], [calculo_icp], [habilitado], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (9, 1, N'00009', 11, N'Pregunta test 11', 1, 1, 1, N'jjromero88', CAST(N'2024-06-28T19:32:01.447' AS DateTime), NULL, NULL)
-GO
-INSERT [dbo].[PREGUNTA] ([pregunta_id], [componente_id], [codigo], [numero], [descripcion], [calculo_icp], [habilitado], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (10, 1, N'00010', 12, N'Pregunta test 12', 1, 1, 1, N'jjromero88', CAST(N'2024-06-28T19:33:12.610' AS DateTime), NULL, NULL)
-GO
-INSERT [dbo].[PREGUNTA] ([pregunta_id], [componente_id], [codigo], [numero], [descripcion], [calculo_icp], [habilitado], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (1007, 7, N'00011', 1, N'¿Cuál es la modalidad a través de la que se implementa la Función de Integridad en la entidad?', 1, 1, 1, N'jjromero88', CAST(N'2024-06-29T16:04:55.680' AS DateTime), N'jjromero88', CAST(N'2024-06-29T16:39:03.780' AS DateTime))
-GO
-INSERT [dbo].[PREGUNTA] ([pregunta_id], [componente_id], [codigo], [numero], [descripcion], [calculo_icp], [habilitado], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (1008, 5, N'01008', 19, N' ¿La entidad cuenta con algún procedimiento institucionalizado para reconocer la contribución del personal a la ?', 1, 1, 1, N'jjromero88', CAST(N'2024-06-29T16:51:06.133' AS DateTime), N'jjromero88', CAST(N'2024-06-29T16:52:29.317' AS DateTime))
-GO
-INSERT [dbo].[PREGUNTA] ([pregunta_id], [componente_id], [codigo], [numero], [descripcion], [calculo_icp], [habilitado], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (1009, 3, N'01009', 20, N' ¿Cuál es el nivel de avance de implementación de las recomendaciones derivadas de Informes de servicios de control posterior emitidos por el OCI, CGR y Sociedades de Auditoría realizada en el marco de la Directiva N° 014-2020-CG/SESNC (según las evaluaciones realizadas por el OCI dispuestas por la CGR en forma bimensual) desde el 31 de diciembre 2022 hasta el corte bimestral anterior a la fecha de presentación del 1er reporte ICP 2023?', 1, 1, 1, N'jjromero88', CAST(N'2024-06-29T17:00:17.640' AS DateTime), N'jjromero88', CAST(N'2024-06-29T17:01:42.407' AS DateTime))
+INSERT [dbo].[PREGUNTA] ([pregunta_id], [componente_id], [codigo], [numero], [descripcion], [calculo_icp], [habilitado], [estado], [usuario_reg], [fecha_reg], [usuario_act], [fecha_act]) VALUES (1014, 3, N'01014', 5, N'¿En el Reglamento de Organización y Funciones - ROF de la entidad o en algún otro documento se precisa que la Oficina de Integridad Institucional, o la que haga sus veces, es la encargada de impulsar la implementación y/o realizar el seguimiento y monitoreo del Modelo de integridad?', 1, 1, 1, N'jjromero88', CAST(N'2024-06-29T21:40:57.890' AS DateTime), NULL, NULL)
 GO
 SET IDENTITY_INSERT [dbo].[PREGUNTA] OFF
 GO
@@ -5496,6 +5677,12 @@ ALTER TABLE [dbo].[ALTERNATIVA] ADD  CONSTRAINT [DF__ALTERNATI__usuar__29E1370A]
 GO
 ALTER TABLE [dbo].[ALTERNATIVA] ADD  CONSTRAINT [DF__ALTERNATI__fecha__2AD55B43]  DEFAULT (getdate()) FOR [fecha_reg]
 GO
+ALTER TABLE [dbo].[ASPECTOEVALUADO] ADD  DEFAULT ((1)) FOR [estado]
+GO
+ALTER TABLE [dbo].[ASPECTOEVALUADO] ADD  DEFAULT ('sys') FOR [usuario_reg]
+GO
+ALTER TABLE [dbo].[ASPECTOEVALUADO] ADD  DEFAULT (getdate()) FOR [fecha_reg]
+GO
 ALTER TABLE [dbo].[COMPONENTE] ADD  DEFAULT ((1)) FOR [estado]
 GO
 ALTER TABLE [dbo].[COMPONENTE] ADD  DEFAULT ('sys') FOR [usuario_reg]
@@ -5524,6 +5711,12 @@ ALTER TABLE [dbo].[ENTIDADCOORDINADOR] ADD  DEFAULT ('sys') FOR [usuario_reg]
 GO
 ALTER TABLE [dbo].[ENTIDADCOORDINADOR] ADD  DEFAULT (getdate()) FOR [fecha_reg]
 GO
+ALTER TABLE [dbo].[ENTIDADETAPA] ADD  DEFAULT ((1)) FOR [estado]
+GO
+ALTER TABLE [dbo].[ENTIDADETAPA] ADD  DEFAULT ('sys') FOR [usuario_reg]
+GO
+ALTER TABLE [dbo].[ENTIDADETAPA] ADD  DEFAULT (getdate()) FOR [fecha_reg]
+GO
 ALTER TABLE [dbo].[ENTIDADGRUPO] ADD  DEFAULT ((1)) FOR [estado]
 GO
 ALTER TABLE [dbo].[ENTIDADGRUPO] ADD  DEFAULT ('sys') FOR [usuario_reg]
@@ -5543,6 +5736,26 @@ GO
 ALTER TABLE [dbo].[ENTIDADSECTOR] ADD  CONSTRAINT [DF__ENTIDADSE__usuar__4D94879B]  DEFAULT ('sys') FOR [usuario_reg]
 GO
 ALTER TABLE [dbo].[ENTIDADSECTOR] ADD  CONSTRAINT [DF__ENTIDADSE__fecha__4E88ABD4]  DEFAULT (getdate()) FOR [fecha_reg]
+GO
+ALTER TABLE [dbo].[ETAPA] ADD  DEFAULT ((1)) FOR [estado]
+GO
+ALTER TABLE [dbo].[ETAPA] ADD  DEFAULT ('sys') FOR [usuario_reg]
+GO
+ALTER TABLE [dbo].[ETAPA] ADD  DEFAULT (getdate()) FOR [fecha_reg]
+GO
+ALTER TABLE [dbo].[EVALUACION] ADD  DEFAULT ((1)) FOR [estado]
+GO
+ALTER TABLE [dbo].[EVALUACION] ADD  DEFAULT ('sys') FOR [usuario_reg]
+GO
+ALTER TABLE [dbo].[EVALUACION] ADD  DEFAULT (getdate()) FOR [fecha_reg]
+GO
+ALTER TABLE [dbo].[EVALUACIONETAPA] ADD  DEFAULT ((1)) FOR [habilitado]
+GO
+ALTER TABLE [dbo].[EVALUACIONETAPA] ADD  DEFAULT ((1)) FOR [estado]
+GO
+ALTER TABLE [dbo].[EVALUACIONETAPA] ADD  DEFAULT ('sys') FOR [usuario_reg]
+GO
+ALTER TABLE [dbo].[EVALUACIONETAPA] ADD  DEFAULT (getdate()) FOR [fecha_reg]
 GO
 ALTER TABLE [dbo].[MODALIDAD] ADD  DEFAULT ((1)) FOR [estado]
 GO
@@ -5570,6 +5783,12 @@ ALTER TABLE [dbo].[PREGUNTA] ADD  CONSTRAINT [DF__PREGUNTA__usuari__2334397B]  D
 GO
 ALTER TABLE [dbo].[PREGUNTA] ADD  CONSTRAINT [DF__PREGUNTA__fecha___24285DB4]  DEFAULT (getdate()) FOR [fecha_reg]
 GO
+ALTER TABLE [dbo].[PREGUNTAETAPA] ADD  DEFAULT ((1)) FOR [estado]
+GO
+ALTER TABLE [dbo].[PREGUNTAETAPA] ADD  DEFAULT ('sys') FOR [usuario_reg]
+GO
+ALTER TABLE [dbo].[PREGUNTAETAPA] ADD  DEFAULT (getdate()) FOR [fecha_reg]
+GO
 ALTER TABLE [dbo].[PROFESION] ADD  CONSTRAINT [DF__PROFESION__estad__2180FB33]  DEFAULT ((1)) FOR [estado]
 GO
 ALTER TABLE [dbo].[PROFESION] ADD  CONSTRAINT [DF__PROFESION__usuar__22751F6C]  DEFAULT ('sys') FOR [usuario_reg]
@@ -5586,6 +5805,9 @@ ALTER TABLE [dbo].[ALTERNATIVA]  WITH CHECK ADD  CONSTRAINT [FK__ALTERNATI__preg
 REFERENCES [dbo].[PREGUNTA] ([pregunta_id])
 GO
 ALTER TABLE [dbo].[ALTERNATIVA] CHECK CONSTRAINT [FK__ALTERNATI__pregu__2704CA5F]
+GO
+ALTER TABLE [dbo].[ASPECTOEVALUADO]  WITH CHECK ADD FOREIGN KEY([componente_id])
+REFERENCES [dbo].[COMPONENTE] ([componente_id])
 GO
 ALTER TABLE [dbo].[ENTIDAD]  WITH CHECK ADD  CONSTRAINT [FK__ENTIDAD__entidad__72C60C4A] FOREIGN KEY([entidadgrupo_id])
 REFERENCES [dbo].[ENTIDADGRUPO] ([entidadgrupo_id])
@@ -5621,6 +5843,12 @@ GO
 ALTER TABLE [dbo].[ENTIDADCOORDINADOR]  WITH CHECK ADD FOREIGN KEY([profesion_id])
 REFERENCES [dbo].[PROFESION] ([profesion_id])
 GO
+ALTER TABLE [dbo].[ENTIDADETAPA]  WITH CHECK ADD FOREIGN KEY([entidad_id])
+REFERENCES [dbo].[ENTIDAD] ([entidad_id])
+GO
+ALTER TABLE [dbo].[ENTIDADETAPA]  WITH CHECK ADD FOREIGN KEY([evaluacionetapa_id])
+REFERENCES [dbo].[EVALUACIONETAPA] ([evaluacionetapa_id])
+GO
 ALTER TABLE [dbo].[ENTIDADOFICIAL]  WITH CHECK ADD FOREIGN KEY([entidad_id])
 REFERENCES [dbo].[ENTIDAD] ([entidad_id])
 GO
@@ -5635,6 +5863,12 @@ REFERENCES [dbo].[TIPOSECTOR] ([tiposector_id])
 GO
 ALTER TABLE [dbo].[ENTIDADSECTOR] CHECK CONSTRAINT [FK_ENTIDADSECTOR_TIPOSECTOR]
 GO
+ALTER TABLE [dbo].[EVALUACIONETAPA]  WITH CHECK ADD FOREIGN KEY([etapa_id])
+REFERENCES [dbo].[ETAPA] ([etapa_id])
+GO
+ALTER TABLE [dbo].[EVALUACIONETAPA]  WITH CHECK ADD FOREIGN KEY([evaluacion_id])
+REFERENCES [dbo].[EVALUACION] ([evaluacion_id])
+GO
 ALTER TABLE [dbo].[PERSONA]  WITH CHECK ADD  CONSTRAINT [FK_PERSONA_ENTIDAD] FOREIGN KEY([entidad_id])
 REFERENCES [dbo].[ENTIDAD] ([entidad_id])
 GO
@@ -5645,7 +5879,13 @@ REFERENCES [dbo].[COMPONENTE] ([componente_id])
 GO
 ALTER TABLE [dbo].[PREGUNTA] CHECK CONSTRAINT [FK__PREGUNTA__compon__2057CCD0]
 GO
-/****** Object:  StoredProcedure [dbo].[USP_DEL_ENTIDAD]    Script Date: 29/06/2024 17:09:35 ******/
+ALTER TABLE [dbo].[PREGUNTAETAPA]  WITH CHECK ADD FOREIGN KEY([evaluacionetapa_id])
+REFERENCES [dbo].[EVALUACIONETAPA] ([evaluacionetapa_id])
+GO
+ALTER TABLE [dbo].[PREGUNTAETAPA]  WITH CHECK ADD FOREIGN KEY([pregunta_id])
+REFERENCES [dbo].[PREGUNTA] ([pregunta_id])
+GO
+/****** Object:  StoredProcedure [dbo].[USP_DEL_ENTIDAD]    Script Date: 1/07/2024 22:43:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5677,7 +5917,8 @@ BEGIN
 			[dbo].[ENTIDAD]
 		SET 
 			estado = 0,
-			usuario_act = @usuario_act
+			usuario_act = @usuario_act,
+			fecha_act = GETDATE()
 		WHERE
 			entidad_id = @entidad_id
 
@@ -5690,7 +5931,7 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[USP_DEL_ENTIDADCOORDINADOR]    Script Date: 29/06/2024 17:09:35 ******/
+/****** Object:  StoredProcedure [dbo].[USP_DEL_ENTIDADCOORDINADOR]    Script Date: 1/07/2024 22:43:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5737,7 +5978,7 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[USP_DEL_ENTIDADGRUPO]    Script Date: 29/06/2024 17:09:35 ******/
+/****** Object:  StoredProcedure [dbo].[USP_DEL_ENTIDADGRUPO]    Script Date: 1/07/2024 22:43:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5782,7 +6023,7 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[USP_DEL_ENTIDADOFICIAL]    Script Date: 29/06/2024 17:09:35 ******/
+/****** Object:  StoredProcedure [dbo].[USP_DEL_ENTIDADOFICIAL]    Script Date: 1/07/2024 22:43:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5829,7 +6070,86 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[USP_DEL_PERSONA]    Script Date: 29/06/2024 17:09:35 ******/
+/****** Object:  StoredProcedure [dbo].[USP_DEL_EVALUACION]    Script Date: 1/07/2024 22:43:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE       PROCEDURE [dbo].[USP_DEL_EVALUACION](
+	@evaluacion_id int = NULL,
+	@usuario_act varchar(20) = NULL,
+	@error BIT = NULL OUTPUT,
+	@message NVARCHAR(500) = NULL OUTPUT
+)
+AS
+BEGIN
+	SET @error = 0;
+
+	-- validamos si existe la evaluación que desea eliminar
+	IF NOT EXISTS(SELECT TOP(1) t1.* FROM [dbo].[EVALUACION] AS t1 WITH(NOLOCK) WHERE t1.evaluacion_id = @evaluacion_id) 
+	BEGIN
+		SET @error = 1;
+		SET @message = 'La Evaluación que desea Eliminar no existe';
+	END
+	
+	IF(@error = 0)
+	BEGIN
+
+		--Se elimina la evaluacion
+		UPDATE [dbo].[EVALUACION]
+		SET 
+			estado = 0,
+			usuario_act = @usuario_act,
+			fecha_act = GETDATE()
+		WHERE
+			evaluacion_id = @evaluacion_id
+
+
+		-- elimina las etapas de la evaluacion
+		UPDATE [dbo].[EVALUACIONETAPA]
+		SET
+			estado = 0,
+			usuario_act = @usuario_act,
+			fecha_act = GETDATE()
+		WHERE
+			evaluacion_id = @evaluacion_id;
+
+
+		-- elimina las entidades de las etapas
+		UPDATE [dbo].[ENTIDADETAPA]
+		SET
+			estado = 0,
+			usuario_act = @usuario_act,
+			fecha_act = GETDATE()
+		WHERE
+			entidadetapa_id IN(select t1.entidadetapa_id 
+			from ENTIDADETAPA as t1 with(nolock) 
+			inner join EVALUACIONETAPA as t2 with(nolock) on t1.evaluacionetapa_id = t2.evaluacionetapa_id and t2.evaluacion_id = @evaluacion_id);
+
+
+		-- eliminamos las preguntas de las etapas
+		UPDATE [dbo].[PREGUNTAETAPA]
+		SET
+			estado = 0,
+			usuario_act = @usuario_act,
+			fecha_act = GETDATE()
+		WHERE
+			evaluacionetapa_id IN(select t1.evaluacionetapa_id 
+			from [PREGUNTAETAPA] as t1 with(nolock) 
+			inner join EVALUACIONETAPA as t2 with(nolock) on t1.evaluacionetapa_id = t2.evaluacionetapa_id and t2.evaluacion_id = @evaluacion_id);
+
+
+		-- setemos el mensaje de salida
+		set @message = 'Información eliminada satisfactoriamente';
+
+	END
+
+
+END
+
+GO
+/****** Object:  StoredProcedure [dbo].[USP_DEL_PERSONA]    Script Date: 1/07/2024 22:43:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5875,7 +6195,7 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[USP_DEL_PREGUNTA]    Script Date: 29/06/2024 17:09:35 ******/
+/****** Object:  StoredProcedure [dbo].[USP_DEL_PREGUNTA]    Script Date: 1/07/2024 22:43:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5926,7 +6246,7 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[USP_GET_ENTIDAD]    Script Date: 29/06/2024 17:09:35 ******/
+/****** Object:  StoredProcedure [dbo].[USP_GET_ENTIDAD]    Script Date: 1/07/2024 22:43:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5986,7 +6306,7 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[USP_GET_ENTIDAD_GENERALIDADES]    Script Date: 29/06/2024 17:09:35 ******/
+/****** Object:  StoredProcedure [dbo].[USP_GET_ENTIDAD_GENERALIDADES]    Script Date: 1/07/2024 22:43:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -6068,7 +6388,7 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[USP_GET_ENTIDADCOORDINADOR]    Script Date: 29/06/2024 17:09:35 ******/
+/****** Object:  StoredProcedure [dbo].[USP_GET_ENTIDADCOORDINADOR]    Script Date: 1/07/2024 22:43:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -6134,7 +6454,7 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[USP_GET_ENTIDADGRUPO]    Script Date: 29/06/2024 17:09:35 ******/
+/****** Object:  StoredProcedure [dbo].[USP_GET_ENTIDADGRUPO]    Script Date: 1/07/2024 22:43:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -6181,7 +6501,7 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[USP_GET_ENTIDADOFICIAL]    Script Date: 29/06/2024 17:09:35 ******/
+/****** Object:  StoredProcedure [dbo].[USP_GET_ENTIDADOFICIAL]    Script Date: 1/07/2024 22:43:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -6247,7 +6567,60 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[USP_GET_PERSONA]    Script Date: 29/06/2024 17:09:35 ******/
+/****** Object:  StoredProcedure [dbo].[USP_GET_EVALUACION]    Script Date: 1/07/2024 22:43:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE           PROCEDURE [dbo].[USP_GET_EVALUACION](
+	@evaluacion_id INT,
+	@error BIT = NULL OUTPUT,
+	@message NVARCHAR(500) = NULL OUTPUT
+)
+AS
+BEGIN
+
+	set @error = 0
+
+	-- validamos si existe la evaluación que desea modificar
+	IF NOT EXISTS(SELECT TOP(1) t1.* FROM [dbo].[EVALUACION] AS t1 WITH(NOLOCK) WHERE t1.evaluacion_id = @evaluacion_id) 
+	BEGIN
+		SET @error = 1;
+		SET @message = 'La Evaluación que desea consultar no existe';
+	END
+	
+	IF(@error = 0)
+	BEGIN
+		SELECT
+			  T1.[evaluacion_id]
+			, T1.[codigo]
+			, T1.[fecha_inicio]
+			, T1.[fecha_fin]
+			, T1.[descripcion]
+			, T1.[comentarios]
+			, T1.[estado]
+			, T1.[usuario_reg]
+			, T1.[fecha_reg]
+			, T1.[fecha_act]
+			, T1.[usuario_act]
+		FROM
+			[dbo].[EVALUACION] AS T1 WITH(NOLOCK)
+		WHERE
+			(@evaluacion_id IS NULL OR T1.evaluacion_id = @evaluacion_id) AND
+			estado = 1
+		ORDER BY
+			T1.fecha_reg DESC
+		
+
+		set @message = 'Consulta exitosa';
+	END
+
+
+END
+
+GO
+/****** Object:  StoredProcedure [dbo].[USP_GET_PERSONA]    Script Date: 1/07/2024 22:43:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -6298,7 +6671,7 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[USP_GET_PREGUNTA]    Script Date: 29/06/2024 17:09:35 ******/
+/****** Object:  StoredProcedure [dbo].[USP_GET_PREGUNTA]    Script Date: 1/07/2024 22:43:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -6367,7 +6740,7 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[USP_INS_ENTIDAD]    Script Date: 29/06/2024 17:09:35 ******/
+/****** Object:  StoredProcedure [dbo].[USP_INS_ENTIDAD]    Script Date: 1/07/2024 22:43:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -6452,7 +6825,7 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[USP_INS_ENTIDADCOORDINADOR]    Script Date: 29/06/2024 17:09:35 ******/
+/****** Object:  StoredProcedure [dbo].[USP_INS_ENTIDADCOORDINADOR]    Script Date: 1/07/2024 22:43:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -6531,7 +6904,7 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[USP_INS_ENTIDADGRUPO]    Script Date: 29/06/2024 17:09:35 ******/
+/****** Object:  StoredProcedure [dbo].[USP_INS_ENTIDADGRUPO]    Script Date: 1/07/2024 22:43:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -6588,7 +6961,7 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[USP_INS_ENTIDADOFICIAL]    Script Date: 29/06/2024 17:09:35 ******/
+/****** Object:  StoredProcedure [dbo].[USP_INS_ENTIDADOFICIAL]    Script Date: 1/07/2024 22:43:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -6667,7 +7040,101 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[USP_INS_PERSONA]    Script Date: 29/06/2024 17:09:35 ******/
+/****** Object:  StoredProcedure [dbo].[USP_INS_EVALUACION]    Script Date: 1/07/2024 22:43:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE     PROCEDURE [dbo].[USP_INS_EVALUACION]	
+	@fecha_inicio datetime = null,
+	@fecha_fin datetime = null,
+	@descripcion varchar(100) = null,
+	@comentarios varchar(250) = null,
+	@usuario_reg varchar(20) = null,
+	@persona_id int = null OUTPUT,
+	@error bit = null OUTPUT,
+	@message nvarchar(500) = null OUTPUT
+AS
+BEGIN
+	
+	--Inicializa como false
+	SET @error = 0;
+
+	-- Validar que las fechas de inicio y fin no sean nulas
+	IF (@fecha_inicio IS NULL OR @fecha_fin IS NULL)
+	BEGIN
+		SET @error = 1
+		SET @message = 'Las fechas de inicio y fin no pueden ser nulas.'
+		RETURN
+	END
+
+	-- Validar que la fecha de inicio sea menor o igual a la fecha de fin
+	IF (@fecha_inicio >= @fecha_fin)
+	BEGIN
+		SET @error = 1
+		SET @message = 'La fecha de inicio debe ser menor a la fecha de fin.'
+		RETURN
+	END
+
+	-- Verificar si hay alguna evaluación con un rango de fechas que se superponga
+	IF EXISTS (
+		SELECT 1
+		FROM EVALUACION
+		WHERE estado = 1
+		AND (
+			(@fecha_inicio BETWEEN fecha_inicio AND fecha_fin)
+			OR (@fecha_fin BETWEEN fecha_inicio AND fecha_fin)
+			OR (fecha_inicio BETWEEN @fecha_inicio AND @fecha_fin)
+			OR (fecha_fin BETWEEN @fecha_inicio AND @fecha_fin)
+		)
+	)
+	BEGIN
+		SET @error = 1
+		SET @message = 'El rango de fechas se cruza con una evaluación existente.'
+		RETURN
+	END
+
+	IF(@error = 0)
+	BEGIN
+
+		-- generamos el codigo
+		declare @codigo varchar(20) = (select RIGHT('00000' + CAST(MAX(pregunta_id) + 1 AS VARCHAR(5)), 5) from dbo.[PREGUNTA] with(nolock));
+
+
+		-- Insertar la nueva evaluación
+		BEGIN TRY
+
+			INSERT INTO EVALUACION (
+				  codigo
+				, fecha_inicio
+				, fecha_fin
+				, descripcion
+				, comentarios
+				, usuario_reg
+				, fecha_reg)
+			VALUES (
+				  @codigo
+				, @fecha_inicio
+				, @fecha_fin
+				, @descripcion
+				, @comentarios
+				, @usuario_reg
+				, GETDATE()
+			);
+
+			SET @message = 'Evaluación insertada correctamente.';
+
+		END TRY
+		BEGIN CATCH
+			SET @error = 1
+			SET @message = ERROR_MESSAGE()
+		END CATCH
+
+	END
+END
+
+GO
+/****** Object:  StoredProcedure [dbo].[USP_INS_PERSONA]    Script Date: 1/07/2024 22:43:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -6734,7 +7201,7 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[USP_INS_PREGUNTA]    Script Date: 29/06/2024 17:09:35 ******/
+/****** Object:  StoredProcedure [dbo].[USP_INS_PREGUNTA]    Script Date: 1/07/2024 22:43:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -6826,7 +7293,7 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[USP_SEL_ALTERNATIVA]    Script Date: 29/06/2024 17:09:35 ******/
+/****** Object:  StoredProcedure [dbo].[USP_SEL_ALTERNATIVA]    Script Date: 1/07/2024 22:43:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -6874,7 +7341,7 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[USP_SEL_COMPONENTE]    Script Date: 29/06/2024 17:09:35 ******/
+/****** Object:  StoredProcedure [dbo].[USP_SEL_COMPONENTE]    Script Date: 1/07/2024 22:43:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -6916,7 +7383,7 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[USP_SEL_DOCUMENTOESTRUCTURA]    Script Date: 29/06/2024 17:09:35 ******/
+/****** Object:  StoredProcedure [dbo].[USP_SEL_DOCUMENTOESTRUCTURA]    Script Date: 1/07/2024 22:43:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -6959,7 +7426,7 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[USP_SEL_ENTIDAD]    Script Date: 29/06/2024 17:09:35 ******/
+/****** Object:  StoredProcedure [dbo].[USP_SEL_ENTIDAD]    Script Date: 1/07/2024 22:43:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -7020,7 +7487,7 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[USP_SEL_ENTIDAD_GENERALIDADES]    Script Date: 29/06/2024 17:09:35 ******/
+/****** Object:  StoredProcedure [dbo].[USP_SEL_ENTIDAD_GENERALIDADES]    Script Date: 1/07/2024 22:43:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -7118,7 +7585,7 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[USP_SEL_ENTIDADCOORDINADOR]    Script Date: 29/06/2024 17:09:35 ******/
+/****** Object:  StoredProcedure [dbo].[USP_SEL_ENTIDADCOORDINADOR]    Script Date: 1/07/2024 22:43:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -7198,7 +7665,7 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[USP_SEL_ENTIDADGRUPO]    Script Date: 29/06/2024 17:09:35 ******/
+/****** Object:  StoredProcedure [dbo].[USP_SEL_ENTIDADGRUPO]    Script Date: 1/07/2024 22:43:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -7239,7 +7706,7 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[USP_SEL_ENTIDADOFICIAL]    Script Date: 29/06/2024 17:09:35 ******/
+/****** Object:  StoredProcedure [dbo].[USP_SEL_ENTIDADOFICIAL]    Script Date: 1/07/2024 22:43:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -7319,7 +7786,7 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[USP_SEL_ENTIDADSECTOR]    Script Date: 29/06/2024 17:09:35 ******/
+/****** Object:  StoredProcedure [dbo].[USP_SEL_ENTIDADSECTOR]    Script Date: 1/07/2024 22:43:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -7364,7 +7831,104 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[USP_SEL_MODALIDAD]    Script Date: 29/06/2024 17:09:35 ******/
+/****** Object:  StoredProcedure [dbo].[USP_SEL_ETAPA]    Script Date: 1/07/2024 22:43:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE             PROCEDURE [dbo].[USP_SEL_ETAPA](
+	@etapa_id int =null,
+	@filtro varchar(max)=null,
+	@error BIT = NULL OUTPUT,
+	@message NVARCHAR(500) = NULL OUTPUT
+)
+AS
+BEGIN
+
+	set @error = 0;
+
+	SELECT
+		[etapa_id], 
+		[codigo], 
+		[nombre], 
+		[abreviatura], 
+		[descripcion], 
+		[estado], 
+		[usuario_reg], 
+		[fecha_reg], 
+		[fecha_act], 
+		[usuario_act]
+	FROM
+		[dbo].[ETAPA] AS T1 WITH(NOLOCK)
+	WHERE
+		T1.estado = 1 AND
+		(@etapa_id IS NULL OR T1.[etapa_id] = @etapa_id)
+	ORDER BY
+		T1.codigo
+
+		-- seteamos mensaje de salida
+		set @message = 'Consulta exitosa';
+
+
+END
+
+GO
+/****** Object:  StoredProcedure [dbo].[USP_SEL_EVALUACION]    Script Date: 1/07/2024 22:43:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE       PROCEDURE [dbo].[USP_SEL_EVALUACION](
+	@evaluacion_id int = null,
+	@fecha_inicio datetime = null,
+	@fecha_fin datetime = null,
+	@filtro varchar(max) = null,
+	@error BIT = NULL OUTPUT,
+	@message NVARCHAR(500) = NULL OUTPUT
+)
+AS
+BEGIN
+
+	set @error = 0;
+
+	SELECT
+		  T1.[evaluacion_id]
+		, T1.[codigo]
+		, T1.[fecha_inicio]
+		, T1.[fecha_fin]
+		, T1.[descripcion]
+		, T1.[comentarios]
+		, T1.[estado]
+		, T1.[usuario_reg]
+		, T1.[fecha_reg]
+		, T1.[fecha_act]
+		, T1.[usuario_act]
+	FROM 
+		[dbo].[EVALUACION] T1 WITH(NOLOCK)
+	WHERE
+		T1.estado = 1 AND
+		(@evaluacion_id IS NULL OR T1.[evaluacion_id] = @evaluacion_id) AND
+		(
+			@fecha_inicio IS NULL OR @fecha_fin IS NULL OR 
+			(T1.[fecha_inicio] BETWEEN @fecha_inicio AND @fecha_fin AND T1.[fecha_fin] BETWEEN @fecha_inicio AND @fecha_fin)
+		) AND	
+		(@evaluacion_id IS NULL OR T1.[evaluacion_id] = @evaluacion_id) AND		
+		(@FILTRO IS NULL OR (RTRIM(LTRIM(ISNULL(T1.descripcion, ''))) + ' ' +
+			RTRIM(LTRIM(ISNULL(T1.codigo, ''))) + ' ' +
+			RTRIM(LTRIM(ISNULL(T1.comentarios, '')))) LIKE '%' + @filtro + '%' COLLATE Latin1_General_CI_AI)
+	ORDER BY
+		T1.fecha_reg desc;
+
+	-- seteamos mensaje de salida
+	set @message = 'Consulta exitosa';
+
+
+END
+
+GO
+/****** Object:  StoredProcedure [dbo].[USP_SEL_MODALIDAD]    Script Date: 1/07/2024 22:43:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -7406,7 +7970,7 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[USP_SEL_MODALIDADINTEGRIDAD]    Script Date: 29/06/2024 17:09:35 ******/
+/****** Object:  StoredProcedure [dbo].[USP_SEL_MODALIDADINTEGRIDAD]    Script Date: 1/07/2024 22:43:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -7447,7 +8011,7 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[USP_SEL_PERSONA]    Script Date: 29/06/2024 17:09:35 ******/
+/****** Object:  StoredProcedure [dbo].[USP_SEL_PERSONA]    Script Date: 1/07/2024 22:43:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -7505,7 +8069,7 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[USP_SEL_PREGUNTA]    Script Date: 29/06/2024 17:09:35 ******/
+/****** Object:  StoredProcedure [dbo].[USP_SEL_PREGUNTA]    Script Date: 1/07/2024 22:43:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -7558,7 +8122,7 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[USP_SEL_PROFESION]    Script Date: 29/06/2024 17:09:35 ******/
+/****** Object:  StoredProcedure [dbo].[USP_SEL_PROFESION]    Script Date: 1/07/2024 22:43:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -7599,7 +8163,7 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[USP_SEL_UBIGEO_DEPARTAMENTO]    Script Date: 29/06/2024 17:09:35 ******/
+/****** Object:  StoredProcedure [dbo].[USP_SEL_UBIGEO_DEPARTAMENTO]    Script Date: 1/07/2024 22:43:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -7631,7 +8195,7 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[USP_SEL_UBIGEO_DISTRITO]    Script Date: 29/06/2024 17:09:35 ******/
+/****** Object:  StoredProcedure [dbo].[USP_SEL_UBIGEO_DISTRITO]    Script Date: 1/07/2024 22:43:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -7664,7 +8228,7 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[USP_SEL_UBIGEO_PROVINCIA]    Script Date: 29/06/2024 17:09:35 ******/
+/****** Object:  StoredProcedure [dbo].[USP_SEL_UBIGEO_PROVINCIA]    Script Date: 1/07/2024 22:43:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -7700,7 +8264,7 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[USP_UPD_ENTIDAD]    Script Date: 29/06/2024 17:09:35 ******/
+/****** Object:  StoredProcedure [dbo].[USP_UPD_ENTIDAD]    Script Date: 1/07/2024 22:43:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -7772,7 +8336,7 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[USP_UPD_ENTIDAD_GENERALIDADES]    Script Date: 29/06/2024 17:09:35 ******/
+/****** Object:  StoredProcedure [dbo].[USP_UPD_ENTIDAD_GENERALIDADES]    Script Date: 1/07/2024 22:43:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -7836,7 +8400,7 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[USP_UPD_ENTIDADCOORDINADOR]    Script Date: 29/06/2024 17:09:35 ******/
+/****** Object:  StoredProcedure [dbo].[USP_UPD_ENTIDADCOORDINADOR]    Script Date: 1/07/2024 22:43:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -7907,7 +8471,7 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[USP_UPD_ENTIDADGRUPO]    Script Date: 29/06/2024 17:09:35 ******/
+/****** Object:  StoredProcedure [dbo].[USP_UPD_ENTIDADGRUPO]    Script Date: 1/07/2024 22:43:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -7959,7 +8523,7 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[USP_UPD_ENTIDADOFICIAL]    Script Date: 29/06/2024 17:09:35 ******/
+/****** Object:  StoredProcedure [dbo].[USP_UPD_ENTIDADOFICIAL]    Script Date: 1/07/2024 22:43:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -8030,7 +8594,92 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[USP_UPD_PERSONA]    Script Date: 29/06/2024 17:09:35 ******/
+/****** Object:  StoredProcedure [dbo].[USP_UPD_EVALUACION]    Script Date: 1/07/2024 22:43:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE     PROCEDURE [dbo].[USP_UPD_EVALUACION]
+	@evaluacion_id int = NULL,
+	@fecha_inicio datetime = null,
+	@fecha_fin datetime = null,
+	@descripcion varchar(100) = null,
+	@comentarios varchar(250) = null,
+	@usuario_act varchar(20) = NULL,
+	@error BIT = NULL OUTPUT,
+	@message NVARCHAR(500) = NULL OUTPUT
+AS
+BEGIN
+	
+	--Inicializa como false
+	SET @error = 0;
+
+	-- Validar que las fechas de inicio y fin no sean nulas
+	IF (@fecha_inicio IS NULL OR @fecha_fin IS NULL)
+	BEGIN
+		SET @error = 1
+		SET @message = 'Las fechas de inicio y fin no pueden ser nulas.'
+		RETURN
+	END
+
+	-- Validar que la fecha de inicio sea menor o igual a la fecha de fin
+	IF (@fecha_inicio >= @fecha_fin)
+	BEGIN
+		SET @error = 1
+		SET @message = 'La fecha de inicio debe ser menor a la fecha de fin.'
+		RETURN
+	END
+
+	-- Verificar si hay alguna evaluación con un rango de fechas que se superponga
+	IF EXISTS (
+		SELECT 1
+		FROM EVALUACION
+		WHERE estado = 1
+		AND evaluacion_id <> @evaluacion_id
+		AND (
+			(@fecha_inicio BETWEEN fecha_inicio AND fecha_fin)
+			OR (@fecha_fin BETWEEN fecha_inicio AND fecha_fin)
+			OR (fecha_inicio BETWEEN @fecha_inicio AND @fecha_fin)
+			OR (fecha_fin BETWEEN @fecha_inicio AND @fecha_fin)
+		)
+	)
+	BEGIN
+		SET @error = 1
+		SET @message = 'El rango de fechas se cruza con una evaluación existente.'
+		RETURN
+	END
+ 
+	-- si no ocurrio ningun error
+	IF(@error = 0) 
+	BEGIN
+		 BEGIN TRY
+
+			UPDATE [dbo].[EVALUACION]
+			SET
+				fecha_inicio	=	 @fecha_inicio,
+				fecha_fin		=	 @fecha_fin,
+				descripcion		=	 TRIM(@descripcion),
+				comentarios		=	 TRIM(@comentarios),
+				usuario_act		=	 @usuario_act,
+				fecha_act		=	 GETDATE()
+			WHERE
+				evaluacion_id = @evaluacion_id;
+
+
+		-- setemos el mensaje de salida
+		set @message = 'Información actualizada satisfactoriamente';
+
+		END TRY
+		BEGIN CATCH
+			SET @error = 1
+			SET @message = ERROR_MESSAGE()
+		END CATCH
+
+	END
+END
+
+GO
+/****** Object:  StoredProcedure [dbo].[USP_UPD_PERSONA]    Script Date: 1/07/2024 22:43:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -8085,7 +8734,7 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[USP_UPD_PREGUNTA]    Script Date: 29/06/2024 17:09:35 ******/
+/****** Object:  StoredProcedure [dbo].[USP_UPD_PREGUNTA]    Script Date: 1/07/2024 22:43:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
